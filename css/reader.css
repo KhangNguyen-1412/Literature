@@ -1,0 +1,1271 @@
+/* ==========================================================================
+   VĂN UYỂN - DEDICATED EDITORIAL READER
+   Phòng đọc tác phẩm chuyên biệt chuẩn văn học cao cấp
+   ========================================================================== */
+
+/* Fullscreen Reader Modal Container */
+.reader-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--paper-bg);
+  z-index: 2000;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.reader-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Thanh Tiến Trình Đọc Cố Định Trên Cùng (Reading Progress Bar) */
+.reader-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5px;
+  background: rgba(0, 0, 0, 0.05);
+  z-index: 2100;
+}
+
+.reader-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cerulean-600), var(--jasper-600));
+  transition: width 0.1s ease-out;
+}
+
+/* Thanh Công Cụ Đọc Sách (Reader Header & Controls) */
+/* ==========================================================================
+   THANH ĐIỀU KHIỂN PHÒNG ĐỌC SÁCH EDITORIAL CAO CẤP (MODERN LUXURY HEADER)
+   Thiết kế chuẩn Apple/Medium: Capsule trung tâm thanh lịch, kính mờ sang trọng
+   ========================================================================== */
+.reader-header {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  background: rgba(253, 251, 245, 0.94);
+  border-bottom: 1px solid rgba(22, 60, 80, 0.09);
+  z-index: 2050;
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="nocturne"] .reader-header,
+[data-theme="dark"] .reader-header {
+  background: rgba(10, 20, 29, 0.94);
+  border-bottom: 1px solid rgba(91, 179, 214, 0.14);
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.6);
+}
+
+.reader-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+  gap: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   VÙNG 1: BÊN TRÁI — THƯ VIỆN & THÔNG TIN TÁC PHẨM
+   -------------------------------------------------------------------------- */
+.reader-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+  flex: 1 1 0;
+  max-width: 440px;
+}
+
+.reader-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 36px;
+  padding: 0 0.95rem;
+  font-family: var(--font-ui);
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--cerulean-900);
+  background: rgba(14, 59, 82, 0.05);
+  border: 1px solid rgba(14, 59, 82, 0.1);
+  border-radius: 18px;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reader-back-btn:hover {
+  background: rgba(14, 59, 82, 0.1);
+  border-color: rgba(14, 59, 82, 0.22);
+  color: var(--cerulean-950);
+  transform: translateX(-2px);
+}
+
+[data-theme="nocturne"] .reader-back-btn,
+[data-theme="dark"] .reader-back-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(91, 179, 214, 0.18);
+  color: #EEF5F9;
+}
+
+[data-theme="nocturne"] .reader-back-btn:hover,
+[data-theme="dark"] .reader-back-btn:hover {
+  background: rgba(91, 179, 214, 0.16);
+  border-color: rgba(91, 179, 214, 0.35);
+  color: #FFFFFF;
+}
+
+.reader-header-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(14, 59, 82, 0.12);
+  flex-shrink: 0;
+}
+
+[data-theme="nocturne"] .reader-header-divider,
+[data-theme="dark"] .reader-header-divider {
+  background: rgba(91, 179, 214, 0.16);
+}
+
+.reader-title-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.reader-mini-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="nocturne"] .reader-mini-title,
+[data-theme="dark"] .reader-mini-title {
+  color: #EEF5F9;
+}
+
+.reader-title-sep {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.reader-mini-author {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+  font-style: italic;
+}
+
+[data-theme="nocturne"] .reader-mini-author,
+[data-theme="dark"] .reader-mini-author {
+  color: #9EC0D4;
+}
+
+.reader-mini-badge {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(26, 107, 138, 0.08);
+  color: var(--cerulean-800);
+  border: 1px solid rgba(26, 107, 138, 0.2);
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+
+[data-theme="nocturne"] .reader-mini-badge,
+[data-theme="dark"] .reader-mini-badge {
+  background: rgba(91, 179, 214, 0.12);
+  color: #79C5E3;
+  border-color: rgba(91, 179, 214, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   VÙNG 2: TRUNG TÂM — TÙY BIẾN ĐỌC SÁCH THIẾT KẾ ĐÔI TINH XẢO
+   (Phân 2 Capsule: Bố Cục & Đọc Sách)
+   -------------------------------------------------------------------------- */
+.reader-reading-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.reader-segmented-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding: 3px 4px;
+  background: rgba(14, 59, 82, 0.05);
+  border: 1px solid rgba(14, 59, 82, 0.09);
+  border-radius: 19px;
+  gap: 3px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 2px rgba(14, 59, 82, 0.03);
+  transition: all 0.25s ease;
+}
+
+[data-theme="nocturne"] .reader-segmented-pill,
+[data-theme="dark"] .reader-segmented-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(91, 179, 214, 0.15);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.capsule-subgroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.capsule-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(14, 59, 82, 0.12);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+[data-theme="nocturne"] .capsule-divider,
+[data-theme="dark"] .capsule-divider {
+  background: rgba(91, 179, 214, 0.18);
+}
+
+.capsule-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 30px;
+  padding: 0 0.65rem;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  font-family: var(--font-ui);
+  font-size: 0.785rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap !important;
+  user-select: none;
+}
+
+.capsule-btn:hover {
+  color: var(--cerulean-900);
+  background: rgba(14, 59, 82, 0.05);
+}
+
+[data-theme="nocturne"] .capsule-btn,
+[data-theme="dark"] .capsule-btn {
+  color: #8CAABF;
+}
+
+[data-theme="nocturne"] .capsule-btn:hover,
+[data-theme="dark"] .capsule-btn:hover {
+  color: #EEF5F9;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* NÚT ACTIVE TRONG CAPSULE: SANG TRỌNG, ÊM DỊU, KHÔNG CHÓI LÓA */
+.capsule-btn.active {
+  background: #FFFFFF !important;
+  color: var(--cerulean-900) !important;
+  border-color: rgba(14, 59, 82, 0.12);
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="nocturne"] .capsule-btn.active,
+[data-theme="dark"] .capsule-btn.active {
+  background: #183347 !important;
+  color: #EEF5F9 !important;
+  border-color: rgba(91, 179, 214, 0.35) !important;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="nocturne"] .capsule-btn.active svg,
+[data-theme="dark"] .capsule-btn.active svg {
+  stroke: #79C5E3;
+}
+
+/* Chỉnh phím chỉnh cỡ chữ */
+.font-step-btn {
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0 0.5rem;
+}
+
+.capsule-font-val {
+  font-family: var(--font-ui);
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--cerulean-900);
+  padding: 0 0.35rem;
+  min-width: 32px;
+  text-align: center;
+  white-space: nowrap !important;
+  user-select: none;
+}
+
+[data-theme="nocturne"] .capsule-font-val,
+[data-theme="dark"] .capsule-font-val {
+  color: #B4CDDC;
+}
+
+/* --------------------------------------------------------------------------
+   VÙNG 3: BÊN PHẢI — TIỆN ÍCH THƯ VIỆN & ÂM THANH
+   -------------------------------------------------------------------------- */
+.reader-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  flex: 1 1 0;
+}
+
+.reader-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 36px;
+  padding: 0 0.85rem;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: rgba(14, 59, 82, 0.045);
+  border: 1px solid rgba(14, 59, 82, 0.09);
+  border-radius: 8px;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(14, 59, 82, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.reader-nav-btn:hover {
+  background: #FFFFFF;
+  border-color: var(--cerulean-600);
+  color: var(--cerulean-900);
+  box-shadow: 0 2px 8px rgba(14, 59, 82, 0.08);
+  transform: translateY(-1px);
+}
+
+[data-theme="nocturne"] .reader-nav-btn,
+[data-theme="dark"] .reader-nav-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(91, 179, 214, 0.16);
+  color: #B4CDDC;
+}
+
+[data-theme="nocturne"] .reader-nav-btn:hover,
+[data-theme="dark"] .reader-nav-btn:hover {
+  background: rgba(91, 179, 214, 0.15);
+  border-color: rgba(91, 179, 214, 0.35);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.editorial-dropdown.open .reader-nav-btn {
+  border-color: var(--cerulean-700);
+  box-shadow: 0 0 0 3px rgba(26, 107, 138, 0.12);
+  background: #FFFFFF;
+  color: var(--cerulean-900);
+}
+
+[data-theme="nocturne"] .editorial-dropdown.open .reader-nav-btn,
+[data-theme="dark"] .editorial-dropdown.open .reader-nav-btn {
+  border-color: #5BB3D6;
+  box-shadow: 0 0 0 3px rgba(91, 179, 214, 0.25);
+  background: #183347;
+  color: #FFFFFF;
+}
+
+/* Nút bookmark khi đã lưu */
+.reader-bookmark-btn.bookmarked,
+.reader-bookmark-btn.active {
+  background: rgba(194, 89, 63, 0.12) !important;
+  border-color: var(--jasper-600) !important;
+  color: var(--jasper-700) !important;
+}
+
+[data-theme="nocturne"] .reader-bookmark-btn.bookmarked,
+[data-theme="nocturne"] .reader-bookmark-btn.active,
+[data-theme="dark"] .reader-bookmark-btn.bookmarked,
+[data-theme="dark"] .reader-bookmark-btn.active {
+  background: rgba(240, 94, 80, 0.18) !important;
+  border-color: #FF7B6E !important;
+  color: #FF9B90 !important;
+}
+
+.reader-ambient-btn.playing {
+  border-color: rgba(186, 52, 42, 0.3) !important;
+  color: var(--jasper-600) !important;
+  background: rgba(186, 52, 42, 0.08) !important;
+  box-shadow: 0 0 0 2px rgba(186, 52, 42, 0.12);
+  animation: pulseAmbient 2s infinite ease-in-out;
+}
+
+[data-theme="nocturne"] .reader-ambient-btn.playing {
+  border-color: var(--jasper-400) !important;
+  color: var(--jasper-200) !important;
+  background: rgba(186, 52, 42, 0.25) !important;
+}
+
+@keyframes pulseAmbient {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* NỘI DUNG TÁC PHẨM ĐỌC SÁCH (READER CONTENT AREA) */
+.reader-body-wrapper {
+  max-width: var(--container-reader);
+  width: 100%;
+  margin: 3rem auto 6rem;
+  padding: 0 1.5rem;
+  flex-grow: 1;
+  transition: max-width 0.3s ease;
+}
+
+/* Khi bật bố cục 2 cột mở sách Editorial */
+.reader-body-wrapper.two-column-mode {
+  max-width: 1240px;
+}
+
+.reader-article-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px double var(--paper-border-bold);
+}
+
+.reader-category {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--jasper-600);
+  margin-bottom: 0.75rem;
+}
+
+.reader-main-title {
+  font-size: 3.25rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--cerulean-900);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.reader-meta-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.reader-author-link {
+  font-weight: 700;
+  color: var(--cerulean-700);
+}
+
+.reader-epigraph {
+  margin: 2rem auto;
+  max-width: 580px;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-secondary);
+  border-left: 3px solid var(--jasper-500);
+  padding: 0.75rem 1.25rem;
+  background: var(--paper-parchment);
+  text-align: left;
+}
+
+/* KHỐI HÌNH ẢNH MINH HỌA TÁC PHẨM (READER ILLUSTRATION FRAME) */
+.reader-illustration-frame {
+  margin: 2rem 0 2.5rem;
+  border: 1px solid var(--paper-border-bold);
+  background: var(--paper-parchment);
+  box-shadow: var(--shadow-book);
+  overflow: hidden;
+  border-radius: var(--radius-xs);
+}
+
+.reader-illustration-frame img {
+  width: 100%;
+  max-height: 460px;
+  object-fit: cover;
+  display: block;
+}
+
+.reader-illustration-caption {
+  padding: 0.65rem 1rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  background: var(--paper-surface);
+  border-top: 1px solid var(--paper-border);
+  text-align: center;
+}
+
+/* BANNER ẤN BẢN TOÀN VĂN & ĐỊNH VỊ SGK */
+.reader-fulltext-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--cerulean-50);
+  border: 1px solid var(--cerulean-200);
+  border-radius: var(--radius-xs);
+  margin-bottom: 2rem;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+}
+
+.reader-fulltext-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: var(--cerulean-800);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reader-jump-sgk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--jasper-600);
+  color: #fff;
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.reader-jump-sgk-btn:hover {
+  background: var(--jasper-700);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* KHỐI ĐÁNH DẤU PHẦN SÁCH GIÁO KHOA (TEXTBOOK CURRICULUM MARKER) */
+.sgk-notice-box {
+  margin: 2.5rem 0 1.5rem;
+  background: var(--jasper-50);
+  border: 1px solid var(--jasper-200);
+  border-left: 4px solid var(--jasper-600);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  position: relative;
+}
+
+.sgk-notice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sgk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--jasper-600);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sgk-meta {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.sgk-notice-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  line-height: 1.6;
+  margin-bottom: 0 !important;
+}
+
+.sgk-end-marker {
+  margin: 2rem 0;
+  padding: 0.75rem;
+  text-align: center;
+  background: var(--paper-parchment);
+  border: 1px dashed var(--paper-border-bold);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.reader-section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem 0 2rem;
+  color: var(--cerulean-600);
+}
+
+.reader-section-divider::before,
+.reader-section-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--paper-border);
+}
+
+.reader-chapter-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--cerulean-900);
+  text-align: center;
+  margin: 2.5rem 0 1.25rem;
+  line-height: 1.3;
+}
+
+/* KHỐI CHỮ TÁC PHẨM (READER TYPOGRAPHY) */
+.reader-prose {
+  font-family: var(--font-body);
+  font-size: 1.25rem; /* Linh hoạt thay đổi qua font size controls */
+  line-height: 1.9;
+  color: var(--ink-primary);
+}
+
+.reader-prose p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+
+.reader-prose.poetry-mode {
+  text-align: center;
+}
+
+.reader-prose.poetry-mode p {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.35rem;
+  line-height: 2.2;
+  letter-spacing: 0.01em;
+}
+
+/* =======================================================
+   BỐ CỤC 2 CỘT MỞ SÁCH EDITORIAL (TWO-COLUMN BOOK SPREAD)
+   Hiển thị nội dung tác phẩm dạng 2 cột theo đúng yêu cầu
+   ======================================================= */
+.reader-prose.two-column-mode {
+  column-count: 2;
+  column-gap: 3.5rem;
+  column-rule: 1px solid var(--paper-border-bold);
+  text-align: justify;
+}
+
+/* Tiêu đề chương, thông báo SGK, banner và ảnh minh họa chương trải dài cả 2 cột */
+.reader-prose.two-column-mode .reader-chapter-title,
+.reader-prose.two-column-mode .sgk-notice-box,
+.reader-prose.two-column-mode .reader-fulltext-banner,
+.reader-prose.two-column-mode .quick-review-banner,
+.reader-prose.two-column-mode .sgk-end-marker,
+.reader-prose.two-column-mode .chapter-illustration-frame {
+  column-span: all;
+}
+
+/* KHUNG MINH HỌA CHO MỖI KHÚC / CHƯƠNG / HỒI (CHAPTER ILLUSTRATION FRAME) */
+.chapter-illustration-frame {
+  column-span: all;
+  margin: 1.75rem 0 2.25rem;
+  border: 1px solid var(--paper-border-bold);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  background: var(--paper-parchment);
+  box-shadow: 0 4px 18px rgba(14, 59, 82, 0.08);
+}
+
+.chapter-illustration-img {
+  width: 100%;
+  max-height: 440px;
+  object-fit: cover;
+  display: block;
+}
+
+.chapter-illustration-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  background: var(--paper-surface);
+  border-top: 1px solid var(--paper-border);
+  text-align: center;
+  line-height: 1.45;
+}
+
+.chapter-illustration-caption .editorial-icon {
+  color: var(--jasper-600);
+  flex-shrink: 0;
+}
+
+.reader-prose.two-column-mode p {
+  break-inside: auto;
+  line-height: 1.85;
+}
+
+/* Đối với thơ ca trong bố cục 2 cột: bảo toàn từng khổ thơ không bị cắt ngang */
+.reader-prose.two-column-mode.poetry-mode {
+  column-count: 2;
+  column-gap: 4rem;
+  column-rule: 1px solid var(--paper-border-bold);
+  text-align: center;
+}
+
+.reader-prose.two-column-mode.poetry-mode p {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  line-height: 2.1;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .reader-prose.two-column-mode,
+  .reader-prose.two-column-mode.poetry-mode {
+    column-count: 1;
+    column-rule: none;
+  }
+  .reader-body-wrapper.two-column-mode {
+    max-width: 100%;
+  }
+}
+
+/* Chữ Hoa Đầu Dòng Đọc Sách (Chỉ dành riêng cho Văn Xuôi, TUYỆT ĐỐI KHÔNG áp dụng cho thơ ca) */
+.reader-prose.prose-mode:not(.poetry-mode) > p:first-of-type::first-letter,
+.reader-prose.drop-cap:not(.poetry-mode) > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  padding-top: 6px;
+  padding-right: 12px;
+  padding-bottom: 0;
+  color: var(--jasper-600);
+  font-weight: 900;
+}
+
+/* Triệt tiêu hoàn toàn và bảo vệ độ ngay ngắn của từng chữ đầu dòng trong thơ ca */
+.reader-prose.poetry-mode::first-letter,
+.reader-prose.poetry-mode *::first-letter,
+.poetry-mode p::first-letter,
+.poetry-mode span::first-letter {
+  all: unset !important;
+  float: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline !important;
+}
+
+/* CƯỚC CHÚ & ĐIỂN TÍCH TƯƠNG TÁC (FOOTNOTE ANNOTATIONS) */
+.footnote-ref {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--jasper-600);
+  background: var(--jasper-100);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  cursor: pointer;
+  vertical-align: super;
+  margin: 0 0.15rem;
+  border: 1px solid var(--jasper-200);
+  transition: var(--transition-smooth);
+}
+
+.footnote-ref:hover {
+  background: var(--jasper-600);
+  color: #fff;
+}
+
+/* POPUP GIẢI THÍCH ĐIỂN CỐ (MARGINALIA TOOLTIP) */
+.annotation-popover {
+  position: absolute;
+  background: var(--paper-surface);
+  border: 1px solid var(--paper-border-bold);
+  border-left: 4px solid var(--cerulean-700);
+  padding: 1rem 1.25rem;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  border-radius: var(--radius-xs);
+  z-index: 2200;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+}
+
+.annotation-popover.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.annotation-title {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--cerulean-800);
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+/* KHUNG PHÊ BÌNH & BỐI CẢNH (LITERARY CRITICISM ACCORDION) */
+.reader-criticism-box {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: var(--paper-parchment);
+  border: 1px solid var(--paper-border-bold);
+  border-radius: var(--radius-xs);
+}
+
+.criticism-title {
+  font-size: 1.35rem;
+  color: var(--cerulean-900);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.criticism-title::before {
+  content: "✦";
+  color: var(--jasper-600);
+}
+
+.criticism-content {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink-secondary);
+}
+
+/* ĐIỀU HƯỚNG TÁC PHẨM KẾ TIẾP (NEXT/PREV WORK FOOTER) */
+.reader-nav-footer {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--paper-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.reader-footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--cerulean-800);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--paper-border);
+  background: var(--paper-surface);
+  border-radius: var(--radius-xs);
+  transition: var(--transition-smooth);
+}
+
+.reader-footer-btn:hover {
+  border-color: var(--cerulean-600);
+  background: var(--cerulean-50);
+}
+
+/* =======================================================
+   CHẾ ĐỘ ĐỌC LẬT TRANG KHÔNG CUỘN (PAGINATED READING MODE)
+   ======================================================= */
+
+.reader-page-bar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--paper-bg);
+  border-top: 2px solid var(--cerulean-800);
+  box-shadow: 0 -8px 24px rgba(14, 59, 82, 0.12), 0 -2px 6px rgba(0, 0, 0, 0.04);
+  padding: 0.75rem 1.5rem;
+  z-index: 2050;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  margin-top: auto;
+}
+
+.reader-page-bar-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* NÚT LẬT TRANG (PAGE NAV BUTTONS) */
+.page-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: var(--paper-surface);
+  border: 1px solid var(--paper-border-bold);
+  border-radius: var(--radius-xs);
+  color: var(--ink-primary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  -webkit-user-select: none;
+  user-select: none;
+  min-width: 180px;
+}
+
+.page-nav-btn:hover:not(:disabled) {
+  border-color: var(--cerulean-600);
+  background: var(--cerulean-50);
+  color: var(--cerulean-900);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(14, 59, 82, 0.08);
+}
+
+.page-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+
+.page-btn-texts {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.page-btn-texts.text-right {
+  text-align: right;
+}
+
+.page-btn-sub {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.page-btn-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--cerulean-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* BỘ ĐẾM TRANG VÀ CHỌN TRANG NHANH */
+.page-indicator-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.page-counter-btn {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cerulean-900);
+  background: var(--paper-surface);
+  border-color: var(--paper-border-bold);
+  padding: 0.35rem 0.85rem;
+}
+
+.page-counter-btn:hover {
+  border-color: var(--jasper-600);
+  color: var(--jasper-700);
+}
+
+.page-dots-container {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.page-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cerulean-200);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.page-dot:hover {
+  background: var(--cerulean-500);
+  transform: scale(1.3);
+}
+
+.page-dot.active {
+  width: 18px;
+  border-radius: 4px;
+  background: var(--jasper-600);
+}
+
+/* NÚT XEM LẠI ĐOẠN TRƯỚC NHANH (QUICK REVIEW BANNER) */
+.quick-review-banner {
+  background: var(--paper-parchment);
+  border: 1px dashed var(--cerulean-400);
+  border-left: 4px solid var(--cerulean-700);
+  border-radius: var(--radius-xs);
+  padding: 0.5rem 0.9rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-ui);
+  font-size: 0.825rem;
+  color: var(--cerulean-900);
+  animation: fadeInPage 0.3s ease-out;
+}
+
+.quick-review-banner button {
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--jasper-600);
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.quick-review-banner button:hover {
+  color: var(--jasper-800);
+}
+
+/* HIỆU ỨNG LẬT TRANG CHUYỂN CẢNH (PAGE FLIP ANIMATION) */
+.reader-page-fade {
+  animation: fadeInPage 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MÉP LẬT TRANG Ở HAI BÊN (SIDE FLIP MARGINS) */
+.side-flip-zone {
+  position: fixed;
+  top: 70px;
+  bottom: 80px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.25s ease, background 0.25s ease;
+  z-index: 2040;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.side-flip-zone.left {
+  left: 0;
+  background: linear-gradient(to right, rgba(14, 59, 82, 0.08), transparent);
+}
+
+.side-flip-zone.right {
+  right: 0;
+  background: linear-gradient(to left, rgba(14, 59, 82, 0.08), transparent);
+}
+
+.side-flip-zone:hover {
+  opacity: 1;
+}
+
+.side-flip-zone-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--paper-surface);
+  border: 1px solid var(--paper-border-bold);
+  box-shadow: 0 4px 14px rgba(14, 59, 82, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cerulean-800);
+  transition: transform 0.2s ease;
+}
+
+.side-flip-zone:hover .side-flip-zone-icon {
+  transform: scale(1.1);
+  color: var(--jasper-600);
+  border-color: var(--jasper-300);
+}
+
+@media (max-width: 1400px) {
+  .reader-mini-author {
+    display: none !important;
+  }
+  .reader-title-sep {
+    display: none !important;
+  }
+  .reader-mini-title {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .reader-segmented-pill .capsule-btn span {
+    display: none;
+  }
+  .reader-segmented-pill .capsule-btn {
+    padding: 0 0.55rem;
+  }
+  .reader-mini-title {
+    max-width: 190px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .reader-header-inner {
+    padding: 0 0.85rem;
+    gap: 0.5rem;
+  }
+  .reader-nav-btn span {
+    display: none;
+  }
+  .reader-nav-btn {
+    padding: 0 0.6rem;
+  }
+  .reader-mini-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .reader-header {
+    height: 52px;
+  }
+  .reader-main-title {
+    font-size: 2.35rem;
+  }
+  .reader-mini-title {
+    display: none;
+  }
+  .reader-header-divider {
+    display: none;
+  }
+  .reader-back-btn span {
+    display: none;
+  }
+  .reader-back-btn {
+    padding: 0 0.6rem;
+  }
+  .layout-pill {
+    display: none;
+  }
+  .side-flip-zone {
+    display: none;
+  }
+  .page-nav-btn {
+    min-width: auto;
+    padding: 0.45rem 0.65rem;
+  }
+  .page-btn-sub {
+    display: none;
+  }
+  .page-btn-title {
+    max-width: 90px;
+  }
+}
+
+

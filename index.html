@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>VĂN UYỂN — Tinh Hoa Văn Học Việt Nam & Thế Giới | Thư Tịch Khảo Cứu Toàn Diện</title>
+  <meta name="title" content="VĂN UYỂN — Tinh Hoa Văn Học Việt Nam & Thế Giới | Thư Tịch Khảo Cứu Toàn Diện">
+  <meta name="description" content="Kỳ san thư tịch khảo cứu và phòng đọc văn học kinh điển toàn diện. Đọc trọn vẹn 14 kiệt tác bất hủ: Truyện Kiều, Số Đỏ, Chí Phèo, Chữ Người Tử Tù, Biến Thân, Trăm Năm Cô Đơn... theo phong cách Editorial cao cấp, phân định rõ ràng các phân đoạn Sách Giáo Khoa (SGK).">
+  <meta name="keywords" content="văn học việt nam, văn học thế giới, truyện kiều nguyễn du, số đỏ vũ trọng phụng, chí phèo nam cao, lão hạc, chữ người tử tù nguyễn tuân, hai đứa trẻ thạch lam, biến thân franz kafka, trăm năm cô đơn márquez, ông già và biển cả hemingway, người thầy đầu tiên aitmatov, sách giáo khoa ngữ văn, văn uyển, kỳ san văn chương">
+  <meta name="author" content="Ban Biên Tập Văn Uyển">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="http://localhost:3000/">
+
+  <!-- Open Graph / Facebook / Zalo -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VĂN UYỂN">
+  <meta property="og:url" content="http://localhost:3000/">
+  <meta property="og:title" content="VĂN UYỂN — Tinh Hoa Văn Học Việt Nam & Thế Giới">
+  <meta property="og:description" content="Trải nghiệm phòng đọc văn chương nghệ thuật không cắt xén, phông chữ Playfair Display & Newsreader cùng bảng màu Xanh Cerulean & Đỏ Jasper.">
+  <meta property="og:image" content="assets/images/editorial_cover.jpg">
+  <meta property="og:locale" content="vi_VN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VĂN UYỂN — Tinh Hoa Văn Học Việt Nam & Thế Giới">
+  <meta name="twitter:description" content="Kỳ san thư tịch khảo cứu và phòng đọc văn học kinh điển toàn diện.">
+  <meta name="twitter:image" content="assets/images/editorial_cover.jpg">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/editorial.css">
+  <link rel="stylesheet" href="css/reader.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- 1. TOP EDITORIAL BAR (THÔNG TIN KỲ BÁO & CÔNG CỤ NHANH) -->
+  <aside class="editorial-topbar">
+    <div class="container topbar-content">
+      <div class="topbar-left">
+        <span class="topbar-badge">KỲ SAN ĐẶC BIỆT</span>
+        <span id="topbar-current-date">Thứ Năm, ngày 3 tháng 9, 2026</span>
+        <span>•</span>
+        <span>Số Thu Khởi • Đệ Nhất Chu Niên</span>
+      </div>
+
+      <div class="topbar-center">
+        <span class="topbar-quote">“Văn học là nhân học — Maxim Gorky”</span>
+      </div>
+
+      <div class="topbar-right">
+        <a href="auth.html" class="topbar-btn" title="Đăng nhập / Đăng ký tài khoản Văn Uyển">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span id="topbar-auth-label">Tài khoản</span>
+        </a>
+        <a href="admin.html" class="topbar-btn" target="_blank" title="Trang Quản trị Biên tập (Admin CMS)">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>Quản trị Admin</span>
+        </a>
+        <button id="global-ambient-btn" class="topbar-btn" onclick="window.literaryAudio.toggleAmbient(this)">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          <span>Âm thanh thư phòng</span>
+        </button>
+        <button id="global-theme-btn" class="topbar-btn" onclick="window.literaryApp.toggleGlobalTheme()">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span>Đêm văn đàn</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 2. MĂNG-SÉT TẠP CHÍ VĂN HỌC (EDITORIAL MASTHEAD) -->
+  <header class="editorial-masthead">
+    <div class="container">
+      <div class="masthead-ornament-top">
+        <span class="masthead-motto">Litterarum Lux et Humanitas • Nơi Kết Tinh Tinh Hoa Văn Nghệ</span>
+      </div>
+
+      <div class="masthead-title-wrap">
+        <h1 class="masthead-title">VĂN UYỂN</h1>
+        <div class="masthead-seal" title="Ấn bản chọn lọc">ẤN ĐỊNH<br>KỲ SAN</div>
+      </div>
+
+      <p class="masthead-sub">Tạp chí Văn học, Khảo cứu Tác phẩm Kinh điển & Thư tịch Toàn thư</p>
+
+      <div class="editorial-ruling-double"></div>
+    </div>
+  </header>
+
+  <!-- 3. THANH ĐIỀU HƯỚNG TẠP CHÍ (NAVIGATION) -->
+  <nav class="editorial-nav-bar" id="main-nav">
+    <div class="container nav-container">
+      <ul class="editorial-nav-list">
+        <li class="nav-item active" data-tab="cover">
+          <a href="#/" class="nav-link" onclick="window.literaryApp.switchTab('cover')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><line x1="8" y1="7" x2="16" y2="7"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            <span>Trang Nhất</span>
+          </a>
+        </li>
+        <li class="nav-item nav-item-has-dropdown" data-tab="library">
+          <a href="#/thu-vien" class="nav-link" onclick="window.literaryApp.switchTab('library')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <span>Thư Viện Tác Phẩm</span>
+            <svg class="editorial-icon icon-sm" style="margin-left: 2px; width: 0.75rem; height: 0.75rem;" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <div class="editorial-dropdown-header">Theo Địa Vực Văn Học</div>
+            <a href="#/thu-vien/viet-nam" class="nav-dropdown-link" onclick="window.literaryApp.switchTab('library'); window.literaryLibrary.setOriginFilter('vn');">
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Văn Học Việt Nam</span>
+              </span>
+              <span class="nav-dropdown-tag" id="dropdown-count-vn">28 tác phẩm</span>
+            </a>
+            <a href="#/thu-vien/the-gioi" class="nav-dropdown-link jasper-hover" onclick="window.literaryApp.switchTab('library'); window.literaryLibrary.setOriginFilter('world');">
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <span>Văn Học Thế Giới</span>
+              </span>
+              <span class="nav-dropdown-tag world" id="dropdown-count-world">10 tác phẩm</span>
+            </a>
+            <div class="editorial-dropdown-divider"></div>
+            <div class="editorial-dropdown-header">Theo Thể Loại</div>
+            <a href="#/thu-vien" class="nav-dropdown-link" onclick="window.literaryApp.switchTab('library'); window.literaryLibrary.renderWorks('Thơ');">
+              <span style="display: inline-flex; align-items: center; gap: 0.45rem;">
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M8 2h8a2 2 0 0 1 2 2v14a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h2z"></path><path d="M6 18a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2"></path><line x1="6" y1="6" x2="14" y2="6"></line><line x1="6" y1="10" x2="14" y2="10"></line></svg>
+                <span>Thơ Ca & Khúc Ngâm</span>
+              </span>
+            </a>
+            <a href="#/thu-vien" class="nav-dropdown-link" onclick="window.literaryApp.switchTab('library'); window.literaryLibrary.renderWorks('Truyện');">
+              <span style="display: inline-flex; align-items: center; gap: 0.45rem;">
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <span>Truyện Ngắn & Tự Sự</span>
+              </span>
+            </a>
+            <a href="#/thu-vien" class="nav-dropdown-link" onclick="window.literaryApp.switchTab('library'); window.literaryLibrary.renderWorks('Tiểu thuyết');">
+              <span style="display: inline-flex; align-items: center; gap: 0.45rem;">
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><line x1="8" y1="7" x2="16" y2="7"></line></svg>
+                <span>Tiểu Thuyết Kinh Điển</span>
+              </span>
+            </a>
+            <div class="editorial-dropdown-divider"></div>
+            <div class="editorial-dropdown-header" id="dropdown-header-total">Danh Sách Toàn Bộ Tác Phẩm</div>
+            <div class="nav-works-scroll-list" id="nav-works-scroll-list"></div>
+          </div>
+        </li>
+        <li class="nav-item" data-tab="authors">
+          <a href="#/tac-gia" class="nav-link" onclick="window.literaryApp.switchTab('authors')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+            <span>Chân Dung Tác Giả</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="movements">
+          <a href="#/truong-phai" class="nav-link" onclick="window.literaryApp.switchTab('movements')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M5 22h14"></path><path d="M5 2h14"></path><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path></svg>
+            <span>Trường Phái & Thời Kỳ</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="quotes">
+          <a href="#/danh-ngon" class="nav-link" onclick="window.literaryApp.switchTab('quotes')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h4c0 4-2 6-5 6v2z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h4c0 4-2 6-5 6v2z"></path></svg>
+            <span>Điển Tích & Danh Ngôn</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="studio">
+          <a href="#/sang-tac" class="nav-link" onclick="window.literaryApp.switchTab('studio')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            <span>Góc Sáng Tác</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="bookmarks">
+          <a href="#/tu-sach" class="nav-link" onclick="window.literaryApp.switchTab('bookmarks')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            <span>Tủ Sách Cá Nhân</span>
+            <span id="nav-bookmark-count" style="display:none; font-size:0.7rem; background:var(--jasper-600); color:#fff; padding:0.1rem 0.4rem; border-radius:10px;">0</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="search-trigger-btn" onclick="window.literaryApp.openSearch()">
+          <span style="display: inline-flex; align-items: center; gap: 0.45rem;">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span>Tìm kiếm tác phẩm, tác giả...</span>
+          </span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 4. KHU VỰC NỘI DUNG CHÍNH (MAIN CONTAINER) -->
+  <main class="container" style="padding-top: 2rem;">
+
+    <!-- TAB 1: TRANG NHẤT (COVER & LEAD STORIES) -->
+    <section id="tab-cover" class="tab-section">
+      <!-- Lead Section (Bố cục Báo chí 2 cột) -->
+      <div class="editorial-lead-section">
+        <div class="lead-grid">
+          <!-- Cột Trái: Bài Đinh / Khảo Luận Tâm Điểm -->
+          <article class="lead-story-card">
+            <div class="story-category-tag">TÂM ĐIỂM KHẢO CỨU • KHAI SƠN TINH HOA</div>
+            <h2 class="lead-story-title" onclick="window.literaryReader.openWork('truyen-kieu')">
+              Nguyễn Du & Nỗi Đau Mười Lăm Năm Đoạn Trường: Chiều Kích Nhân Đạo Của Đại Thi Hào
+            </h2>
+
+            <div class="editorial-byline">
+              <span>Khảo luận bởi: <strong class="byline-author">Ban Biên Tập Văn Uyển</strong></span>
+              <span>•</span>
+              <span>6 phút đọc</span>
+              <span>•</span>
+              <span style="color: var(--jasper-600); font-weight: 700;">Ấn Phẩm Đề Cử</span>
+            </div>
+
+            <div class="lead-image-frame" onclick="window.literaryReader.openWork('truyen-kieu')" style="cursor: pointer;">
+              <img src="assets/images/kieu_ngung_bich.jpg" alt="Thúy Kiều trầm ngâm nơi lầu Ngưng Bích">
+              <div class="lead-caption">
+                Bức họa khắc gỗ Editorial: Thúy Kiều cô độc nơi lầu Ngưng Bích trông ra cửa bể chiều hôm — “Vẻ non xa tấm trăng gần ở chung”.
+              </div>
+            </div>
+
+            <div class="lead-prose drop-cap">
+              Trước lầu Ngưng Bích khóa xuân, vẻ non xa tấm trăng gần ở chung. Cát vàng cồn nọ bụi hồng dặm kia. Bẽ bàng mây sớm đèn khuya, nửa tình nửa cảnh như chia tấm lòng. Trong toàn bộ kiệt tác Đoạn Trường Tân Thanh, có lẽ không đoạn trích nào thể hiện sự viên mãn của nghệ thuật tả cảnh ngụ tình bằng cảnh nàng Kiều cô độc nơi lầu Ngưng Bích.
+            </div>
+
+            <blockquote class="editorial-pull-quote">
+              “Nguyễn Du không chỉ viết thơ bằng mực, người viết bằng chính máu rỉ ra từ trái tim đầy trắc ẩn trước nỗi trầm luân của kiếp tài hoa bạc mệnh.”
+              <cite class="pull-quote-attribution">— Khảo luận Văn học Cổ điển</cite>
+            </blockquote>
+
+            <p style="margin-bottom: 1.5rem; line-height: 1.8; color: var(--ink-secondary);">
+              Mỗi hình ảnh thiên nhiên mở ra từ lầu cao đều là một nỗi niềm trăn trở: cánh buồm xa xôi nơi cửa bể chiều hôm gợi nỗi nhớ quê nhà da diết; cánh hoa trôi man mác giữa ngọn nước mới sa gợi số phận bấp bênh chìm nổi; ngọn cỏ rầu rầu chân mây mặt đất gợi nỗi tuyệt vọng mỏi mòn.
+            </p>
+
+            <button class="btn-primary" onclick="window.literaryReader.openWork('truyen-kieu')">
+              Thưởng thức toàn văn Truyện Kiều →
+            </button>
+          </article>
+
+          <!-- Cột Phải: Các bài đọc đề cử & Chân dung tác giả tâm điểm -->
+          <aside class="lead-aside">
+            <div class="aside-heading">
+              <span>Đề Cử Biên Tập Viên</span>
+              <span style="color: var(--jasper-600); font-size: 0.8rem;">CHỌN LỌC</span>
+            </div>
+
+            <div class="aside-story-item">
+              <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="flex: 1;">
+                  <span class="work-badge" style="margin-bottom: 0.4rem; display:inline-block;">Văn Học Lãng Mạn</span>
+                  <h4 class="aside-story-title">
+                    <a href="javascript:void(0)" onclick="window.literaryReader.openWork('chu-nguoi-tu-tu')">
+                      Chữ Người Tử Tù: Bản Tụng Ca Bất Diệt Của Cái Đẹp Và Thiên Lương
+                    </a>
+                  </h4>
+                  <p class="aside-story-excerpt">
+                    Cảnh cho chữ xưa nay chưa từng có diễn ra trong đêm tối ngục tù tăm tối, nơi ngọn đuốc rực sáng và tấm lụa trắng xóa.
+                  </p>
+                </div>
+                <img src="assets/images/huan_cao.jpg" alt="Chữ Người Tử Tù" style="width: 105px; height: 80px; object-fit: cover; border: 1px solid var(--paper-border-bold); border-radius: var(--radius-xs); cursor: pointer;" onclick="window.literaryReader.openWork('chu-nguoi-tu-tu')" title="Nhấp để đọc tác phẩm">
+              </div>
+            </div>
+
+            <div class="aside-story-item">
+              <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="flex: 1;">
+                  <span class="work-badge" style="margin-bottom: 0.4rem; display:inline-block;">Hiện Thực Phê Phán</span>
+                  <h4 class="aside-story-title">
+                    <a href="javascript:void(0)" onclick="window.literaryReader.openWork('so-do')">
+                      Số Đỏ: Nụ Cười Chua Chát Trên Nền Một Xã Hội 'Âu Hóa' Nửa Mùa
+                    </a>
+                  </h4>
+                  <p class="aside-story-excerpt">
+                    Hạnh phúc của một tang gia — Vũ Trọng Phụng phơi bày sự tha hóa vô liêm sỉ của gia đình thượng lưu tư sản Hà thành.
+                  </p>
+                </div>
+                <img src="assets/images/so_do.jpg" alt="Số Đỏ" style="width: 105px; height: 80px; object-fit: cover; border: 1px solid var(--paper-border-bold); border-radius: var(--radius-xs); cursor: pointer;" onclick="window.literaryReader.openWork('so-do')" title="Nhấp để đọc tác phẩm">
+              </div>
+            </div>
+
+            <div class="aside-story-item">
+              <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="flex: 1;">
+                  <span class="work-badge poetry" style="margin-bottom: 0.4rem; display:inline-block;">Thơ Mới 1938</span>
+                  <h4 class="aside-story-title">
+                    <a href="javascript:void(0)" onclick="window.literaryReader.openWork('voi-vang')">
+                      Vội Vàng: Khát Vọng Sống Cuống Quýt Của 'Nhà Thơ Mới Nhất'
+                    </a>
+                  </h4>
+                  <p class="aside-story-excerpt">
+                    “Tháng giêng ngon như một cặp môi gần” — Tuyên ngôn sống tận hiến và nỗi âu lo nhân sinh trước thời gian của Xuân Diệu.
+                  </p>
+                </div>
+                <img src="assets/images/voi_vang.jpg" alt="Vội Vàng" style="width: 105px; height: 80px; object-fit: cover; border: 1px solid var(--paper-border-bold); border-radius: var(--radius-xs); cursor: pointer;" onclick="window.literaryReader.openWork('voi-vang')" title="Nhấp để đọc tác phẩm">
+              </div>
+            </div>
+
+            <div class="aside-story-item">
+              <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="flex: 1;">
+                  <span class="work-badge" style="margin-bottom: 0.4rem; display:inline-block;">Hiện Thực Bất Hủ</span>
+                  <h4 class="aside-story-title">
+                    <a href="javascript:void(0)" onclick="window.literaryReader.openWork('lao-hac')">
+                      Lão Hạc: Nỗi Đau Bán Chó & Cái Chết Bảo Toàn Phẩm Giá Con Người
+                    </a>
+                  </h4>
+                  <p class="aside-story-excerpt">
+                    “Cậu Vàng đi đời rồi, ông Giáo ạ!” — Bi kịch tình phụ tử thiêng liêng và nhân phẩm bất khả xâm phạm của người nông dân nghèo.
+                  </p>
+                </div>
+                <img src="assets/images/lao_hac.jpg" alt="Lão Hạc" style="width: 105px; height: 80px; object-fit: cover; border: 1px solid var(--paper-border-bold); border-radius: var(--radius-xs); cursor: pointer;" onclick="window.literaryReader.openWork('lao-hac')" title="Nhấp để đọc tác phẩm">
+              </div>
+            </div>
+
+            <!-- Khung Chân Dung Văn Nghệ -->
+            <div class="author-spotlight-box">
+              <img src="assets/images/author_study.jpg" alt="Nhà văn miệt mài bên bàn viết trong thư phòng" class="spotlight-author-img">
+              <h4 class="spotlight-author-name">Nam Cao</h4>
+              <div class="spotlight-author-era">1915 – 1951 • Hiện Thực Tâm Lý</div>
+              <p style="font-size: 0.875rem; line-height: 1.6; color: var(--ink-secondary); margin-bottom: 1rem;">
+                “Một người đau chân có lúc nào quên được cái chân đau của mình để nghĩ đến một cái gì khác đâu?” — Bậc thầy khảo sát bi kịch tha hóa và nhân phẩm con người.
+              </p>
+              <button class="btn-secondary" style="width:100%; justify-content:center; display: inline-flex; align-items: center; gap: 0.35rem;" onclick="window.literaryReader.openWork('chi-pheo')">
+                <span>Đọc tác phẩm 'Chí Phèo'</span>
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Khối Lối Tắt Đến Các Chuyên Mục Lớn -->
+      <div style="margin-top: 3.5rem;">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-pretitle">HỆ THỐNG TOÀN THƯ</span>
+            <h3 class="section-title">Kho Lưu Trữ Tinh Hoa Văn Học</h3>
+          </div>
+          <button class="btn-secondary" onclick="window.literaryApp.switchTab('library')" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+            <span>Xem Toàn Bộ Thư Viện</span>
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+          <div class="work-card" style="cursor: pointer;" onclick="window.literaryApp.switchTab('library'); window.literaryLibrary.setOriginFilter('vn');">
+            <div style="color: var(--cerulean-600); margin-bottom: 0.75rem;">
+              <svg class="editorial-icon" style="width: 2.2rem; height: 2.2rem;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <h4 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.35rem;">Văn Học Việt Nam</h4>
+            <p style="font-size: 0.9rem; color: var(--ink-secondary); line-height: 1.6;">
+              Tuyển tập 28 kiệt tác nước nhà: từ Truyện Kiều, Thơ Mới (Xuân Diệu, Huy Cận, Hàn Mặc Tử, Thế Lữ), hiện thực phê phán (Nam Cao, Vũ Trọng Phụng, Ngô Tất Tố) đến văn học cách mạng và kháng chiến (Kim Lân, Tô Hoài, Nguyễn Minh Châu, Quang Dũng, Tố Hữu, Xuân Quỳnh, Chính Hữu).
+            </p>
+          </div>
+
+          <div class="work-card" style="cursor: pointer;" onclick="window.literaryApp.switchTab('library'); window.literaryLibrary.setOriginFilter('world');">
+            <div style="color: var(--jasper-600); margin-bottom: 0.75rem;">
+              <svg class="editorial-icon" style="width: 2.2rem; height: 2.2rem;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </div>
+            <h4 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.35rem;">Văn Học Thế Giới</h4>
+            <p style="font-size: 0.9rem; color: var(--ink-secondary); line-height: 1.6;">
+              10 tượng đài tư tưởng nhân loại: Franz Kafka, Gabriel García Márquez, Ernest Hemingway, Chingiz Aitmatov, Lỗ Tấn, Anton Chekhov, Cervantes, Shakespeare, Victor Hugo.
+            </p>
+          </div>
+
+          <div class="work-card" style="cursor: pointer;" onclick="window.literaryApp.switchTab('movements')">
+            <div style="color: var(--jasper-600); margin-bottom: 0.75rem;">
+              <svg class="editorial-icon" style="width: 2.2rem; height: 2.2rem;" viewBox="0 0 24 24"><path d="M5 22h14"></path><path d="M5 2h14"></path><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path></svg>
+            </div>
+            <h4 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.35rem;">Trường Phái & Lịch Sử</h4>
+            <p style="font-size: 0.9rem; color: var(--ink-secondary); line-height: 1.6;">
+              Dòng chảy lịch sử tư tưởng: Văn học Trung đại, Chủ nghĩa Lãng mạn, Hiện thực phê phán, Hiện thực huyền ảo và Hiện sinh.
+            </p>
+          </div>
+
+          <div class="work-card" style="cursor: pointer;" onclick="window.literaryApp.switchTab('quotes')">
+            <div style="color: var(--cerulean-600); margin-bottom: 0.75rem;">
+              <svg class="editorial-icon" style="width: 2.2rem; height: 2.2rem;" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h4c0 4-2 6-5 6v2z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h4c0 4-2 6-5 6v2z"></path></svg>
+            </div>
+            <h4 style="font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.35rem;">Điển Tích & Danh Ngôn</h4>
+            <p style="font-size: 0.9rem; color: var(--ink-secondary); line-height: 1.6;">
+              Kho giải nghĩa điển cố văn học thường gặp và công cụ tạo thẻ danh ngôn chia sẻ tinh tế chuẩn xuất bản.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: THƯ VIỆN TÁC PHẨM (WORKS ARCHIVE) -->
+    <section id="tab-library" class="tab-section" style="display: none;">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-pretitle">TỦ SÁCH TOÀN BÍCH</span>
+          <h2 class="section-title">Thư Viện Tác Phẩm Chọn Lọc</h2>
+        </div>
+        <div class="section-actions">
+          <span style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--ink-muted);">
+            Lọc theo phân mục:
+          </span>
+        </div>
+      </div>
+
+      <!-- Thanh phân chia Địa vực: Văn học Việt Nam & Văn học Thế giới -->
+      <div class="origin-segment-container">
+        <div class="origin-segment-bar">
+          <button class="origin-tab-btn active" data-origin="all" onclick="window.literaryLibrary.setOriginFilter('all', this)">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Toàn Bộ Kho Tàng</span>
+            <span class="count-pill" id="tab-count-all">38</span>
+          </button>
+          <button class="origin-tab-btn" data-origin="vn" onclick="window.literaryLibrary.setOriginFilter('vn', this)">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>Văn Học Việt Nam</span>
+            <span class="count-pill" id="tab-count-vn">28</span>
+          </button>
+          <button class="origin-tab-btn" data-origin="world" onclick="window.literaryLibrary.setOriginFilter('world', this)">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span>Văn Học Thế Giới</span>
+            <span class="count-pill" id="tab-count-world">10</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Banner giới thiệu phân mục địa vực -->
+      <div id="origin-intro-box" style="display: none;"></div>
+
+      <!-- Thanh Lọc Thể Loại & Dropdown Sắp Xếp Đồng Bộ -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+        <!-- Bộ lọc thể loại -->
+        <div class="filter-bar" style="margin-bottom: 0;">
+          <button class="filter-chip active" onclick="this.parentElement.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); this.classList.add('active'); window.literaryLibrary.renderWorks('all')">
+            Tất cả thể loại
+          </button>
+          <button class="filter-chip" onclick="this.parentElement.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); this.classList.add('active'); window.literaryLibrary.renderWorks('Thơ')">
+            Thơ ca & Khúc ngâm
+          </button>
+          <button class="filter-chip" onclick="this.parentElement.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); this.classList.add('active'); window.literaryLibrary.renderWorks('Truyện')">
+            Truyện ngắn & Tự sự
+          </button>
+          <button class="filter-chip" onclick="this.parentElement.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); this.classList.add('active'); window.literaryLibrary.renderWorks('Tiểu thuyết')">
+            Tiểu thuyết kinh điển
+          </button>
+          <button class="filter-chip" onclick="this.parentElement.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); this.classList.add('active'); window.literaryLibrary.renderWorks('SGK')">
+            Văn bản SGK Trọng Tâm
+          </button>
+        </div>
+
+        <!-- Dropdown Sắp Xếp Chuẩn Editorial -->
+        <div class="editorial-dropdown" id="library-sort-dropdown">
+          <button class="editorial-dropdown-btn" type="button">
+            <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="12" x2="14" y2="12"></line><line x1="4" y1="18" x2="8" y2="18"></line></svg>
+              <span>Xếp theo:</span>
+              <strong class="dropdown-selected-text" style="color: var(--cerulean-800);">Mặc định ban biên tập</strong>
+            </span>
+            <svg class="editorial-dropdown-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="editorial-dropdown-menu align-right">
+            <div class="editorial-dropdown-header">Tiêu chí sắp xếp</div>
+            <div class="editorial-dropdown-item active" data-value="default" data-label="Mặc định ban biên tập">
+              <span>Mặc định ban biên tập</span>
+            </div>
+            <div class="editorial-dropdown-item" data-value="year-asc" data-label="Niên đại (Cũ → Mới)">
+              <span>Niên đại (Cũ → Mới)</span>
+            </div>
+            <div class="editorial-dropdown-item" data-value="year-desc" data-label="Niên đại (Mới → Cũ)">
+              <span>Niên đại (Mới → Cũ)</span>
+            </div>
+            <div class="editorial-dropdown-item" data-value="title-asc" data-label="Tên tác phẩm (A → Z)">
+              <span>Tên tác phẩm (A → Z)</span>
+            </div>
+            <div class="editorial-dropdown-item" data-value="author-asc" data-label="Tên tác giả (A → Z)">
+              <span>Tên tác giả (A → Z)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khung Cuộn Danh Sách Tác Phẩm Chuẩn Editorial Có Thanh Cuộn -->
+      <div class="works-scroll-container" id="works-scroll-container">
+        <div class="works-scroll-header">
+          <div class="works-scroll-status">
+            <span class="works-status-indicator"></span>
+            <span id="works-displayed-count">Đang hiển thị 38 tác phẩm kinh điển</span>
+            <span class="works-scroll-hint" style="font-size: 0.78rem; color: var(--ink-muted); font-weight: normal; margin-left: 0.5rem;">
+              (Sử dụng thanh cuộn hoặc con lăn chuột để duyệt danh sách)
+            </span>
+          </div>
+          <div class="works-scroll-controls">
+            <button id="btn-scroll-top" class="works-scroll-action-btn" onclick="window.literaryLibrary.scrollToTop()" title="Cuộn lên đầu danh sách tác phẩm">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+              <span>Lên đầu</span>
+            </button>
+            <button id="btn-scroll-toggle" class="works-scroll-action-btn active" onclick="window.literaryLibrary.toggleScrollView(this)" title="Chuyển đổi giữa Chế độ Cuộn gọn và Mở rộng toàn trang">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+              <span id="scroll-toggle-text">Khung cuộn</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Khung chứa cuộn danh sách (Thanh cuộn Editorial chuyên biệt) -->
+        <div id="works-scroll-wrapper" class="works-scroll-wrapper">
+          <div id="works-container" class="works-grid"></div>
+          <button id="works-float-top-btn" class="works-float-top-btn" onclick="window.literaryLibrary.scrollToTop()" title="Cuộn lên đầu danh sách">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+            <span>Lên đầu trang</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: CHÂN DUNG TÁC GIẢ (AUTHORS PORTRAITS) -->
+    <section id="tab-authors" class="tab-section" style="display: none;">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-pretitle">VĂN NHÂN DANH SĨ</span>
+          <h2 class="section-title">Chân Dung Các Cây Bút Tiêu Biểu</h2>
+        </div>
+      </div>
+      <p style="font-style: italic; color: var(--ink-muted); margin-bottom: 1.5rem; max-width: 750px;">
+        Gặp gỡ những tâm hồn lớn của văn chương dân tộc và thế giới — những người đã dùng cuộc đời và ngòi bút để khơi mở những nguồn mạch bất hủ của lòng trắc ẩn và tư tưởng nhân đạo.
+      </p>
+
+      <!-- THANH ĐIỀU HƯỚNG & CÔNG CỤ TÁC GIẢ (EDITORIAL TOOLBAR) -->
+      <div class="authors-editorial-toolbar">
+        <div class="authors-filter-pills" id="authors-origin-filters">
+          <button type="button" class="authors-filter-pill active" data-origin="all" onclick="window.literaryLibrary.filterAuthorOrigin('all')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <span>Tất cả</span>
+          </button>
+          <button type="button" class="authors-filter-pill" data-origin="vn" onclick="window.literaryLibrary.filterAuthorOrigin('vn')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            <span>Việt Nam</span>
+          </button>
+          <button type="button" class="authors-filter-pill" data-origin="world" onclick="window.literaryLibrary.filterAuthorOrigin('world')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span>Thế Giới</span>
+          </button>
+        </div>
+
+        <div class="authors-search-wrap">
+          <svg class="editorial-icon icon-sm authors-search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="authors-search-input" class="authors-search-input" placeholder="Tìm tác giả, quê quán, phong cách..." oninput="window.literaryLibrary.searchAuthors(this.value)">
+        </div>
+
+        <div class="authors-view-switch">
+          <span class="authors-count-badge" id="authors-count-badge">Đang hiển thị...</span>
+          <div class="authors-toggle-group">
+            <button type="button" id="author-view-btn-list" class="authors-view-btn active" onclick="window.literaryLibrary.setAuthorViewMode('list')" title="Chế độ Danh Sách (Khuyến nghị)">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              <span>Danh Sách</span>
+            </button>
+            <button type="button" id="author-view-btn-grid" class="authors-view-btn" onclick="window.literaryLibrary.setAuthorViewMode('grid')" title="Chế độ Lưới Thẻ">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              <span>Lưới</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="authors-container"></div>
+    </section>
+
+    <!-- TAB 4: TRƯỜNG PHÁI & THỜI KỲ (LITERARY MOVEMENTS) -->
+    <section id="tab-movements" class="tab-section" style="display: none;">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-pretitle">DÒNG CHẢY LỊCH SỬ</span>
+          <h2 class="section-title">Trường Phái & Thời Kỳ Văn Học</h2>
+        </div>
+      </div>
+      <p style="font-style: italic; color: var(--ink-muted); margin-bottom: 2.5rem; max-width: 750px;">
+        Hành trình tiến hóa của mỹ cảm và các trào lưu tư tưởng văn chương từ thời kỳ Trung đại quy phạm đến những đột phá hiện sinh và hiện thực huyền ảo của thời hiện đại.
+      </p>
+
+      <div id="movements-container" class="movements-container"></div>
+    </section>
+
+    <!-- TAB 5: ĐIỂN TÍCH & DANH NGÔN (LORE & QUOTES STUDIO) -->
+    <section id="tab-quotes" class="tab-section" style="display: none;">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-pretitle">MINH TRIẾT VĂN ĐÀN</span>
+          <h2 class="section-title">Điển Tích & Sổ Tay Danh Ngôn</h2>
+        </div>
+      </div>
+
+      <!-- Khối Interactive Quote Studio -->
+      <div class="quote-studio-grid">
+        <div id="interactive-quote-display" class="interactive-quote-display theme-cerulean">
+          <div class="quote-glyph">“</div>
+          <div id="interactive-quote-text" class="interactive-quote-text">
+            “Văn học là nhân học. Một tác phẩm nghệ thuật chân chính bao giờ cũng là một bài ca ca tụng con người.”
+          </div>
+          <div class="interactive-quote-author">
+            <span id="interactive-quote-author">MAXIM GORKY</span>
+            <span id="interactive-quote-source" class="interactive-quote-source">— Luận về Văn học</span>
+          </div>
+        </div>
+
+        <div class="quote-controls">
+          <h4>Trích Dẫn Tiêu Biểu</h4>
+          <div id="quote-picker-list" class="quote-picker-list"></div>
+
+          <div style="margin-bottom: 0.5rem; font-family: var(--font-ui); font-size: 0.8rem; font-weight: 700; color: var(--ink-muted);">
+            Tùy chọn phong cách thẻ:
+          </div>
+          <div class="quote-theme-buttons">
+            <button class="quote-theme-btn active" data-theme="cerulean" onclick="window.literaryLibrary.setQuoteTheme('cerulean')">
+              Xanh Cerulean
+            </button>
+            <button class="quote-theme-btn" data-theme="jasper" onclick="window.literaryLibrary.setQuoteTheme('jasper')">
+              Đỏ Jasper
+            </button>
+          </div>
+
+          <div class="quote-action-row">
+            <button class="btn-primary" onclick="window.literaryLibrary.copyCurrentQuote()" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Sao chép trích dẫn</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khối Bách Khoa Điển Tích Điển Cố -->
+      <div class="section-header" style="margin-top: 3.5rem;">
+        <div class="section-title-wrap">
+          <span class="section-pretitle">TỪ ĐIỂN VĂN HỌC</span>
+          <h3 class="section-title">Điển Tích & Điển Cố Kinh Điển</h3>
+        </div>
+      </div>
+      <div id="allusions-container" class="allusions-grid"></div>
+    </section>
+
+    <!-- TAB 6: GÓC SÁNG TÁC (WRITING STUDIO) -->
+    <section id="tab-studio" class="tab-section" style="display: none;">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-pretitle">BẢN THẢO VĂN CHƯƠNG</span>
+          <h2 class="section-title">Góc Sáng Tác & Bản Thảo Cá Nhân</h2>
+        </div>
+      </div>
+      <p style="font-style: italic; color: var(--ink-muted); margin-bottom: 2rem; max-width: 750px;">
+        Thư phòng ảo dành riêng cho bạn khởi bút sáng tác thi ca, truyện ngắn hay tản văn. Bản thảo được tự động lưu vào trình duyệt và hiển thị bản in thử nghiệm chuẩn Editorial.
+      </p>
+
+      <div class="studio-layout">
+        <!-- Cột nhập liệu -->
+        <div class="editor-box">
+          <div class="editor-toolbar">
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <!-- Dropdown Chọn Thể Loại Sáng Tác Chuẩn Editorial -->
+              <div class="editorial-dropdown" id="studio-genre-dropdown">
+                <button class="editorial-dropdown-btn" type="button" style="padding: 0.35rem 0.75rem;">
+                  <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                    <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path></svg>
+                    <span class="dropdown-selected-text">Tản văn & Tùy bút</span>
+                  </span>
+                  <svg class="editorial-dropdown-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="editorial-dropdown-menu">
+                  <div class="editorial-dropdown-header">Chọn thể loại bản thảo</div>
+                  <div class="editorial-dropdown-item active" data-value="Tản văn" data-label="Tản văn & Tùy bút">
+                    <span>Tản văn & Tùy bút</span>
+                  </div>
+                  <div class="editorial-dropdown-item" data-value="Thơ ca" data-label="Thơ ca tự do / Lục bát">
+                    <span>Thơ ca tự do / Lục bát</span>
+                  </div>
+                  <div class="editorial-dropdown-item" data-value="Truyện ngắn" data-label="Truyện ngắn hiện thực">
+                    <span>Truyện ngắn hiện thực</span>
+                  </div>
+                  <div class="editorial-dropdown-item" data-value="Bình văn" data-label="Tiểu luận bình văn">
+                    <span>Tiểu luận bình văn</span>
+                  </div>
+                </div>
+                <!-- Input lưu trữ giá trị đồng bộ -->
+                <input type="hidden" id="studio-genre" value="Tản văn">
+              </div>
+
+              <input type="text" id="studio-author" placeholder="Bút danh của bạn..." style="padding: 0.45rem 0.75rem; border: 1px solid var(--paper-border-bold); border-radius: var(--radius-xs); background: var(--paper-surface); font-family: var(--font-ui); font-size: 0.85rem;">
+            </div>
+
+            <span id="studio-word-count" style="color: var(--ink-muted); font-size: 0.75rem;">0 từ • 0 ký tự</span>
+          </div>
+
+          <input type="text" id="studio-title" class="editor-input-title" placeholder="Đặt tựa đề cho bản thảo..." value="Tiếng Dương Cầm Trong Mưa">
+
+          <textarea id="studio-content" class="editor-textarea" placeholder="Khởi bút tại đây... Hãy viết về những xúc cảm, câu chuyện hoặc vần thơ mà bạn hằng ấp ủ...">Buổi chiều buông xuống thành phố như một bức tranh mực tàu còn ướt. Tiếng mưa rơi đều đều trên mái ngói rêu phong, làm dịu đi những ồn ào bức bối của ngày dài.
+
+Tôi ngồi bên bàn viết, khẽ mở một cuốn sách cũ. Những con chữ nằm yên trên giấy ngà qua năm tháng, nhưng khi mắt ta chạm vào, chúng bỗng thức dậy và thở một hơi thở nồng nàn của dĩ vãng...</textarea>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--paper-border);">
+            <button class="btn-secondary" onclick="window.literaryStudio.clearDraft()" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+              <span>Làm mới bản thảo</span>
+            </button>
+            <button class="btn-primary" onclick="window.literaryStudio.exportDraft()" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Xuất bản thảo (.md)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Cột xem trước bản in tạp chí -->
+        <div class="preview-box">
+          <div class="preview-watermark">BẢN IN THỬ NGHIỆM</div>
+          <h3 id="preview-title" class="preview-rendered-title">Tiếng Dương Cầm Trong Mưa</h3>
+          <div id="preview-meta" class="preview-rendered-meta">
+            Bút tích bởi: Khuyết Danh • Thể loại: Tản văn
+          </div>
+          <div id="preview-body" class="preview-rendered-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 7: TỦ SÁCH CÁ NHÂN (BOOKMARKS) -->
+    <section id="tab-bookmarks" class="tab-section" style="display: none;">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-pretitle">BẢN LƯU YÊU THÍCH</span>
+          <h2 class="section-title">Tủ Sách Cá Nhân Của Bạn</h2>
+        </div>
+      </div>
+      <p style="font-style: italic; color: var(--ink-muted); margin-bottom: 2rem; max-width: 750px;">
+        Các tác phẩm bạn đã đánh dấu để đọc lại hoặc nghiên cứu chuyên sâu. Dữ liệu được lưu trữ tự động trên thiết bị của bạn.
+      </p>
+
+      <div id="bookmarks-container"></div>
+    </section>
+
+  </main>
+
+  <!-- 5. FULLSCREEN / MODAL PHÒNG ĐỌC TÁC PHẨM (READER MODAL) -->
+  <div id="reader-modal" class="reader-modal">
+    <!-- Thanh tiến trình đọc trên cùng -->
+    <div class="reader-progress-track">
+      <div id="reader-progress-bar" class="reader-progress-bar"></div>
+    </div>
+
+    <!-- Thanh điều khiển phòng đọc -->
+    <!-- Thanh điều khiển phòng đọc Editorial Cao Cấp (Modern Luxury Reader Header) -->
+    <header class="reader-header">
+      <div class="reader-header-inner">
+        <!-- VÙNG 1: BÊN TRÁI (QUAY LẠI & THÔNG TIN TÁC PHẨM) -->
+        <div class="reader-header-left">
+          <button class="reader-back-btn" onclick="window.literaryReader.closeReader()" title="Quay lại Thư Viện">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span>Thư viện</span>
+          </button>
+          
+          <div class="reader-header-divider"></div>
+          
+          <div class="reader-title-box">
+            <span id="reader-mini-title" class="reader-mini-title" title="Tiêu đề tác phẩm">Tiêu đề tác phẩm</span>
+            <span class="reader-title-sep">•</span>
+            <span id="reader-mini-author" class="reader-mini-author"></span>
+            <span id="reader-mini-badge" class="reader-mini-badge">Toàn Văn</span>
+          </div>
+        </div>
+
+        <!-- VÙNG 2: TRUNG TÂM (TÙY BIẾN ĐỌC SÁCH THIẾT KẾ ĐÔI TINH XẢO) -->
+        <div class="reader-reading-toolbar">
+          <!-- Capsule 1: Chế độ đọc & Bố cục -->
+          <div class="reader-segmented-pill layout-pill">
+            <!-- Chế Độ Đọc: Lật Trang / Cuộn -->
+            <div class="capsule-subgroup mode-control-group" id="reader-mode-group">
+              <button id="btn-mode-page" class="capsule-btn active" onclick="window.literaryReader.setReadingMode('page')" title="Lật trang sách (phím ← →)">
+                <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <span>Lật trang</span>
+              </button>
+              <button id="btn-mode-scroll" class="capsule-btn" onclick="window.literaryReader.setReadingMode('scroll')" title="Cuộn dọc toàn văn">
+                <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg>
+                <span>Cuộn</span>
+              </button>
+            </div>
+
+            <div class="capsule-divider"></div>
+
+            <!-- Bố Cục: 2 Cột / 1 Cột -->
+            <div class="capsule-subgroup column-control-group" id="reader-column-group">
+              <button id="btn-col-2" class="capsule-btn active" onclick="window.literaryReader.setColumnMode(2)" title="Bố cục 2 cột (trang sách mở song song)">
+                <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="18" rx="1"></rect><rect x="13.5" y="3" width="7.5" height="18" rx="1"></rect></svg>
+                <span>2 Cột</span>
+              </button>
+              <button id="btn-col-1" class="capsule-btn" onclick="window.literaryReader.setColumnMode(1)" title="Bố cục 1 cột truyền thống">
+                <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"></rect></svg>
+                <span>1 Cột</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Capsule 2: Cỡ chữ & Chủ đề màu -->
+          <div class="reader-segmented-pill style-pill">
+            <!-- Nhóm Cỡ Chữ -->
+            <div class="capsule-subgroup font-control-group">
+              <button class="capsule-btn font-step-btn" onclick="window.literaryReader.changeFontSize(-1)" title="Thu nhỏ cỡ chữ (A−)">A−</button>
+              <span id="reader-font-indicator" class="capsule-font-val">18px</span>
+              <button class="capsule-btn font-step-btn" onclick="window.literaryReader.changeFontSize(1)" title="Phóng to cỡ chữ (A+)">A+</button>
+            </div>
+
+            <div class="capsule-divider"></div>
+
+            <!-- Nhóm Chủ Đề: Giấy Ngà / Đêm -->
+            <div class="capsule-subgroup theme-control-group">
+              <button class="capsule-btn theme-btn active" data-theme="default" onclick="window.literaryReader.setTheme('default')" title="Bản in Giấy Ngà dịu mắt">
+                <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <span>Giấy Ngà</span>
+              </button>
+              <button class="capsule-btn theme-btn" data-theme="nocturne" onclick="window.literaryReader.setTheme('nocturne')" title="Bản in Đêm Văn Đàn">
+                <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <span>Đêm</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- VÙNG 3: BÊN PHẢI (TIỆN ÍCH & THƯ VIỆN) -->
+        <div class="reader-header-right">
+          <!-- Mục lục -->
+          <div class="editorial-dropdown" id="reader-toc-dropdown">
+            <button class="reader-nav-btn editorial-dropdown-btn" type="button" title="Mục lục tác phẩm">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><circle cx="3.5" cy="6" r="1.5"></circle><circle cx="3.5" cy="12" r="1.5"></circle><circle cx="3.5" cy="18" r="1.5"></circle></svg>
+              <span>Mục lục</span>
+              <svg class="editorial-dropdown-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="editorial-dropdown-menu align-right" id="reader-toc-menu">
+              <div class="editorial-dropdown-header">Điều hướng nhanh</div>
+              <div class="editorial-dropdown-item" onclick="document.getElementById('reader-modal').scrollTo({ top: 0, behavior: 'smooth' });">
+                <span>Khởi đầu tác phẩm</span>
+              </div>
+              <div class="editorial-dropdown-item" onclick="const b = document.querySelector('.sgk-notice-box'); if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' });">
+                <span style="color: var(--jasper-600); font-weight: 700;">Đoạn trích Sách Giáo Khoa (SGK)</span>
+              </div>
+              <div class="editorial-dropdown-item" onclick="const c = document.querySelector('.reader-criticism-box'); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' });">
+                <span>Bình phẩm & Chiều sâu tư tưởng</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kho sách -->
+          <div class="editorial-dropdown" id="reader-works-dropdown">
+            <button class="reader-nav-btn editorial-dropdown-btn" type="button" title="Kho sách Văn Uyển">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Kho sách</span>
+              <svg class="editorial-dropdown-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="editorial-dropdown-menu align-right" id="reader-works-menu">
+              <!-- Danh sách 38 tác phẩm tự động kết xuất có thanh cuộn mượt -->
+            </div>
+          </div>
+
+          <!-- Âm thanh thư phòng -->
+          <button id="reader-ambient-btn" class="reader-nav-btn reader-ambient-btn" onclick="window.literaryAudio.toggleAmbient(this)" title="Âm thanh thư phòng (tiếng mưa rơi)">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <span>Thư phòng</span>
+          </button>
+
+          <!-- Lưu vào tủ sách -->
+          <button id="reader-bookmark-btn" class="reader-nav-btn reader-bookmark-btn" onclick="window.literaryReader.toggleBookmarkCurrent()" title="Lưu vào tủ sách">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            <span>Lưu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Thân bài đọc tác phẩm -->
+    <div class="reader-body-wrapper">
+      <article class="reader-article">
+        <div class="reader-article-header">
+          <span id="reader-category" class="reader-category">Thể Loại</span>
+          <h1 id="reader-main-title" class="reader-main-title">Tựa Đề Tác Phẩm</h1>
+          <div class="reader-meta-row">
+            <span>Tác giả: <strong id="reader-author" class="reader-author-link">Tác Giả</strong></span>
+            <span>•</span>
+            <span id="reader-meta-era">Năm xuất bản</span>
+            <span>•</span>
+            <span id="reader-meta-time">Thời gian đọc</span>
+          </div>
+
+          <div id="reader-epigraph" class="reader-epigraph">Đề từ tác phẩm...</div>
+        </div>
+
+        <!-- Khung tranh khắc gỗ minh họa tác phẩm chuyên biệt -->
+        <div id="reader-illustration-box" class="reader-illustration-frame" style="display: none;">
+          <img id="reader-illustration-img" src="" alt="Minh họa tác phẩm">
+          <div id="reader-illustration-caption" class="reader-illustration-caption"></div>
+        </div>
+
+        <!-- Khối văn bản chính -->
+        <div id="reader-prose" class="reader-prose">
+          Nội dung đang được tải...
+        </div>
+
+        <!-- Khung bình luận / phê bình văn học -->
+        <div class="reader-criticism-box">
+          <h3 class="criticism-title">Bình Phẩm & Chiều Sâu Tư Tưởng</h3>
+          <p id="reader-criticism-text" class="criticism-content"></p>
+        </div>
+
+        <!-- Điều hướng đọc tác phẩm kế tiếp / trước -->
+        <div class="reader-nav-footer">
+          <button class="reader-footer-btn" onclick="window.literaryReader.navigateWork(-1)" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Tác phẩm trước</span>
+          </button>
+          <button class="reader-footer-btn" onclick="window.literaryReader.closeReader()" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <span>Trở lại thư viện</span>
+          </button>
+          <button class="reader-footer-btn" onclick="window.literaryReader.navigateWork(1)" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+            <span>Tác phẩm kế tiếp</span>
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <!-- Vùng chạm lật trang hai bên mép sách (Side Flip Zones) -->
+    <div id="side-flip-left" class="side-flip-zone left" onclick="window.literaryReader.prevPage()" title="Lật lại trang trước (hoặc phím mũi tên Trái ←)">
+      <div class="side-flip-zone-icon">
+        <svg class="editorial-icon icon-md" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </div>
+    </div>
+    <div id="side-flip-right" class="side-flip-zone right" onclick="window.literaryReader.nextPage()" title="Lật sang trang sau (hoặc phím mũi tên Phải →)">
+      <div class="side-flip-zone-icon">
+        <svg class="editorial-icon icon-md" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </div>
+    </div>
+
+    <!-- THANH ĐIỀU KHIỂN LẬT TRANG ĐỒNG BỘ EDITORIAL (STICKY BOTTOM PAGE BAR) -->
+    <div id="reader-page-bar" class="reader-page-bar">
+      <div class="reader-page-bar-inner">
+        <!-- Nút lật lại đoạn trước -->
+        <button id="reader-prev-page-btn" class="page-nav-btn prev-btn" onclick="window.literaryReader.prevPage()" title="Lật lại trang/đoạn trước (hoặc phím mũi tên Trái ←)">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <div class="page-btn-texts">
+            <span class="page-btn-sub">Xem lại đoạn trước (Phím ←)</span>
+            <strong id="reader-prev-title" class="page-btn-title">Đầu tác phẩm</strong>
+          </div>
+        </button>
+
+        <!-- Bộ đếm trang và danh sách chọn nhanh -->
+        <div class="page-indicator-box">
+          <div class="editorial-dropdown" id="reader-page-dropdown">
+            <button class="editorial-dropdown-btn page-counter-btn" type="button" title="Xem danh sách trang / chuyển nhanh">
+              <span id="reader-page-counter" class="dropdown-selected-text">Trang 1 / 5</span>
+              <svg class="editorial-dropdown-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="editorial-dropdown-menu align-center" id="reader-page-menu" style="bottom: calc(100% + 8px); top: auto;">
+              <!-- Danh sách trang tự động điền -->
+            </div>
+          </div>
+
+          <!-- Thanh chấm tiến trình phân trang -->
+          <div id="reader-page-dots" class="page-dots-container"></div>
+        </div>
+
+        <!-- Nút sang trang sau -->
+        <button id="reader-next-page-btn" class="page-nav-btn next-btn" onclick="window.literaryReader.nextPage()" title="Đọc tiếp trang/đoạn sau (hoặc phím mũi tên Phải →)">
+          <div class="page-btn-texts text-right">
+            <span class="page-btn-sub">Đọc tiếp đoạn sau (Phím →)</span>
+            <strong id="reader-next-title" class="page-btn-title">Trang sau</strong>
+          </div>
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Popover hiển thị chú thích cước chú (Marginalia) -->
+    <div id="annotation-popover" class="annotation-popover">
+      <span class="annotation-title">Chú Giải & Điển Tích</span>
+      <p id="annotation-popover-text">Nội dung chú thích...</p>
+    </div>
+  </div>
+
+  <!-- 6. MODAL TÌM KIẾM TOÀN THƯ (SEARCH MODAL) -->
+  <div id="search-modal-backdrop" class="modal-backdrop" onclick="if(event.target === this) window.literaryApp.closeSearch()">
+    <div class="search-modal">
+      <div class="search-modal-header">
+        <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%;">
+          <svg class="editorial-icon icon-md" style="color: var(--cerulean-600);" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-input-field" class="search-input-field" placeholder="Tìm theo tên tác phẩm, tác giả, điển tích...">
+        </div>
+        <button class="search-close-btn" onclick="window.literaryApp.closeSearch()" title="Đóng tìm kiếm" aria-label="Đóng tìm kiếm" style="display: inline-flex; align-items: center; justify-content: center;">
+          <svg class="editorial-icon icon-md" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div id="search-results-list" class="search-results-list"></div>
+    </div>
+  </div>
+
+  <!-- 7. TOAST NOTIFICATION -->
+  <div id="editorial-toast" class="editorial-toast">
+    Thông báo văn uyển...
+  </div>
+
+  <!-- 8. CHÂN TRANG TẠP CHÍ (EDITORIAL FOOTER) -->
+  <footer class="editorial-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>VĂN UYỂN</h2>
+          <p>
+            Kỳ san Văn chương & Thư tịch Khảo cứu toàn diện. Nơi lưu giữ, tôn vinh và lan tỏa các giá trị văn học kinh điển của Việt Nam và tinh hoa thế giới trong một không gian mỹ học Editorial cao quý.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Chuyên Mục</h3>
+          <ul>
+            <li><a href="#/thu-vien" onclick="window.literaryApp.switchTab('library')">Thư Viện Tác Phẩm</a></li>
+            <li><a href="#/tac-gia" onclick="window.literaryApp.switchTab('authors')">Chân Dung Tác Giả</a></li>
+            <li><a href="#/truong-phai" onclick="window.literaryApp.switchTab('movements')">Trường Phái & Lịch Sử</a></li>
+            <li><a href="#/danh-ngon" onclick="window.literaryApp.switchTab('quotes')">Điển Tích & Danh Ngôn</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Tiện Ích Đọc</h3>
+          <ul>
+            <li><a href="admin.html" target="_blank" style="color: var(--cerulean-300); font-weight: 600;">✦ Quản Trị Tác Phẩm (Admin CMS)</a></li>
+            <li><a href="auth.html" style="color: var(--cerulean-300); font-weight: 600;">✦ Xác Thực & Đăng Nhập Tài Khoản</a></li>
+            <li><a href="#/sang-tac" onclick="window.literaryApp.switchTab('studio')">Góc Sáng Tác Bản Thảo</a></li>
+            <li><a href="#/tu-sach" onclick="window.literaryApp.switchTab('bookmarks')">Tủ Sách Đã Lưu</a></li>
+            <li><a href="javascript:void(0)" onclick="window.literaryAudio.toggleAmbient()">Âm Thanh Thư Phòng Mưa</a></li>
+            <li><a href="javascript:void(0)" onclick="window.literaryApp.toggleGlobalTheme()">Chế Độ Đêm Văn Đàn</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Tôn Chỉ Mỹ Học</h3>
+          <p style="font-size: 0.85rem; line-height: 1.65; color: var(--cerulean-200);">
+            “Văn chương không có biên giới, chỉ có chiều sâu của tình thương và sự cứu rỗi của Cái Đẹp.”
+          </p>
+          <div style="margin-top: 1rem; font-family: var(--font-ui); font-size: 0.75rem; color: var(--cerulean-400);">
+            Hệ màu: Xanh Cerulean & Đỏ Jasper<br>
+            Phông chữ: Playfair Display & Newsreader
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 VĂN UYỂN • Tạp Chí & Thư Viện Văn Học. Mọi quyền được bảo lưu.</div>
+        <div>Thiết kế theo chuẩn mực Editorial Kinh Điển</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Javascript Modules -->
+  <script src="js/icons.js"></script>
+  <script src="js/dropdown.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/firebase-fallback.js"></script>
+  <script type="module" src="js/firebase-service.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/seo-router.js"></script>
+  <script src="js/reader.js"></script>
+  <script src="js/library.js"></script>
+  <script src="js/studio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

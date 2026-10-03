@@ -1,0 +1,654 @@
+/* ==========================================================================
+   VĂN UYỂN - EDITORIAL LAYOUT & STYLING
+   Phong cách Tạp chí & Kỳ san Văn học Kinh điển
+   ========================================================================== */
+
+/* --- TOP EDITORIAL BAR (THÔNG TIN KỲ BÁO) --- */
+.editorial-topbar {
+  border-bottom: 1px solid var(--paper-border);
+  padding: 0.5rem 0;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  background-color: var(--paper-bg);
+}
+
+.topbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.topbar-left, .topbar-center, .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.topbar-quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--cerulean-800);
+}
+
+.topbar-badge {
+  background: var(--jasper-100);
+  color: var(--jasper-700);
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--jasper-200);
+}
+
+.topbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ink-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--paper-border);
+  background: var(--paper-surface);
+  transition: var(--transition-smooth);
+}
+
+.topbar-btn:hover {
+  background: var(--cerulean-50);
+  color: var(--cerulean-800);
+  border-color: var(--cerulean-400);
+}
+
+/* --- MĂNG-SÉT (EDITORIAL MASTHEAD) --- */
+.editorial-masthead {
+  padding: 2.25rem 0 1.5rem 0;
+  text-align: center;
+  background-color: var(--paper-bg);
+  position: relative;
+}
+
+.masthead-ornament-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.masthead-ornament-top::before,
+.masthead-ornament-top::after {
+  content: "";
+  height: 1px;
+  width: 120px;
+  background: linear-gradient(90deg, transparent, var(--paper-border-bold), transparent);
+}
+
+.masthead-motto {
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cerulean-600);
+}
+
+.masthead-title-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.masthead-title {
+  font-size: 4.25rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--cerulean-900);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  text-shadow: 1px 1px 0px rgba(186, 52, 42, 0.2);
+}
+
+.masthead-seal {
+  position: absolute;
+  top: -10px;
+  right: -55px;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--jasper-600);
+  color: var(--jasper-600);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+  transform: rotate(12deg);
+  background: rgba(250, 236, 235, 0.7);
+  box-shadow: 0 2px 8px rgba(186, 52, 42, 0.15);
+}
+
+.masthead-sub {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink-secondary);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ĐƯỜNG KẺ BÁO CHÍ (EDITORIAL RULES) */
+.editorial-ruling-double {
+  margin-top: 1.5rem;
+  border-top: 3px double var(--cerulean-800);
+  border-bottom: 1px solid var(--paper-border-bold);
+  height: 6px;
+}
+
+.editorial-ruling-single {
+  border-top: 1px solid var(--paper-border);
+  margin: 2rem 0;
+}
+
+/* --- THANH ĐIỀU HƯỚNG TẠP CHÍ (NAVIGATION) --- */
+.editorial-nav-bar {
+  background-color: var(--paper-bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--paper-border-bold);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editorial-nav-list {
+  display: flex;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cerulean-600) var(--paper-parchment);
+  padding-bottom: 2px;
+}
+
+.editorial-nav-list::-webkit-scrollbar {
+  height: 4px;
+}
+
+.editorial-nav-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editorial-nav-list::-webkit-scrollbar-thumb {
+  background: var(--cerulean-500);
+  border-radius: 2px;
+}
+
+.editorial-nav-list::-webkit-scrollbar-thumb:hover {
+  background: var(--jasper-600);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1rem 1.15rem;
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+  color: var(--jasper-600);
+  background-color: rgba(186, 52, 42, 0.03);
+}
+
+.nav-item.active .nav-link {
+  color: var(--cerulean-800);
+  font-weight: 700;
+}
+
+.nav-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1.15rem;
+  right: 1.15rem;
+  height: 2.5px;
+  background-color: var(--jasper-600);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--paper-border);
+  background: var(--paper-surface);
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  transition: var(--transition-smooth);
+}
+
+.search-trigger-btn:hover {
+  border-color: var(--cerulean-600);
+  color: var(--cerulean-800);
+}
+
+.kbd-shortcut {
+  font-size: 0.7rem;
+  background: var(--paper-parchment);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  border: 1px solid var(--paper-border);
+}
+
+/* --- LEAD COVER STORY (TÂM ĐIỂM KỲ BÁO) --- */
+.editorial-lead-section {
+  padding: 2.5rem 0 3rem 0;
+  border-bottom: 1px solid var(--paper-border);
+}
+
+.lead-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.lead-story-card {
+  border-right: 1px solid var(--paper-border);
+  padding-right: 2.5rem;
+}
+
+.story-category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--jasper-600);
+  margin-bottom: 0.75rem;
+}
+
+.story-category-tag::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: var(--jasper-600);
+  border-radius: 50%;
+}
+
+.lead-story-title {
+  font-size: 2.75rem;
+  line-height: 1.18;
+  margin-bottom: 1rem;
+  color: var(--cerulean-900);
+  font-weight: 800;
+}
+
+.lead-story-title:hover {
+  color: var(--jasper-600);
+  cursor: pointer;
+}
+
+.editorial-byline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--paper-border);
+}
+
+.byline-author {
+  font-weight: 700;
+  color: var(--cerulean-800);
+}
+
+.lead-image-frame {
+  position: relative;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 1px solid var(--paper-border-bold);
+  background-color: var(--paper-parchment);
+  box-shadow: var(--shadow-book);
+}
+
+.lead-image-frame img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lead-image-frame:hover img {
+  transform: scale(1.02);
+}
+
+.lead-caption {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--paper-border);
+  background: var(--paper-surface);
+}
+
+/* DROP CAPS (CHỮ HOA ĐẦU DÒNG NGHỆ THUẬT - CHỈ DÀNH CHO VĂN XUÔI & TẢN VĂN) */
+.drop-cap:not(.poetry-mode):not(.poetry-preview)::first-letter {
+  font-family: var(--font-display);
+  float: left;
+  font-size: 4.8rem;
+  line-height: 0.8;
+  padding-top: 6px;
+  padding-right: 12px;
+  padding-bottom: 0;
+  color: var(--jasper-600);
+  font-weight: 900;
+}
+
+.poetry-mode.drop-cap::first-letter,
+.poetry-mode::first-letter,
+.poetry-preview::first-letter {
+  all: unset !important;
+  float: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline !important;
+}
+
+.lead-prose {
+  font-size: 1.2rem;
+  line-height: 1.85;
+  color: var(--ink-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* PULL QUOTE (TRÍCH DẪN NỔI BẬT CỦA BÁO) */
+.editorial-pull-quote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.75rem;
+  border-left: 4px solid var(--jasper-600);
+  background: linear-gradient(90deg, var(--jasper-50) 0%, transparent 100%);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  color: var(--cerulean-900);
+  position: relative;
+}
+
+.editorial-pull-quote::before {
+  content: "“";
+  position: absolute;
+  top: -15px;
+  left: 10px;
+  font-size: 4rem;
+  color: rgba(186, 52, 42, 0.15);
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+.pull-quote-attribution {
+  display: block;
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  margin-top: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* LEAD ASIDE / SIDEBAR STORIES */
+.lead-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.aside-heading {
+  font-size: 1.125rem;
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: var(--cerulean-800);
+  border-bottom: 2px solid var(--cerulean-800);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.aside-story-item {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--paper-border);
+}
+
+.aside-story-item:last-child {
+  border-bottom: none;
+}
+
+.aside-story-title {
+  font-size: 1.35rem;
+  font-family: var(--font-display);
+  margin: 0.35rem 0 0.5rem;
+  line-height: 1.3;
+}
+
+.aside-story-title a {
+  color: var(--ink-primary);
+}
+
+.aside-story-title a:hover {
+  color: var(--jasper-600);
+}
+
+.aside-story-excerpt {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* KHUNG TÁC GIẢ TÂM ĐIỂM (AUTHOR SPOTLIGHT IN ASIDE) */
+.author-spotlight-box {
+  background: var(--paper-parchment);
+  border: 1px solid var(--paper-border-bold);
+  padding: 1.5rem;
+  border-radius: var(--radius-xs);
+  position: relative;
+}
+
+.author-spotlight-box::before {
+  content: "CHÂN DUNG VĂN NGHỆ";
+  position: absolute;
+  top: -10px;
+  left: 1.25rem;
+  background: var(--cerulean-800);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+.spotlight-author-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border: 1px solid var(--paper-border-bold);
+  margin: 0.75rem 0 1rem;
+}
+
+.spotlight-author-name {
+  font-size: 1.5rem;
+  color: var(--cerulean-900);
+  margin-bottom: 0.25rem;
+}
+
+.spotlight-author-era {
+  font-size: 0.8125rem;
+  font-family: var(--font-ui);
+  color: var(--jasper-600);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* --- EDITORIAL FOOTER --- */
+.editorial-footer {
+  margin-top: 5rem;
+  background: var(--cerulean-900);
+  color: var(--cerulean-100);
+  padding: 4rem 0 2rem;
+  border-top: 4px solid var(--jasper-600);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand h2 {
+  font-size: 2.25rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--cerulean-200);
+}
+
+.footer-col h3 {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--cerulean-700);
+  padding-bottom: 0.5rem;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-col ul li a {
+  color: var(--cerulean-200);
+  font-size: 0.9rem;
+  transition: var(--transition-smooth);
+}
+
+.footer-col ul li a:hover {
+  color: var(--jasper-400);
+  padding-left: 4px;
+}
+
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid var(--cerulean-800);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--cerulean-400);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 992px) {
+  .masthead-title {
+    font-size: 3rem;
+  }
+  .lead-grid {
+    grid-template-columns: 1fr;
+  }
+  .lead-story-card {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid var(--paper-border);
+    padding-bottom: 2.5rem;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .masthead-title {
+    font-size: 2.25rem;
+  }
+  .masthead-seal {
+    display: none;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .lead-story-title {
+    font-size: 2rem;
+  }
+  .topbar-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

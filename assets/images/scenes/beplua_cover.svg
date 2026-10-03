@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_grad_beplua" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDFBF7"/>
+      <stop offset="100%" stop-color="#EFE9DF"/>
+    </linearGradient>
+    <pattern id="hatch_beplua" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#0E3B52" stroke-width="0.7" opacity="0.09"/>
+    </pattern>
+    <filter id="shadow_beplua" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0E3B52" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <!-- Nền giấy ngà mỹ thuật -->
+  <rect width="960" height="520" fill="url(#bg_grad_beplua)"/>
+  <rect width="960" height="520" fill="url(#hatch_beplua)"/>
+
+  <!-- Khung viền báo chí Editorial kép -->
+  <rect x="22" y="22" width="916" height="476" fill="none" stroke="#0E3B52" stroke-width="2.2" opacity="0.88"/>
+  <rect x="28" y="28" width="904" height="464" fill="none" stroke="#BA342A" stroke-width="0.9" opacity="0.65"/>
+
+  <!-- Họa tiết góc cổ điển (Corner Ornaments) -->
+  <g stroke="#0E3B52" stroke-width="1.5" fill="none" opacity="0.6">
+    <path d="M36 46 L46 36 M36 54 L54 36"/>
+    <path d="M924 46 L914 36 M924 54 L906 36"/>
+    <path d="M36 474 L46 484 M36 466 L54 484"/>
+    <path d="M924 474 L914 484 M924 466 L906 484"/>
+  </g>
+
+  <!-- Huy hiệu Văn Uyển trên đỉnh -->
+  <g transform="translate(480, 50)">
+    <circle cx="0" cy="0" r="13" fill="#0E3B52"/>
+    <text x="0" y="4.5" font-family="'Playfair Display', Georgia, serif" font-size="11" font-weight="900" fill="#FAF8F5" text-anchor="middle">§</text>
+    <line x1="-120" y1="0" x2="-22" y2="0" stroke="#0E3B52" stroke-width="1" opacity="0.4"/>
+    <line x1="22" y1="0" x2="120" y2="0" stroke="#0E3B52" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- NỘI DUNG MINH HỌA NGHỆ THUẬT CHUYÊN BIỆT (MAIN ARTWORK) -->
+  <g transform="translate(60, 75)">
+    
+  <rect x="180" y="30" width="480" height="300" rx="8" fill="#EDE6DC" stroke="#0E3B52" stroke-width="1.8"/>
+  <g transform="translate(420, 180)">
+    <!-- Ba hòn đá kê bếp lửa hồng ấm cúng bốc khói sớm -->
+    <ellipse cx="-40" cy="50" rx="25" ry="15" fill="#0E3B52"/>
+    <ellipse cx="40" cy="50" rx="25" ry="15" fill="#0E3B52"/>
+    <ellipse cx="0" cy="65" rx="30" ry="15" fill="#0E3B52"/>
+    <!-- Ngọn lửa bập bùng cháy đỏ -->
+    <path d="M0 45 Q-20 0 0 -45 Q20 0 0 45 Z" fill="#BA342A"/>
+    <path d="M0 45 Q-10 15 0 -20 Q10 15 0 45 Z" fill="#D4A373"/>
+  </g>
+  <text x="420" y="70" font-family="'Playfair Display', serif" font-size="22" font-weight="900" fill="#0E3B52" text-anchor="middle">BẾP LỬA</text>
+  <text x="420" y="95" font-family="'Newsreader', serif" font-size="13" font-style="italic" fill="#BA342A" text-anchor="middle">“Một bếp lửa chờn vờn sương sớm / Một bếp lửa ấp iu nồng đượm...”</text>
+
+  </g>
+
+  <!-- Chân trang thẻ tranh: Tiêu đề bối cảnh & Phân đoạn -->
+  <g transform="translate(480, 468)">
+    <rect x="-330" y="-21" width="660" height="32" fill="#FAF8F5" rx="4" filter="url(#shadow_beplua)"/>
+    <rect x="-330" y="-21" width="660" height="32" fill="none" stroke="#BA342A" stroke-width="1" rx="4"/>
+    <text x="0" y="-3.5" font-family="'Playfair Display', Georgia, serif" font-size="14.5" font-weight="800" fill="#0E3B52" text-anchor="middle" letter-spacing="0.5">BẾP LỬA • BẰNG VIỆT</text>
+    <text x="0" y="8" font-family="'Newsreader', Georgia, serif" font-size="11" font-style="italic" fill="#BA342A" text-anchor="middle">Khúc tự tình ấm áp, thiêng liêng về tình bà cháu và ngọn lửa bền bỉ nuôi lớn tâm hồn con người</text>
+  </g>
+</svg>

@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAN UYEN -- Ban Bien Tap & Quan Tri Tac Pham (Admin CMS)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/editorial.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/admin.css?v=2.1.0">
+</head>
+<body class="admin-body">
+
+  <!-- TOP ADMIN HEADER -->
+  <header class="admin-header">
+    <div class="admin-header-content">
+      <a href="admin.html" class="admin-brand">
+        <div class="admin-brand-icon">
+          <svg class="editorial-icon" viewBox="0 0 24 24" style="width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <div class="admin-brand-text">
+          <h1>VAN UYEN - BAN BIEN TAP</h1>
+          <span>He Thong Quan Tri Noi Dung (Admin CMS)</span>
+        </div>
+      </a>
+      <div class="admin-header-actions">
+        <div id="admin-status-pill" class="status-pill connecting">
+          <span class="status-dot"></span>
+          <span id="admin-status-text">Firestore: Đang kết nối...</span>
+        </div>
+
+        <!-- NÚT MỞ TRANG ĐỘC GIẢ -->
+        <a href="index.html" class="btn-editorial-secondary" target="_blank" title="Xem trước giao diện độc giả">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 1 3-3h7z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          <span>Trang Độc Giả ↗</span>
+        </a>
+
+        <!-- NÚT TRANG CÁ NHÂN & CÀI ĐẶT TRÊN HEADER (BẤM VÀO MỞ TRANG CÁ NHÂN TRỰC TIẾP) -->
+        <button type="button" id="admin-profile-btn" class="admin-profile-avatar-trigger" onclick="window.literaryAdmin.openProfileModal()" title="Mở Trang Cá Nhân &amp; Cài Đặt Hệ Thống">
+          <div class="admin-avatar">
+            <span id="admin-avatar-initials">BT</span>
+            <span class="avatar-status-dot" title="Trực tuyến"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD CONTAINER WITH SIDEBAR -->
+  <div class="admin-dashboard-container">
+    <!-- EDITORIAL ADMIN SIDEBAR -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar-inner">
+        <div class="sidebar-section-header">
+          <span class="sidebar-pretitle">DANH MỤC</span>
+          <span class="sidebar-section-name">Biên Tập</span>
+        </div>
+
+        <nav class="admin-sidebar-nav">
+          <!-- NHÓM 1: NỘI DUNG VĂN HỌC -->
+          <div class="sidebar-group-title">Nội Dung Văn Học</div>
+
+          <!-- 0. Tổng Quan -->
+          <button type="button" class="sidebar-nav-item active" data-nav="overview" onclick="window.literaryAdmin.switchSidebarTab('overview')" title="Bảng điều khiển tổng quan hệ thống">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </div>
+            <span class="sidebar-nav-label">Tổng Quan</span>
+          </button>
+
+          <!-- 1. Tác Phẩm -->
+          <button type="button" class="sidebar-nav-item" data-nav="works" onclick="window.literaryAdmin.switchSidebarTab('works')" title="Danh mục toàn bộ tác phẩm">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </div>
+            <span class="sidebar-nav-label">Tác Phẩm</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-works">38</span>
+          </button>
+
+          <!-- 2. Thể Loại -->
+          <button type="button" class="sidebar-nav-item" data-nav="categories" onclick="window.literaryAdmin.switchSidebarTab('categories')" title="Phân loại theo thể loại văn học">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </div>
+            <span class="sidebar-nav-label">Thể Loại</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-categories">4</span>
+          </button>
+
+          <!-- 3. Tác Giả -->
+          <button type="button" class="sidebar-nav-item" data-nav="authors" onclick="window.literaryAdmin.switchSidebarTab('authors')" title="Danh mục tác giả kinh điển">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <span class="sidebar-nav-label">Tác Giả</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-authors">32</span>
+          </button>
+
+          <!-- 4. Xuất Xứ -->
+          <button type="button" class="sidebar-nav-item" data-nav="origins" onclick="window.literaryAdmin.switchSidebarTab('origins')" title="Phân vùng xuất xứ & quốc gia">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </div>
+            <span class="sidebar-nav-label">Xuất Xứ</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-origins">10</span>
+          </button>
+
+          <!-- 5. Thời Kỳ Văn Học -->
+          <button type="button" class="sidebar-nav-item" data-nav="eras" onclick="window.literaryAdmin.switchSidebarTab('eras')" title="Phân chia theo dòng thời gian lịch sử văn học">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <span class="sidebar-nav-label">Thời Kỳ Văn Học</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-eras">6</span>
+          </button>
+
+          <!-- 6. Chủ Đề & Đề Tài -->
+          <button type="button" class="sidebar-nav-item" data-nav="themes" onclick="window.literaryAdmin.switchSidebarTab('themes')" title="Gom nhóm tác phẩm theo nội dung tư tưởng">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <span class="sidebar-nav-label">Chủ Đề &amp; Đề Tài</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-themes">8</span>
+          </button>
+
+          <!-- 7. Nhân Vật Văn Học -->
+          <button type="button" class="sidebar-nav-item" data-nav="characters" onclick="window.literaryAdmin.switchSidebarTab('characters')" title="Quản lý nhân vật kinh điển trong tác phẩm">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <span class="sidebar-nav-label">Nhân Vật Văn Học</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-characters">12</span>
+          </button>
+
+          <!-- NHÓM 2: TÀI LIỆU & PHÂN TÍCH -->
+          <div class="sidebar-group-title">Tài Liệu &amp; Phân Tích</div>
+
+          <!-- 8. Bài Viết & Phân Tích -->
+          <button type="button" class="sidebar-nav-item" data-nav="articles" onclick="window.literaryAdmin.switchSidebarTab('articles')" title="Văn mẫu, phân tích chuyên sâu, tài liệu ôn thi">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <span class="sidebar-nav-label">Bài Viết Phân Tích</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-articles">6</span>
+          </button>
+
+          <!-- 9. Thuật Ngữ / Từ Điển -->
+          <button type="button" class="sidebar-nav-item" data-nav="terms" onclick="window.literaryAdmin.switchSidebarTab('terms')" title="Từ điển khái niệm, biện pháp tu từ, phong cách">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            </div>
+            <span class="sidebar-nav-label">Từ Điển Thuật Ngữ</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-terms">10</span>
+          </button>
+
+          <!-- NHÓM 3: HỆ THỐNG & VẬN HÀNH -->
+          <div class="sidebar-group-title">Hệ Thống &amp; Vận Hành</div>
+
+          <!-- 10. Bình Luận & Đóng Góp -->
+          <button type="button" class="sidebar-nav-item" data-nav="comments" onclick="window.literaryAdmin.switchSidebarTab('comments')" title="Quản lý góp ý, thảo luận của độc giả và học sinh">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </div>
+            <span class="sidebar-nav-label">Bình Luận &amp; Góp Ý</span>
+            <span class="sidebar-nav-badge alert" id="sidebar-count-comments">6</span>
+          </button>
+
+          <!-- 11. Người Dùng & Phân Quyền -->
+          <button type="button" class="sidebar-nav-item" data-nav="users" onclick="window.literaryAdmin.switchSidebarTab('users')" title="Quản lý tài khoản ban biên tập & phân quyền">
+            <div class="sidebar-nav-icon">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <span class="sidebar-nav-label">Người Dùng &amp; Quyền</span>
+            <span class="sidebar-nav-badge" id="sidebar-count-users">4</span>
+          </button>
+        </nav>
+
+        <!-- Thống kê nhanh / Card tóm tắt trong sidebar -->
+        <div class="sidebar-quick-stats">
+          <div class="sidebar-stats-title">TỔNG QUAN HỆ THỐNG</div>
+          <div class="sidebar-stat-row">
+            <span>Toàn văn SGK:</span>
+            <strong id="stat-sgk-count">18</strong>
+          </div>
+          <div class="sidebar-stat-row">
+            <span>Văn học Việt Nam:</span>
+            <strong id="stat-vn-count">28</strong>
+          </div>
+          <div class="sidebar-stat-row">
+            <span>Văn học Thế giới:</span>
+            <strong id="stat-world-count">10</strong>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="admin-main-container">
+      <div class="admin-page-wrap">
+        <!-- TIÊU ĐỀ TRANG ĐỒNG BỘ CHO BAN BIÊN TẬP (ADMIN PAGE HEADER) -->
+        <header class="admin-page-header" id="admin-page-header">
+          <div class="admin-page-header-left">
+            <div class="admin-page-pretitle">
+              <span class="admin-breadcrumb-root" onclick="window.literaryAdmin.switchSidebarTab('overview')" style="cursor:pointer" title="Về Tổng quan">Ban Biên Tập</span>
+              <span class="admin-breadcrumb-sep">/</span>
+              <span id="admin-breadcrumb-current">Tổng Quan</span>
+            </div>
+            <div class="admin-page-title-row">
+              <h1 class="admin-page-title" id="admin-page-title">Tổng Quan</h1>
+              <span class="admin-page-badge" id="admin-page-badge">Bảng Điều Khiển</span>
+            </div>
+          </div>
+          <div class="admin-page-header-actions" id="admin-page-header-actions">
+            <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.openNewWorkModal()">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Thêm tác phẩm</span>
+            </button>
+            <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.switchSidebarTab('works')" title="Xem toàn bộ kho tác phẩm">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Kho tác phẩm (38)</span>
+            </button>
+            <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.openSeedModal()" title="Đồng bộ toàn bộ danh mục lên Cloud Firestore">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <span>Đồng bộ Cloud</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- BẢNG TỔNG QUAN HỆ THỐNG (MINIMALIST OVERVIEW / DASHBOARD) -->
+        <div id="admin-overview-panel" class="admin-overview-panel" style="display: flex;"></div>
+
+        <!-- Bảng điều hướng phụ khi chọn Thể Loại / Tác Giả / Xuất Xứ -->
+        <div id="admin-subview-panel" class="admin-subview-panel" style="display: none;"></div>
+
+        <!-- Thanh thông báo bộ lọc chuyên biệt đang kích hoạt (Thể loại / Tác giả / Xuất xứ) -->
+        <div id="admin-active-filter-banner" class="admin-active-filter-banner" style="display: none;"></div>
+
+        <!-- Toolbar -->
+        <div class="admin-table-toolbar" id="admin-table-toolbar" style="display: none;">
+      <div class="admin-toolbar-left">
+        <div class="admin-search-wrap">
+          <svg class="editorial-icon icon-sm admin-search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="admin-search-input" class="admin-search-input" placeholder="Tìm kiếm tác phẩm, tác giả...">
+        </div>
+        <div class="admin-filter-tabs">
+          <button class="admin-filter-btn active" data-filter="all">Tất cả</button>
+          <button class="admin-filter-btn" data-filter="vn">Việt Nam</button>
+          <button class="admin-filter-btn" data-filter="world">Thế Giới</button>
+          <button class="admin-filter-btn" data-filter="custom">&#9729; Cloud</button>
+        </div>
+      </div>
+      <div class="admin-toolbar-right">
+        <span id="admin-works-count" class="admin-count-badge">0 tác phẩm</span>
+        <div class="admin-view-toggle">
+          <button id="btn-view-list" class="view-toggle-btn active" title="Danh sách" onclick="window.literaryAdmin.setViewMode('list')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          </button>
+          <button id="btn-view-grid" class="view-toggle-btn" title="Lưới thẻ" onclick="window.literaryAdmin.setViewMode('grid')">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+          </button>
+        </div>
+        <button id="admin-sort-toggle" class="admin-sort-btn" onclick="window.literaryAdmin.toggleSortOrder()">
+          <span id="admin-sort-label">A &#8594; Z</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- List view -->
+    <div id="admin-list-view" class="admin-list-view">
+      <div class="admin-table-container">
+        <table class="admin-works-table">
+          <thead>
+            <tr>
+              <th style="width:56px"></th>
+              <th>Tác Phẩm</th>
+              <th>Tác Giả</th>
+              <th>Thể Loại</th>
+              <th>Năm</th>
+              <th>Xuất Xứ</th>
+              <th>Trạng Thái</th>
+              <th style="width:160px;text-align:center">Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody id="admin-works-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Grid view -->
+    <div id="admin-grid-view" class="admin-grid-view" style="display:none">
+      <div id="admin-works-grid" class="admin-works-grid"></div>
+    </div>
+
+    <!-- PAGINATION BAR -->
+    <div class="admin-pagination-bar" id="admin-pagination-bar" style="display: none;">
+      <div class="pagination-info">
+        <span id="pagination-summary">Đang tải danh sách tác phẩm...</span>
+        <div class="pagination-pagesize-wrap">
+          <label for="pagination-pagesize">Hiển thị:</label>
+          <div class="custom-select-wrap">
+            <select id="pagination-pagesize" class="pagination-pagesize-select" onchange="window.literaryAdmin.changePageSize(this.value)">
+              <option value="8" selected>8 / trang</option>
+              <option value="12">12 / trang</option>
+              <option value="16">16 / trang</option>
+              <option value="24">24 / trang</option>
+              <option value="9999">Tất cả</option>
+            </select>
+            <svg class="custom-select-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </div>
+      </div>
+      <div class="pagination-controls" id="pagination-controls"></div>
+    </div>
+  </div>
+</main>
+</div>
+
+  <!-- MODAL: XEM CHI TIET -->
+  <div id="detail-modal" class="admin-modal-backdrop">
+    <div class="admin-modal admin-modal-xl">
+      <div class="admin-modal-header">
+        <h3 id="detail-modal-title">Chi Tiết Tác Phẩm</h3>
+        <div class="admin-modal-header-actions">
+          <button class="btn-editorial-secondary btn-sm" onclick="window.literaryAdmin.openEditFromDetail()">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            Sửa tác phẩm này
+          </button>
+          <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeDetailModal()" title="Đóng">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <div class="admin-modal-body" id="detail-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: CHINH SUA / TAO TAC PHAM -->
+  <div id="edit-modal" class="admin-modal-backdrop">
+    <div class="admin-modal admin-modal-xl">
+      <div class="admin-modal-header">
+        <div class="admin-modal-title-group">
+          <h3 id="edit-modal-title">Chỉnh Sửa Tác Phẩm</h3>
+          <div id="editor-source-badge"><span class="badge-local">Bản mặc định (data.js)</span></div>
+        </div>
+        <div class="admin-modal-header-actions">
+          <button id="btn-revert-original" class="btn-editorial-danger btn-sm" title="Khôi phục về bản gốc trong data.js">Khôi phục gốc</button>
+          <button id="btn-export-json" class="btn-editorial-secondary btn-sm" title="Tải tệp JSON dự phòng">Xuất JSON</button>
+          <button id="btn-view-reader" class="btn-editorial-secondary btn-sm" title="Xem trên Reader">Xem Reader ↗</button>
+          <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeEditModal()" title="Đóng modal">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-modal-body admin-edit-body admin-edit-split-layout">
+        <!-- CỘT TRÁI: THIẾT LẬP & THÔNG TIN TÁC PHẨM (SIDEBAR) -->
+        <div class="admin-edit-col-sidebar">
+          <!-- CARD 1 -->
+          <section class="editor-card" id="card-basic-info">
+            <div class="editor-card-header" onclick="this.closest('.editor-card').classList.toggle('collapsed')">
+              <h3>
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                1. Thông Tin Cơ Bản
+              </h3>
+              <svg class="editor-card-toggle-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="editor-card-body">
+              <div class="form-grid-2">
+                <div class="form-group"><label class="form-label">Mã ID</label><input type="text" id="field-id" class="form-input" placeholder="tat-den"></div>
+                <div class="form-group"><label class="form-label">Tên Tác Phẩm</label><input type="text" id="field-title" class="form-input" placeholder="Tắt Đèn"></div>
+              </div>
+              <div class="form-grid-2" style="margin-top:0.75rem">
+                <div class="form-group"><label class="form-label">Tác Giả</label><input type="text" id="field-author" class="form-input" placeholder="Ngô Tất Tố"></div>
+                <div class="form-group"><label class="form-label">Mã Tác Giả</label><input type="text" id="field-author-id" class="form-input" placeholder="ngo-tat-to"></div>
+              </div>
+              <div class="form-grid-2" style="margin-top:0.75rem">
+                <div class="form-group"><label class="form-label">Xuất Xứ</label><select id="field-origin" class="form-select"><option value="vn">Việt Nam</option><option value="world">Thế Giới</option></select></div>
+                <div class="form-group"><label class="form-label">Nhãn Xuất Xứ</label><input type="text" id="field-origin-label" class="form-input" placeholder="Văn học Việt Nam"></div>
+              </div>
+              <div class="form-grid-2" style="margin-top:0.75rem">
+                <div class="form-group"><label class="form-label">Quốc Gia</label><input type="text" id="field-country" class="form-input" placeholder="Việt Nam"></div>
+                <div class="form-group"><label class="form-label">Thể Loại</label><input type="text" id="field-category" class="form-input" placeholder="Tiểu thuyết hiện thực"></div>
+              </div>
+              <div class="form-grid-2" style="margin-top:0.75rem">
+                <div class="form-group"><label class="form-label">Năm Sáng Tác</label><input type="text" id="field-year" class="form-input" placeholder="1939"></div>
+                <div class="form-group"><label class="form-label">Thời Đại</label><input type="text" id="field-era" class="form-input" placeholder="Hiện thực 1930-1945"></div>
+              </div>
+              <div class="form-grid-2" style="margin-top:0.75rem">
+                <div class="form-group"><label class="form-label">Thời Lượng Đọc</label><input type="text" id="field-read-time" class="form-input" placeholder="25 phút đọc"></div>
+                <div class="form-group"><label class="form-label">Huy Hiệu (Badge)</label><input type="text" id="field-badge" class="form-input" placeholder="Kiệt Tác Hiện Thực"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CARD 2 -->
+          <section class="editor-card" id="card-cover-info">
+            <div class="editor-card-header" onclick="this.closest('.editor-card').classList.toggle('collapsed')">
+              <h3>
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                2. Tranh Minh Họa Bìa &amp; Lời Đề Từ
+              </h3>
+              <svg class="editor-card-toggle-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="editor-card-body">
+              <div class="cover-uploader-wrapper">
+                <div class="cover-preview-box" id="cover-preview-container">
+                  <img id="cover-preview-img" src="" alt="Ảnh bìa" style="display:none;">
+                  <div id="cover-placeholder" class="cover-placeholder">
+                    <svg class="editorial-icon icon-lg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    <span>Chưa có ảnh bìa</span>
+                  </div>
+                </div>
+                <div class="cover-controls-box">
+                  <div class="cover-upload-zone" id="cover-drop-zone">
+                    <input type="file" id="cover-file-input" accept="image/png,image/jpeg,image/webp,image/jpg,image/svg+xml" style="display:none;">
+                    <div class="upload-zone-content">
+                      <svg class="editorial-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                      <div class="upload-zone-text"><strong>Chọn tệp ảnh từ máy tính</strong> hoặc kéo thả vào đây</div>
+                      <span class="upload-zone-hint">Tệp ảnh sẽ tự động lưu vào <code>assets/images/covers/</code></span>
+                    </div>
+                    <div class="upload-actions">
+                      <button type="button" class="btn-editorial-primary btn-sm" id="btn-browse-cover">
+                        <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <span>Chọn tệp ảnh bìa...</span>
+                      </button>
+                      <button type="button" class="btn-editorial-secondary btn-sm" id="btn-remove-cover" style="display:none;">
+                        <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        <span>Gỡ ảnh</span>
+                      </button>
+                    </div>
+                    <div id="cover-upload-status" class="cover-upload-status"></div>
+                  </div>
+                  <div class="form-grid-2">
+                    <div class="form-group"><label class="form-label">Đường Dẫn Ảnh</label><input type="text" id="field-image" class="form-input" placeholder="assets/images/covers/..."></div>
+                    <div class="form-group"><label class="form-label">Chú Thích Ảnh</label><input type="text" id="field-image-caption" class="form-input" placeholder="Khắc họa bức tranh bìa..."></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top:0.75rem"><label class="form-label">Lời Đề Từ (Epigraph)</label><input type="text" id="field-epigraph" class="form-input" placeholder="Thà ngồi tù..."></div>
+              <div class="form-group" style="margin-top:0.75rem"><label class="form-label">Trích Đoạn Giới Thiệu (Excerpt)</label><textarea id="field-excerpt" class="form-textarea" rows="2" placeholder="Tóm tắt nội dung..."></textarea></div>
+              <div class="form-grid-2" style="margin-top:0.75rem">
+                <div class="form-group"><label class="form-label">Trạng Thái Văn Bản</label><input type="text" id="field-fulltext-status" class="form-input" value="Toàn Văn Tác Phẩm"></div>
+                <div class="form-group"><label class="form-label">Trọng Tâm SGK</label><input type="text" id="field-sgk-detail" class="form-input" placeholder="Chương trình Ngữ Văn..."></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CARD 4 -->
+          <section class="editor-card" id="card-criticism-info">
+            <div class="editor-card-header" onclick="this.closest('.editor-card').classList.toggle('collapsed')">
+              <h3>
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                4. Phê Bình &amp; Thẻ Phân Loại
+              </h3>
+              <svg class="editor-card-toggle-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="editor-card-body">
+              <div class="form-group"><label class="form-label">Lời Bình (criticism)</label><textarea id="field-criticism" class="form-textarea" rows="3" placeholder="Nhận định của các nhà phê bình..."></textarea></div>
+              <div class="form-group" style="margin-top:0.75rem"><label class="form-label">Thẻ Phân Loại (Tags)</label><input type="text" id="field-tags" class="form-input" placeholder="Tên tác giả, tác phẩm, SGK..."></div>
+            </div>
+          </section>
+        </div>
+
+        <!-- CỘT PHẢI: KHÔNG GIAN BIÊN TẬP TOÀN VĂN (MAIN WORKSPACE) -->
+        <div class="admin-edit-col-main">
+          <!-- CARD 3 -->
+          <section class="editor-card editor-card-fullheight" id="card-content-editor">
+            <div class="editor-card-header">
+              <h3>
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                3. Biên Tập Nội Dung Toàn Văn
+              </h3>
+              <div style="display:flex;align-items:center;gap:0.75rem">
+                <span id="content-char-count" style="font-size:0.8rem;color:var(--text-muted)">0 từ • 0 ký tự</span>
+              </div>
+            </div>
+            <div class="content-toolbar">
+              <div class="toolbar-group">
+                <button type="button" id="btn-pdf-upload" class="toolbar-btn btn-smart" onclick="window.literaryAdmin.triggerPdfUpload()">
+                  <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                  <span>Nhập File PDF</span>
+                </button>
+                <input type="file" id="admin-pdf-input" accept=".pdf" style="display:none;" onchange="window.literaryAdmin.handlePdfUpload(event)">
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.openSmartFormatModal()">
+                  <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path></svg>
+                  <span>Tự Động Dàn Trang</span>
+                </button>
+              </div>
+              <div class="toolbar-group">
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.formatText('bold')" title="In đậm"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"></path></svg></button>
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.formatText('italic')" title="In nghiêng"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="19" y1="4" x2="10" y2="4"></line><line x1="14" y1="20" x2="5" y2="20"></line><line x1="15" y1="4" x2="9" y2="20"></line></svg></button>
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.formatText('formatBlock','blockquote')" title="Trích dẫn đoạn văn"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h4c0 4-2 6-5 6v2z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h4c0 4-2 6-5 6v2z"></path></svg><span>Trích dẫn</span></button>
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.formatText('removeFormat')" title="Xóa định dạng"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M20 20H7L3 16C2 15 2 13 3 12L13 2L22 11L14 19"></path><path d="M6 11L17 22"></path></svg></button>
+              </div>
+              <div class="toolbar-group">
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.insertVisualChapter()"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Chương</span></button>
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.insertVisualSgkNotice()"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 1 3-3h7z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg><span>Hộp SGK</span></button>
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.insertVisualIllustration()"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><span>Minh họa</span></button>
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.insertVisualFootnote()"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><span>Chú thích</span></button>
+                <button type="button" class="toolbar-btn" onclick="window.literaryAdmin.insertVisualEndMarker()"><svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Hết bài</span></button>
+              </div>
+              <div class="content-editor-tabs">
+                <button type="button" id="btn-tab-visual" class="editor-tab-btn active" onclick="window.literaryAdmin.switchEditorTab('visual')">✦ Soạn Thảo</button>
+                <button type="button" id="btn-tab-preview" class="editor-tab-btn" onclick="window.literaryAdmin.switchEditorTab('preview')">Xem Trước</button>
+                <button type="button" id="btn-tab-raw" class="editor-tab-btn" onclick="window.literaryAdmin.switchEditorTab('raw')">Mã HTML</button>
+              </div>
+            </div>
+            <div class="content-editor-area">
+              <div id="visual-content-editor" class="visual-editor-surface" contenteditable="true" spellcheck="false"></div>
+              <textarea id="field-content" class="full-content-textarea" style="display:none;" placeholder="Nhập mã nguồn HTML..."></textarea>
+              <div id="content-preview-panel" class="content-preview-panel"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="admin-modal-footer admin-edit-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeEditModal()">Hủy &amp; Đóng</button>
+        <button type="button" id="btn-save-firestore" class="btn-editorial-primary">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          <span>Lưu Firestore &amp; Đồng bộ Độc giả</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DONG BO CLOUD -->
+  <div id="seed-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:760px">
+      <div class="admin-modal-header">
+        <div class="admin-modal-title-group">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+          <h3 style="margin:0">Đồng Bộ Toàn Bộ Tác Phẩm Lên Cloud Firestore</h3>
+        </div>
+        <button type="button" class="admin-modal-close-btn" onclick="window.literaryAdmin.closeSeedModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <div class="modal-horizontal-2col" style="align-items:center;">
+          <div>
+            <p style="font-size:0.92rem;line-height:1.6;margin-top:0;">Tiện ích này sẽ đọc danh mục tác phẩm mẫu từ <code>data.js</code> và tải trực tiếp lên Cloud Firestore của dự án <code>litterarum-16c16</code>.</p>
+            <div style="font-size:0.82rem;color:var(--text-muted);display:flex;align-items:center;gap:0.4rem;margin-top:0.75rem;">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Dữ liệu hiện có sẽ được cập nhật hoặc tạo mới tự động.</span>
+            </div>
+          </div>
+          <div style="background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:1.25rem;text-align:center;">
+            <div style="font-size:0.85rem;font-weight:600;color:var(--text-secondary);margin-bottom:0.75rem;">Tiến trình đồng bộ dữ liệu</div>
+            <div class="progress-bar-wrap"><div id="seed-progress-fill" class="progress-bar-fill"></div></div>
+            <div id="seed-progress-text" style="font-size:0.85rem;color:var(--text-secondary);margin-top:0.6rem;">Sẵn sàng bắt đầu.</div>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeSeedModal()">Hủy</button>
+        <button type="button" id="btn-start-seed" class="btn-editorial-primary" onclick="window.literaryAdmin.startSeedAll()">Bắt đầu đồng bộ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: TAO TAC PHAM MOI (DYNAMIC SCHEMA-AWARE) -->
+  <div id="new-work-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:1060px">
+      <div class="admin-modal-header">
+        <div>
+          <h3 style="margin:0">Thêm Tác Phẩm Mới</h3>
+          <span style="font-size:0.8rem;color:var(--text-muted)">Đồng bộ tự động theo cơ sở dữ liệu Tác giả, Thể loại, Xuất xứ &amp; Chương trình SGK</span>
+        </div>
+        <button type="button" class="admin-modal-close-btn" onclick="window.literaryAdmin.closeNewWorkModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <datalist id="new-work-authors-datalist"></datalist>
+        <datalist id="new-work-badges-datalist">
+          <option value="Kiệt Tác Tiêu Biểu"></option>
+          <option value="Khai Sơn Tinh Hoa"></option>
+          <option value="Vang Bóng Một Thời"></option>
+          <option value="Đỉnh Cao Hiện Thực"></option>
+          <option value="Trọng Tâm Thi Cử"></option>
+          <option value="Tuyệt Tác Thế Giới"></option>
+          <option value="Ngọc Sáng Văn Chương"></option>
+        </datalist>
+
+        <div style="display:grid;grid-template-columns:1fr 210px;gap:1.5rem;align-items:start">
+          <!-- Cột chính: Các trường biểu mẫu bố cục ngang -->
+          <div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Tên Tác Phẩm *</label>
+                <input type="text" id="new-work-title" class="form-input" placeholder="Ví dụ: Vợ Chồng A Phủ, Lão Hạc, Tây Tiến..." required autocomplete="off" oninput="window.literaryAdmin.handleNewWorkTitleInput(this.value)">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Mã ID Định Danh (Slug) *</label>
+                <input type="text" id="new-work-id" class="form-input" placeholder="Tự động tạo: vo-chong-a-phu" required autocomplete="off" oninput="window.literaryAdmin.handleNewWorkIdInput(this.value)">
+                <div id="new-work-id-feedback" style="font-size:0.75rem;margin-top:0.25rem;display:none;"></div>
+              </div>
+            </div>
+
+            <div class="form-grid-3" style="margin-top:0.75rem">
+              <div class="form-group">
+                <label class="form-label">Tác Giả *</label>
+                <input type="text" id="new-work-author" class="form-input" list="new-work-authors-datalist" placeholder="Chọn hoặc nhập tên tác giả..." onchange="window.literaryAdmin.handleNewWorkAuthorChange(this.value)" oninput="window.literaryAdmin.handleNewWorkAuthorChange(this.value)">
+                <div id="new-work-author-hint" style="font-size:0.75rem;color:var(--cerulean-600);margin-top:0.25rem;"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Thể Loại Văn Học *</label>
+                <select id="new-work-category" class="form-select" onchange="window.literaryAdmin.handleNewWorkCategoryChange(this.value)"></select>
+                <div id="new-work-category-custom-group" style="display:none;margin-top:0.35rem">
+                  <input type="text" id="new-work-category-custom" class="form-input" placeholder="Nhập tên thể loại chi tiết...">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phân Khu Địa Lý *</label>
+                <select id="new-work-origin" class="form-select" onchange="window.literaryAdmin.handleNewWorkOriginChange(this.value)">
+                  <option value="vn">🇻🇳 Văn học Việt Nam (Dân tộc)</option>
+                  <option value="world">🌐 Văn học Thế Giới (Quốc tế)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-3" style="margin-top:0.75rem">
+              <div class="form-group">
+                <label class="form-label">Quốc Gia / Vùng Xuất Xứ *</label>
+                <select id="new-work-country" class="form-select"></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Thời Kỳ Văn Học</label>
+                <select id="new-work-era" class="form-select">
+                  <optgroup label="Thời Kỳ Văn Học Dân Tộc Việt Nam">
+                    <option value="Văn học Trung đại">🏛️ Văn học Trung đại</option>
+                    <option value="Hiện thực Phê phán (1930 – 1945)" selected>🖋️ Hiện thực Phê phán (1930 – 1945)</option>
+                    <option value="Phong trào Thơ Mới (1932 – 1945)">🌿 Phong trào Thơ Mới (1932 – 1945)</option>
+                    <option value="Văn học Lãng mạn (Tự Lực Văn Đoàn)">🍃 Văn học Lãng mạn (Tự Lực Văn Đoàn)</option>
+                    <option value="Văn học Kháng chiến chống Pháp (1946 – 1954)">🎖️ Kháng chiến chống Pháp (1946 – 1954)</option>
+                    <option value="Văn học Kháng chiến chống Mỹ (1954 – 1975)">🔥 Kháng chiến chống Mỹ (1954 – 1975)</option>
+                    <option value="Xây dựng Chủ nghĩa Xã hội ở miền Bắc">⚒️ Xây dựng CNXH ở miền Bắc</option>
+                    <option value="Văn học Thời kỳ Đổi mới (1986 đến nay)">✨ Văn học Thời kỳ Đổi mới</option>
+                    <option value="Văn học Hiện đại Việt Nam">📖 Văn học Hiện đại Việt Nam</option>
+                  </optgroup>
+                  <optgroup label="Thời Kỳ Văn Học Thế Giới">
+                    <option value="Văn học Phục Hưng Tây Ban Nha & Châu Âu">🎭 Phục Hưng Tây Ban Nha & Châu Âu</option>
+                    <option value="Văn học Phục Hưng Anh">👑 Phục Hưng Anh</option>
+                    <option value="Văn học Lãng mạn Hiện thực Pháp">🗼 Lãng mạn Hiện thực Pháp</option>
+                    <option value="Văn học Hiện thực Nga">❄️ Hiện thực Nga</option>
+                    <option value="Văn học Cổ điển & Hiện đại Trung Quốc">📜 Cổ điển & Hiện đại Trung Quốc</option>
+                    <option value="Văn học Hiện đại Phương Tây (Thế kỷ XX)">🌍 Hiện đại Phương Tây (TK XX)</option>
+                    <option value="Chủ nghĩa Hiện sinh & Phi lý">⚡ Hiện sinh & Phi lý</option>
+                    <option value="Chủ nghĩa Hiện thực Huyền ảo (Mỹ Latinh)">🦋 Hiện thực Huyền ảo</option>
+                    <option value="Văn học Thế giới Thế kỷ XX">🌐 Thế giới Thế kỷ XX</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Năm Sáng Tác</label>
+                <input type="text" id="new-work-year" class="form-input" placeholder="Ví dụ: 1943, 1952, 1820...">
+              </div>
+            </div>
+
+            <div class="form-grid-3" style="margin-top:0.75rem">
+              <div class="form-group">
+                <label class="form-label">Trọng Tâm Giảng Dạy SGK</label>
+                <select id="new-work-sgk" class="form-select">
+                  <option value="Chương trình Ngữ Văn THPT (Trọng tâm SGK)">Chương trình Ngữ Văn THPT (Trọng tâm SGK)</option>
+                  <option value="Chương trình Ngữ Văn 12">Chương trình Ngữ Văn 12</option>
+                  <option value="Chương trình Ngữ Văn 11">Chương trình Ngữ Văn 11</option>
+                  <option value="Chương trình Ngữ Văn 10">Chương trình Ngữ Văn 10</option>
+                  <option value="Chương trình Ngữ Văn 9">Chương trình Ngữ Văn 9</option>
+                  <option value="Chương trình Ngữ Văn 8">Chương trình Ngữ Văn 8</option>
+                  <option value="Chương trình Ngữ Văn 7">Chương trình Ngữ Văn 7</option>
+                  <option value="Chương trình Ngữ Văn 6">Chương trình Ngữ Văn 6</option>
+                  <option value="Văn bản đọc hiểu bổ trợ & Mở rộng">Văn bản đọc hiểu bổ trợ & Mở rộng</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Trạng Thái Văn Bản</label>
+                <select id="new-work-fulltext-status" class="form-select">
+                  <option value="Toàn Văn Tác Phẩm" selected>Toàn Văn Tác Phẩm</option>
+                  <option value="Toàn Bộ Tác Phẩm (Trọn Vẹn)">Toàn Bộ Tác Phẩm (Trọn Vẹn)</option>
+                  <option value="Đoạn Trích Trọng Tâm SGK">Đoạn Trích Trọng Tâm SGK</option>
+                  <option value="Tuyển Tập Trích Đoạn Kinh Điển">Tuyển Tập Trích Đoạn Kinh Điển</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Thời Lượng Đọc Ước Tính</label>
+                <input type="text" id="new-work-readtime" class="form-input" value="15 phút đọc • Toàn văn tác phẩm" placeholder="15 phút đọc...">
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-top:0.75rem">
+              <div class="form-group">
+                <label class="form-label">Huy Hiệu (Badge)</label>
+                <input type="text" id="new-work-badge" class="form-input" list="new-work-badges-datalist" placeholder="Kiệt Tác Tiêu Biểu">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Lời Đề Từ (Epigraph)</label>
+                <input type="text" id="new-work-epigraph" class="form-input" placeholder="Ví dụ: Trăm năm trong cõi người ta / Chữ tài chữ mệnh khéo là ghét nhau...">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:0.75rem">
+              <label class="form-label">Tóm Tắt Giới Thiệu (Excerpt)</label>
+              <textarea id="new-work-excerpt" class="form-textarea" rows="2" placeholder="Tóm tắt bối cảnh, chủ đề tư tưởng và nghệ thuật của kiệt tác..."></textarea>
+            </div>
+          </div>
+
+          <!-- Cột phụ: Bìa sách 9:16 trực quan -->
+          <div style="background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:1rem;display:flex;flex-direction:column;align-items:center;text-align:center">
+            <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.5px;color:var(--text-secondary);margin-bottom:0.6rem;text-transform:uppercase">Khung Bìa (9:16)</span>
+            <div style="width:130px;aspect-ratio:9/16;border-radius:4px;overflow:hidden;border:1px solid var(--border-color);box-shadow:0 4px 12px rgba(0,0,0,0.12);background:var(--bg-primary);display:flex;align-items:center;justify-content:center">
+              <img id="new-work-cover-preview" src="assets/images/default-cover.jpg" alt="Bìa tác phẩm" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.onerror=null;this.src='assets/images/default-cover.jpg'">
+            </div>
+            <div style="margin-top:0.75rem;width:100%">
+              <input type="text" id="new-work-image" class="form-input" style="font-size:0.75rem;padding:0.35rem 0.5rem;" value="assets/images/default-cover.jpg" placeholder="Đường dẫn ảnh bìa..." oninput="window.literaryAdmin.handleNewWorkCoverChange(this.value)">
+            </div>
+            <div style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.35rem;width:100%">
+              <label class="btn-editorial-secondary" style="font-size:0.75rem;padding:0.3rem 0.5rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:0.25rem">
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <span>Tải ảnh từ máy</span>
+                <input type="file" id="new-work-cover-file" accept="image/*" style="display:none" onchange="window.literaryAdmin.handleNewWorkCoverFileUpload(this.files[0])">
+              </label>
+              <button type="button" class="btn-editorial-secondary" style="font-size:0.72rem;padding:0.25rem 0.4rem;color:var(--text-muted)" onclick="window.literaryAdmin.setDefaultNewWorkCover()">
+                Đặt bìa mặc định
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeNewWorkModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.submitNewWork()">Tạo &amp; Mở Soạn Thảo Toàn Văn</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SMART FORMATTER -->
+  <div id="smart-format-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:1040px">
+      <div class="admin-modal-header">
+        <div class="admin-modal-title-group">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path></svg>
+          <h3 style="margin:0">Tự Động Dàn Trang &amp; Chuẩn Hóa Văn Bản Thô</h3>
+        </div>
+        <button type="button" class="admin-modal-close-btn" onclick="window.literaryAdmin.closeSmartFormatModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <div class="modal-horizontal-2col" style="grid-template-columns: 1.4fr 1fr; gap: 1.5rem; align-items: stretch;">
+          <div class="form-group" style="display:flex;flex-direction:column;margin:0;">
+            <label class="form-label" style="display:flex;justify-content:space-between;align-items:center;">
+              <span>Văn bản thô cần dàn trang</span>
+              <span style="font-size:0.75rem;color:var(--text-muted);font-weight:normal">Hỗ trợ dán từ Word, PDF, Web</span>
+            </label>
+            <textarea id="smart-raw-input" class="form-textarea" style="flex:1;min-height:280px;font-family:var(--font-body);font-size:0.92rem;line-height:1.6;resize:none;" placeholder="Dán nội dung toàn văn tác phẩm hoặc các chương vào đây..."></textarea>
+          </div>
+          <div style="background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:1.25rem;display:flex;flex-direction:column;gap:1rem;">
+            <div>
+              <h4 style="margin:0 0 0.35rem 0;font-size:0.95rem;color:var(--cerulean-800)">Quy tắc dàn trang thông minh</h4>
+              <p style="font-size:0.85rem;line-height:1.6;color:var(--text-secondary);margin:0">Hệ thống phân tích cú pháp, tự động loại bỏ ngắt dòng bất thường và định dạng chuẩn hóa tác phẩm văn học.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:0.65rem;font-size:0.85rem;">
+              <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;background:var(--bg-surface);padding:0.6rem 0.75rem;border-radius:var(--radius-xs);border:1px solid var(--border-color)">
+                <input type="checkbox" id="smart-opt-fixlines" checked style="margin-top:0.2rem">
+                <div>
+                  <strong style="display:block;color:var(--text-primary)">Tự động nối dòng ngắt quãng</strong>
+                  <span style="font-size:0.78rem;color:var(--text-muted)">Ghép các câu bị ngắt dòng do sao chép từ PDF/Word</span>
+                </div>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;background:var(--bg-surface);padding:0.6rem 0.75rem;border-radius:var(--radius-xs);border:1px solid var(--border-color)">
+                <input type="checkbox" id="smart-opt-chapters" checked style="margin-top:0.2rem">
+                <div>
+                  <strong style="display:block;color:var(--text-primary)">Nhận diện Chương / Hồi / Tiết</strong>
+                  <span style="font-size:0.78rem;color:var(--text-muted)">Tự động tạo tiêu đề chương và tách phân đoạn</span>
+                </div>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;background:var(--bg-surface);padding:0.6rem 0.75rem;border-radius:var(--radius-xs);border:1px solid var(--border-color)">
+                <input type="checkbox" id="smart-opt-dialogue" checked style="margin-top:0.2rem">
+                <div>
+                  <strong style="display:block;color:var(--text-primary)">Chuẩn hóa dấu gạch ngang thoại (—)</strong>
+                  <span style="font-size:0.78rem;color:var(--text-muted)">Chuyển dấu '-' thường thành gạch ngang dài văn chương</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeSmartFormatModal()">Hủy</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.executeSmartFormat()">Dàn Trang &amp; Đưa Vào Soạn Thảo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: TIEN TRINH PDF -->
+  <div id="pdf-import-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:680px">
+      <div class="admin-modal-header">
+        <div class="admin-modal-title-group">
+          <svg class="editorial-icon icon-sm spin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="4" fill="none"></circle></svg>
+          <h3 style="margin:0">Đang Trích Xuất File PDF</h3>
+        </div>
+      </div>
+      <div class="admin-modal-body">
+        <div style="display:flex;gap:1.25rem;align-items:center;">
+          <div style="width:54px;height:54px;border-radius:var(--radius-md);background:var(--cerulean-50);border:1px solid var(--cerulean-200);color:var(--cerulean-700);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg class="editorial-icon" viewBox="0 0 24 24" style="width:26px;height:26px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div id="pdf-file-name" style="font-size:0.95rem;font-weight:600;color:var(--cerulean-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Đang đọc tệp PDF...</div>
+            <div class="seed-progress-bar" style="margin-top:0.6rem;"><div id="pdf-progress-fill" class="seed-progress-fill" style="width:0%"></div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.4rem;font-size:0.8rem;color:var(--text-secondary)">
+              <span id="pdf-progress-status">Đang khởi tạo...</span>
+              <span id="pdf-progress-percent" style="font-weight:600">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XAC NHAN XOA TAC PHAM -->
+  <div id="delete-confirm-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:580px">
+      <div class="admin-modal-header">
+        <h3 style="color:var(--jasper-700);margin:0;display:flex;align-items:center;gap:0.5rem">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          Xác Nhận Xóa Tác Phẩm
+        </h3>
+      </div>
+      <div class="admin-modal-body">
+        <div class="modal-confirm-horizontal">
+          <div class="modal-confirm-icon-box">
+            <svg class="editorial-icon" viewBox="0 0 24 24" style="width:26px;height:26px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <p id="delete-confirm-msg" style="font-size:0.95rem;line-height:1.6;margin:0 0 0.5rem 0;color:var(--text-primary);"></p>
+            <p style="font-size:0.83rem;color:var(--jasper-600);margin:0;font-style:italic">Thao tác này sẽ xóa bản lưu trên Cloud Firestore. Tác phẩm mặc định trong data.js sẽ được khôi phục khi làm mới.</p>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeDeleteModal()">Hủy bỏ</button>
+        <button type="button" id="btn-confirm-delete" class="btn-editorial-danger">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          Xóa &amp; Đồng bộ ngay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CRUD THỂ LOẠI (CREATE / EDIT CATEGORY) -->
+  <div id="category-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:840px">
+      <div class="admin-modal-header">
+        <h3 id="category-modal-title" style="margin:0">Thêm Thể Loại</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeCategoryModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="cat-form-mode" value="create">
+        <input type="hidden" id="cat-original-id" value="">
+        
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Tên Thể Loại *</label>
+            <input type="text" id="cat-title" class="form-input" placeholder="Ví dụ: Thơ Trữ Tình, Tùy Bút, Tiểu Thuyết...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phân Cấp Danh Mục (Thể Loại Gốc / Cha)</label>
+            <select id="cat-parent" class="form-select">
+              <option value="">Không (Thể loại gốc cấp 1)</option>
+              <option value="tho">Thơ Ca</option>
+              <option value="truyen">Truyện &amp; Tiểu Thuyết</option>
+              <option value="ky">Ký &amp; Tùy Bút</option>
+              <option value="kich">Kịch &amp; Sân Khấu</option>
+              <option value="nghi-luan">Nghị Luận &amp; Khảo Cứu</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-3" style="margin-top:0.75rem;">
+          <div class="form-group">
+            <label class="form-label">Mã Định Danh (ID / Slug)</label>
+            <input type="text" id="cat-id" class="form-input" placeholder="tho-tru-tinh">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Biểu Tượng (Icon / SVG)</label>
+            <input type="text" id="cat-icon" class="form-input" placeholder="feather, book, scroll...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Thứ Tự Sắp Xếp (Order)</label>
+            <input type="number" id="cat-order" class="form-input" placeholder="1" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="form-grid-2" style="margin-top:0.75rem;">
+          <div class="form-group">
+            <label class="form-label">Từ Khóa Nhận Diện Bộ Lọc</label>
+            <input type="text" id="cat-filter-key" class="form-input" placeholder="thơ trữ tình, thơ lãng mạn">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Trạng Thái Hiển Thị</label>
+            <select id="cat-status" class="form-select">
+              <option value="published" selected>Công khai (Hiển thị ngoài thư viện)</option>
+              <option value="draft">Bản nháp (Đang biên tập)</option>
+              <option value="hidden">Tạm ẩn</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:0.75rem;">
+          <label class="form-label">Mô Tả &amp; Đặc Trưng Thể Loại</label>
+          <textarea id="cat-desc" class="form-textarea" style="min-height:90px;resize:vertical;" placeholder="Mô tả phong cách, thi pháp và đặc trưng của thể loại văn học này..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeCategoryModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveCategory()">Lưu Thể Loại</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XÓA THỂ LOẠI -->
+  <div id="category-delete-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:580px">
+      <div class="admin-modal-header">
+        <h3 style="color:var(--jasper-700);margin:0;display:flex;align-items:center;gap:0.5rem">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          Xác Nhận Xóa Thể Loại
+        </h3>
+      </div>
+      <div class="admin-modal-body">
+        <div class="modal-confirm-horizontal">
+          <div class="modal-confirm-icon-box">
+            <svg class="editorial-icon" viewBox="0 0 24 24" style="width:26px;height:26px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <p id="cat-delete-msg" style="font-size:0.95rem;line-height:1.6;margin:0 0 0.5rem 0;color:var(--text-primary);"></p>
+            <p style="font-size:0.83rem;color:var(--text-muted);margin:0;font-style:italic">Các tác phẩm thuộc thể loại này vẫn được bảo toàn nguyên vẹn trong hệ thống.</p>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeCategoryDeleteModal()">Hủy bỏ</button>
+        <button type="button" id="btn-confirm-delete-cat" class="btn-editorial-danger">Xóa Thể Loại</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CRUD TÁC GIẢ (CREATE / EDIT AUTHOR) -->
+  <!-- MODAL: CRUD TÁC GIẢ (CREATE / EDIT AUTHOR) -->
+  <div id="author-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:1040px">
+      <div class="admin-modal-header">
+        <h3 id="author-modal-title" style="margin:0">Thêm Tác Giả</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeAuthorModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="author-form-mode" value="create">
+        <input type="hidden" id="author-original-name" value="">
+        <input type="hidden" id="author-avatar-data" value="">
+
+        <div class="author-form-grid">
+          <!-- CỘT TRÁI (SIDEBAR): CHÂN DUNG, TRẠNG THÁI, QUÊ QUÁN, XUẤT XỨ -->
+          <div class="author-form-sidebar">
+            <!-- KHUNG CHÂN DUNG TÁC GIẢ (AVATAR) -->
+            <div class="author-avatar-card">
+              <label class="form-label" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
+                <span>Chân Dung Tác Giả</span>
+                <span class="badge-tag" style="font-size:0.68rem;padding:0.15rem 0.45rem">Ảnh đại diện</span>
+              </label>
+
+              <div class="author-avatar-upload-zone" id="author-avatar-zone" onclick="document.getElementById('author-avatar-file-input').click()" title="Nhấp để tải ảnh chân dung tác giả">
+                <img id="author-avatar-preview" src="" alt="Chân dung tác giả" style="display:none;" />
+                <div id="author-avatar-fallback" class="author-avatar-placeholder">
+                  <span id="author-avatar-initials-preview" class="author-avatar-initials-text">TG</span>
+                  <div class="author-avatar-upload-hint">
+                    <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <span>Tải ảnh lên</span>
+                  </div>
+                </div>
+                <div class="author-avatar-hover-overlay">
+                  <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                  <span>Thay đổi ảnh</span>
+                </div>
+              </div>
+
+              <input type="file" id="author-avatar-file-input" accept="image/*" style="display:none" onchange="window.literaryAdmin.handleAuthorAvatarFile(this.files[0])">
+
+              <div class="author-avatar-actions">
+                <button type="button" class="btn-editorial-secondary btn-xs" onclick="document.getElementById('author-avatar-file-input').click()">
+                  <svg class="editorial-icon" viewBox="0 0 24 24" style="width:12px;height:12px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                  Chọn tệp ảnh
+                </button>
+                <button type="button" class="btn-editorial-secondary btn-xs btn-danger" id="btn-remove-author-avatar" style="display:none" onclick="window.literaryAdmin.removeAuthorAvatar()">
+                  Gỡ ảnh
+                </button>
+              </div>
+
+              <div class="form-group" style="margin-top:0.75rem;margin-bottom:0">
+                <label class="form-label" style="font-size:0.75rem;color:var(--text-muted)">Hoặc dán link ảnh trực tiếp</label>
+                <input type="text" id="author-avatar-url" class="form-input form-input-sm" placeholder="https://... hoặc assets/..." oninput="window.literaryAdmin.handleAuthorAvatarUrlInput(this.value)">
+              </div>
+              <div id="author-avatar-status" class="author-avatar-status"></div>
+            </div>
+
+            <!-- TRẠNG THÁI HIỂN THỊ (PUBLISH / NHÁP / ẨN) -->
+            <div class="form-group" style="margin-top:0.9rem">
+              <label class="form-label" style="display:flex;align-items:center;justify-content:space-between">
+                <span>Trạng Thái Hiển Thị</span>
+                <span style="font-size:0.7rem;color:var(--text-muted)">Quản trị CMS</span>
+              </label>
+              <div class="author-status-selector">
+                <label class="author-status-option">
+                  <input type="radio" name="author-publish-status" value="published" checked>
+                  <span class="status-indicator status-published">
+                    <span class="status-dot dot-published"></span>
+                    <span class="status-label">Công bố</span>
+                  </span>
+                </label>
+                <label class="author-status-option">
+                  <input type="radio" name="author-publish-status" value="draft">
+                  <span class="status-indicator status-draft">
+                    <span class="status-dot dot-draft"></span>
+                    <span class="status-label">Bản nháp</span>
+                  </span>
+                </label>
+                <label class="author-status-option">
+                  <input type="radio" name="author-publish-status" value="hidden">
+                  <span class="status-indicator status-hidden">
+                    <span class="status-dot dot-hidden"></span>
+                    <span class="status-label">Tạm ẩn</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- QUÊ QUÁN / NƠI SINH (CHI TIẾT) -->
+            <div class="form-group" style="margin-top:0.9rem">
+              <label class="form-label" style="display:flex;align-items:center;gap:0.35rem">
+                <svg class="editorial-icon icon-sm" viewBox="0 0 24 24" style="width:13px;height:13px;color:var(--cerulean-600)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Quê Quán / Nơi Sinh</span>
+              </label>
+              <input type="text" id="author-hometown" class="form-input" placeholder="Ví dụ: Nghi Xuân, Hà Tĩnh">
+              <span class="form-help-text" style="font-size:0.72rem;color:var(--text-muted);display:block;margin-top:0.25rem">Gắn với hồn thơ &amp; nguồn cảm hứng</span>
+            </div>
+
+            <!-- QUỐC GIA & KÝ TỰ TẮT -->
+            <div class="form-grid-2" style="margin-top:0.85rem">
+              <div class="form-group">
+                <label class="form-label">Quốc Gia</label>
+                <input type="text" id="author-country" class="form-input" placeholder="Việt Nam" value="Việt Nam">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ký Tự Tắt</label>
+                <input type="text" id="author-initials" class="form-input" placeholder="ND" maxlength="3">
+              </div>
+            </div>
+          </div>
+
+          <!-- CỘT PHẢI (MAIN PANEL): ĐỊNH DANH, PHONG CÁCH, GIẢI THƯỞNG, TIỂU SỬ, SEO -->
+          <div class="author-form-main">
+            <!-- HỌ TÊN & ID SLUG TỰ ĐỘNG -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Họ và Tên Tác Giả *</label>
+                <input type="text" id="author-name" class="form-input" placeholder="Ví dụ: Nguyễn Du, Nam Cao, Thạch Lam..." oninput="window.literaryAdmin.handleAuthorNameInput(this.value)">
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="display:flex;align-items:center;justify-content:space-between">
+                  <span>Mã Định Danh (Slug ID)</span>
+                  <span style="font-size:0.7rem;color:var(--text-muted);font-weight:normal">Tự động tạo</span>
+                </label>
+                <input type="text" id="author-id" class="form-input" placeholder="nguyen-du" oninput="this.dataset.customized = 'true'; window.literaryAdmin.updateAuthorSeoPreview()">
+              </div>
+            </div>
+
+            <!-- BÚT DANH & NĂM SINH - MẤT -->
+            <div class="form-grid-2" style="margin-top:0.75rem">
+              <div class="form-group">
+                <label class="form-label">Bút Danh / Tên Hiệu</label>
+                <input type="text" id="author-alias" class="form-input" placeholder="Tố Như, Thanh Hiên...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Năm Sinh – Năm Mất</label>
+                <input type="text" id="author-years" class="form-input" placeholder="1765 – 1820">
+              </div>
+            </div>
+
+            <!-- THỜI KỲ & KIỆT TÁC TIÊU BIỂU -->
+            <div class="form-grid-2" style="margin-top:0.75rem">
+              <div class="form-group">
+                <label class="form-label">Thời Kỳ Văn Học</label>
+                <input type="text" id="author-era" class="form-input" placeholder="Văn học Trung đại / Hiện thực phê phán...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Kiệt Tác Tiêu Biểu</label>
+                <input type="text" id="author-masterpieces" class="form-input" placeholder="Truyện Kiều, Đoạn Trường Tân Thanh...">
+              </div>
+            </div>
+
+            <!-- PHONG CÁCH NGHỆ THUẬT / ĐẶC ĐIỂM SÁNG TÁC -->
+            <div class="form-group" style="margin-top:0.75rem">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.35rem">
+                <label class="form-label" style="margin:0;display:flex;align-items:center;gap:0.35rem">
+                  <svg class="editorial-icon icon-sm" viewBox="0 0 24 24" style="width:13px;height:13px;color:var(--cerulean-700)"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                  <span>Phong Cách Nghệ Thuật / Đặc Điểm Sáng Tác</span>
+                </label>
+                <span style="font-size:0.72rem;color:var(--text-muted)">Nhấp thẻ để thêm nhanh</span>
+              </div>
+              <input type="text" id="author-style" class="form-input" placeholder="Ví dụ: Hiện thực tâm lý sắc sảo, triết lý nhân sinh sâu sắc, văn phong lạnh lùng đôn hậu...">
+              <div class="quick-tags-container" id="author-style-tags">
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorStyleTag('Hiện thực tâm lý')">+ Hiện thực tâm lý</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorStyleTag('Lãng mạn trữ tình')">+ Lãng mạn trữ tình</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorStyleTag('Trào phúng sắc lạnh')">+ Trào phúng sắc lạnh</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorStyleTag('Triết lý nhân sinh')">+ Triết lý nhân sinh</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorStyleTag('Chủ nghĩa nhân đạo')">+ Chủ nghĩa nhân đạo</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorStyleTag('Tài hoa uyên bác')">+ Tài hoa uyên bác</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorStyleTag('Đậm đà bản sắc dân tộc')">+ Đậm đà bản sắc dân tộc</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorStyleTag('Nguyên lý tảng băng trôi')">+ Tảng băng trôi</button>
+              </div>
+            </div>
+
+            <!-- GIẢI THƯỞNG / DANH HIỆU LỚN -->
+            <div class="form-group" style="margin-top:0.75rem">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.35rem">
+                <label class="form-label" style="margin:0;display:flex;align-items:center;gap:0.35rem">
+                  <svg class="editorial-icon icon-sm" viewBox="0 0 24 24" style="width:13px;height:13px;color:var(--amber-700)"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                  <span>Giải Thưởng / Danh Hiệu Lớn</span>
+                </label>
+                <span style="font-size:0.72rem;color:var(--text-muted)">Danh hiệu cao quý, huân chương, Nobel...</span>
+              </div>
+              <input type="text" id="author-awards" class="form-input" placeholder="Ví dụ: Giải thưởng Hồ Chí Minh về Văn học - Nghệ thuật (1996), Danh nhân văn hóa thế giới...">
+              <div class="quick-tags-container" id="author-awards-tags">
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorAwardTag('Giải thưởng Hồ Chí Minh')">+ Giải thưởng Hồ Chí Minh</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorAwardTag('Giải thưởng Nhà nước')">+ Giải thưởng Nhà nước</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorAwardTag('Danh nhân văn hóa thế giới')">+ Danh nhân văn hóa thế giới</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorAwardTag('Giải Nobel Văn học')">+ Giải Nobel Văn học</button>
+                <button type="button" class="quick-tag-chip" onclick="window.literaryAdmin.insertAuthorAwardTag('Đại thi hào dân tộc')">+ Đại thi hào dân tộc</button>
+              </div>
+            </div>
+
+            <!-- TIỂU SỬ CUỘC ĐỜI & SỰ NGHIỆP -->
+            <div class="form-group" style="margin-top:0.75rem">
+              <label class="form-label">Tiểu Sử Cuộc Đời &amp; Sự Nghiệp Văn Học</label>
+              <textarea id="author-bio" class="form-textarea" rows="4" placeholder="Tiểu sử, cuộc đời, nguồn cảm hứng và cống hiến lớn lao cho nền văn học..."></textarea>
+            </div>
+
+            <!-- KHỐI TỐI ƯU HÓA SEO & TÌM KIẾM (GOOGLE SNIPPET) -->
+            <div class="author-seo-box" style="margin-top:1rem">
+              <div class="author-seo-header" onclick="window.literaryAdmin.toggleAuthorSeoPanel()">
+                <div style="display:flex;align-items:center;gap:0.55rem">
+                  <svg class="editorial-icon icon-sm" viewBox="0 0 24 24" style="color:var(--cerulean-600)"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <span style="font-weight:600;font-size:0.88rem;color:var(--text-primary)">Tối Ưu Hóa SEO &amp; Tìm Kiếm Google</span>
+                  <span class="badge-tag" style="font-size:0.68rem;background:var(--cerulean-50);color:var(--cerulean-700);border-color:var(--cerulean-200)">Google Snippet</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem">
+                  <button type="button" class="btn-editorial-secondary btn-xs" onclick="event.stopPropagation(); window.literaryAdmin.generateAuthorSEO()" title="Tự động sinh tiêu đề, mô tả và từ khóa từ thông tin tác giả">
+                    ✨ Tự động tạo SEO
+                  </button>
+                  <svg class="editorial-icon icon-sm seo-chevron" id="author-seo-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+              </div>
+
+              <div class="author-seo-body" id="author-seo-body" style="display:none">
+                <div class="form-group" style="margin-bottom:0.75rem">
+                  <div style="display:flex;justify-content:space-between">
+                    <label class="form-label" style="font-size:0.78rem">Thẻ Tiêu Đề SEO (Meta Title)</label>
+                    <span class="char-counter" id="author-seo-title-count">0/60</span>
+                  </div>
+                  <input type="text" id="author-seo-title" class="form-input form-input-sm" placeholder="Tác giả Nguyễn Du - Cuộc đời, sự nghiệp và kiệt tác | Văn Uyển" oninput="window.literaryAdmin.updateAuthorSeoPreview()">
+                </div>
+                <div class="form-group" style="margin-bottom:0.75rem">
+                  <div style="display:flex;justify-content:space-between">
+                    <label class="form-label" style="font-size:0.78rem">Thẻ Mô Tả (Meta Description)</label>
+                    <span class="char-counter" id="author-seo-desc-count">0/160</span>
+                  </div>
+                  <textarea id="author-seo-desc" class="form-textarea form-input-sm" rows="2" placeholder="Khám phá tiểu sử, quê quán, phong cách nghệ thuật và các kiệt tác bất hủ của tác giả..." oninput="window.literaryAdmin.updateAuthorSeoPreview()"></textarea>
+                </div>
+                <div class="form-group" style="margin-bottom:0.85rem">
+                  <label class="form-label" style="font-size:0.78rem">Từ Khóa Trọng Tâm (Meta Keywords)</label>
+                  <input type="text" id="author-seo-keywords" class="form-input form-input-sm" placeholder="nguyễn du, truyện kiều, tố như, tác giả văn học trung đại">
+                </div>
+
+                <!-- MÔ PHỎNG GOOGLE SEARCH PREVIEW -->
+                <div class="google-search-preview-box">
+                  <div class="google-preview-title">Xem trước hiển thị tìm kiếm Google:</div>
+                  <div class="google-preview-card">
+                    <div class="google-preview-url">
+                      <span class="google-preview-favicon">📖</span>
+                      <span class="google-preview-site">Văn Uyển</span>
+                      <span class="google-preview-path" id="google-preview-url-text">https://vanuyen.edu.vn › tac-gia › nguyen-du</span>
+                    </div>
+                    <div class="google-preview-heading" id="google-preview-title-text">Tác giả Nguyễn Du - Cuộc đời, sự nghiệp và kiệt tác | Văn Uyển</div>
+                    <div class="google-preview-snippet" id="google-preview-desc-text">Khám phá tiểu sử, quê quán, phong cách nghệ thuật và các kiệt tác văn học tiêu biểu...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeAuthorModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveAuthor()">Lưu Tác Giả</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: HỒ SƠ CHI TIẾT TÁC GIẢ (READ AUTHOR) -->
+  <div id="author-detail-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:960px">
+      <div class="admin-modal-header">
+        <h3 id="author-detail-title" style="margin:0">Hồ Sơ Tác Giả</h3>
+        <div class="admin-modal-header-actions">
+          <button type="button" class="btn-editorial-secondary btn-sm" id="btn-edit-from-author-detail">Sửa hồ sơ</button>
+          <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeAuthorDetailModal()" title="Đóng">
+            <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <div class="admin-modal-body" id="author-detail-body"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: XÓA TÁC GIẢ -->
+  <div id="author-delete-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:580px">
+      <div class="admin-modal-header">
+        <h3 style="color:var(--jasper-700);margin:0;display:flex;align-items:center;gap:0.5rem">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          Xác Nhận Xóa Tác Giả
+        </h3>
+      </div>
+      <div class="admin-modal-body">
+        <div class="modal-confirm-horizontal">
+          <div class="modal-confirm-icon-box">
+            <svg class="editorial-icon" viewBox="0 0 24 24" style="width:26px;height:26px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <p id="author-delete-msg" style="font-size:0.95rem;line-height:1.6;margin:0 0 0.5rem 0;color:var(--text-primary);"></p>
+            <p style="font-size:0.83rem;color:var(--text-muted);margin:0;font-style:italic">Các tác phẩm của tác giả này vẫn sẽ được giữ lại trong kho dữ liệu.</p>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeAuthorDeleteModal()">Hủy bỏ</button>
+        <button type="button" id="btn-confirm-delete-author" class="btn-editorial-danger">Xóa Tác Giả</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CRUD XUẤT XỨ (CREATE / EDIT ORIGIN) -->
+  <div id="origin-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:820px">
+      <div class="admin-modal-header">
+        <h3 id="origin-modal-title" style="margin:0">Thêm Xuất Xứ / Quốc Gia</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeOriginModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="origin-form-mode" value="create">
+        <input type="hidden" id="origin-original-country" value="">
+        
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Tên Quốc Gia / Vùng *</label>
+            <input type="text" id="origin-country-input" class="form-input" placeholder="Ví dụ: Colombia, Nhật Bản, Pháp...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mã Định Danh (ID / Slug URL)</label>
+            <input type="text" id="origin-id-input" class="form-input" placeholder="Ví dụ: colombia, nhat-ban, phap...">
+          </div>
+        </div>
+
+        <div class="form-grid-3" style="margin-top:0.75rem;">
+          <div class="form-group">
+            <label class="form-label">Biểu Tượng Cờ / Icon</label>
+            <input type="text" id="origin-flag-input" class="form-input" placeholder="🇨🇴, 🇫🇷, 🇯🇵, hoặc 🌐" maxlength="10">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phân Khu Địa Lý *</label>
+            <select id="origin-region-select" class="form-select">
+              <option value="vn">Việt Nam (Dân tộc)</option>
+              <option value="world" selected>Thế Giới (Quốc tế)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ngôn Ngữ Chính / Chữ Viết</label>
+            <input type="text" id="origin-lang-input" class="form-input" placeholder="Tiếng Tây Ban Nha, Tiếng Pháp...">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:0.75rem;">
+          <label class="form-label">Tác Gia &amp; Tác Phẩm Tiêu Biểu</label>
+          <input type="text" id="origin-authors-input" class="form-input" placeholder="Ví dụ: Gabriel García Márquez (Trăm Năm Cô Đơn), Victor Hugo (Những Người Khốn Khổ)...">
+        </div>
+
+        <div class="form-group" style="margin-top:0.75rem;">
+          <label class="form-label">Đặc Trưng Dòng Chảy Văn Học</label>
+          <textarea id="origin-desc-input" class="form-textarea" style="min-height:90px;resize:vertical;" placeholder="Đặc trưng, thi pháp và các trường phái nổi bật của nền văn học này..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeOriginModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveOrigin()">Lưu Xuất Xứ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XÓA XUẤT XỨ -->
+  <div id="origin-delete-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:580px">
+      <div class="admin-modal-header">
+        <h3 style="color:var(--jasper-700);margin:0;display:flex;align-items:center;gap:0.5rem">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          Xác Nhận Xóa Xuất Xứ
+        </h3>
+      </div>
+      <div class="admin-modal-body">
+        <div class="modal-confirm-horizontal">
+          <div class="modal-confirm-icon-box">
+            <svg class="editorial-icon" viewBox="0 0 24 24" style="width:26px;height:26px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <p id="origin-delete-msg" style="font-size:0.95rem;line-height:1.6;margin:0 0 0.5rem 0;color:var(--text-primary);"></p>
+            <p style="font-size:0.83rem;color:var(--text-muted);margin:0;font-style:italic">Các tác phẩm thuộc xuất xứ này vẫn được bảo toàn nguyên vẹn trong hệ thống.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XEM CHI TIẾT HỒ SƠ NHÂN VẬT -->
+  <div id="character-detail-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:780px">
+      <div class="admin-modal-header">
+        <h3 id="char-detail-modal-title" style="margin:0;display:flex;align-items:center;gap:0.5rem">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span id="char-detail-heading">Hồ Sơ Nhân Vật Văn Học</span>
+        </h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeCharacterDetailModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body" id="char-detail-body">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeCharacterDetailModal()">Đóng</button>
+        <button type="button" class="btn-editorial-primary" id="btn-char-read-work">Đọc Tác Phẩm ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: THÊM / CHỈNH SỬA NHÂN VẬT -->
+  <div id="character-edit-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:820px">
+      <div class="admin-modal-header">
+        <h3 id="char-edit-modal-title" style="margin:0">Thêm Nhân Vật Văn Học</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeCharacterEditModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="char-form-mode" value="create">
+        <input type="hidden" id="char-original-id" value="">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Tên Nhân Vật *</label>
+            <input type="text" id="char-form-name" class="form-input" placeholder="Ví dụ: Chí Phèo, Mị, Lão Hạc...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Thuộc Tác Phẩm *</label>
+            <input type="text" id="char-form-work" class="form-input" placeholder="Ví dụ: Chí Phèo, Vợ chồng A Phủ...">
+          </div>
+        </div>
+        <div class="form-grid-2" style="margin-top:0.75rem">
+          <div class="form-group">
+            <label class="form-label">Tác Giả</label>
+            <input type="text" id="char-form-author" class="form-input" placeholder="Ví dụ: Nam Cao, Tô Hoài...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Vai Trò / Kiểu Nhân Vật</label>
+            <input type="text" id="char-form-role" class="form-input" placeholder="Nhân vật chính, Điển hình tha hóa, Vẻ đẹp tiềm tàng...">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Câu Nói Bất Hủ / Dẫn Chứng Đắt Giá</label>
+          <input type="text" id="char-form-quote" class="form-input" placeholder="Ví dụ: Tao muốn làm người lương thiện! Ai cho tao lương thiện?...">
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Tính Cách, Số Phận &amp; Hoàn Cảnh</label>
+          <textarea id="char-form-personality" class="form-textarea" style="min-height:90px;" placeholder="Tóm tắt hoàn cảnh xuất thân, tính cách và biến cố cuộc đời của nhân vật..."></textarea>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Ý Nghĩa Biểu Tượng &amp; Chiều Sâu Nhân Đạo</label>
+          <textarea id="char-form-symbolic" class="form-textarea" style="min-height:90px;" placeholder="Phân tích ý nghĩa biểu tượng, tư tưởng tác giả gửi gắm và giá trị đối với đề thi Ngữ văn..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeCharacterEditModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveCharacter()">Lưu Nhân Vật</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XEM TOÀN VĂN BÀI VIẾT PHÂN TÍCH -->
+  <div id="article-detail-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:880px">
+      <div class="admin-modal-header">
+        <h3 id="art-detail-modal-title" style="margin:0;display:flex;align-items:center;gap:0.5rem">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span id="art-detail-heading">Bài Viết Phân Tích &amp; Bình Luận</span>
+        </h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeArticleDetailModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body" id="art-detail-body" style="max-height:72vh;overflow-y:auto;padding-right:0.5rem">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeArticleDetailModal()">Đóng</button>
+        <button type="button" class="btn-editorial-primary" id="btn-art-edit-this">Chỉnh Sửa Bài Viết</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SOẠN THẢO / CHỈNH SỬA BÀI VIẾT PHÂN TÍCH -->
+  <div id="article-edit-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:860px">
+      <div class="admin-modal-header">
+        <h3 id="art-edit-modal-title" style="margin:0">Soạn Bài Viết Phân Tích Mới</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeArticleEditModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="art-form-mode" value="create">
+        <input type="hidden" id="art-original-id" value="">
+        <div class="form-group">
+          <label class="form-label">Tiêu Đề Bài Viết *</label>
+          <input type="text" id="art-form-title" class="form-input" placeholder="Ví dụ: Phân tích diễn biến tâm lý nhân vật Mị trong đêm tình mùa xuân...">
+        </div>
+        <div class="form-grid-3" style="margin-top:0.75rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem">
+          <div class="form-group">
+            <label class="form-label">Chuyên Mục</label>
+            <input type="text" id="art-form-category" class="form-input" placeholder="Văn mẫu chọn lọc, Nghị luận văn học...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Khối Lớp / Định Hướng</label>
+            <input type="text" id="art-form-grade" class="form-input" placeholder="Lớp 12 - Ôn thi THPT...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tác Phẩm Liên Quan</label>
+            <input type="text" id="art-form-work" class="form-input" placeholder="Vợ chồng A Phủ...">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Tác Giả Bài Viết / Người Biên Soạn</label>
+          <input type="text" id="art-form-author" class="form-input" placeholder="Ban Biên Tập Văn Uyển / ThS. Ngữ Văn...">
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Tóm Tắt Luận Điểm Chính</label>
+          <textarea id="art-form-summary" class="form-textarea" style="min-height:70px;" placeholder="Khái quát dàn ý các luận điểm chính trong bài..."></textarea>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Nội Dung Bài Phân Tích Chi Tiết</label>
+          <textarea id="art-form-content" class="form-textarea" style="min-height:220px;" placeholder="Nội dung toàn văn bài phân tích, trích dẫn văn bản, luận cứ và đánh giá nghệ thuật..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeArticleEditModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveArticle()">Lưu Bài Viết</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XEM CHI TIẾT THUẬT NGỮ TỪ ĐIỂN -->
+  <div id="term-detail-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:720px">
+      <div class="admin-modal-header">
+        <h3 id="term-detail-modal-title" style="margin:0;display:flex;align-items:center;gap:0.5rem">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span id="term-detail-heading">Từ Điển Thuật Ngữ Văn Học</span>
+        </h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeTermDetailModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body" id="term-detail-body">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeTermDetailModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: THÊM / CHỈNH SỬA THUẬT NGỮ -->
+  <div id="term-edit-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:760px">
+      <div class="admin-modal-header">
+        <h3 id="term-edit-modal-title" style="margin:0">Thêm Thuật Ngữ Văn Học</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeTermEditModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="term-form-mode" value="create">
+        <input type="hidden" id="term-original-id" value="">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Tên Thuật Ngữ / Khái Niệm *</label>
+            <input type="text" id="term-form-name" class="form-input" placeholder="Ví dụ: Ẩn dụ, Điểm nhìn nghệ thuật, Tình huống truyện...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phân Loại Thuật Ngữ</label>
+            <input type="text" id="term-form-type" class="form-input" placeholder="Biện pháp tu từ, Lý luận văn học, Thi pháp...">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Định Nghĩa Khoa Học</label>
+          <textarea id="term-form-def" class="form-textarea" style="min-height:90px;" placeholder="Định nghĩa chính xác, rõ ràng về thuật ngữ..."></textarea>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Ví Dụ Ngữ Liệu Văn Học Chuẩn SGK</label>
+          <textarea id="term-form-example" class="form-textarea" style="min-height:80px;" placeholder="Trích dẫn câu thơ, đoạn văn tiêu biểu làm minh chứng..."></textarea>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Vận Dụng Làm Bài Thi Đạt Điểm Cao</label>
+          <textarea id="term-form-app" class="form-textarea" style="min-height:80px;" placeholder="Mẹo và cách phân tích thuật ngữ này vào bài nghị luận để lấy điểm tuyệt đối..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeTermEditModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveTerm()">Lưu Thuật Ngữ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PHẢN HỒI BÌNH LUẬN & GÓP Ý -->
+  <div id="comment-reply-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:680px">
+      <div class="admin-modal-header">
+        <h3 style="margin:0;display:flex;align-items:center;gap:0.5rem">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          <span>Phản Hồi Bình Luận Của Bạn Đọc</span>
+        </h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeCommentReplyModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="reply-comment-id" value="">
+        <div id="reply-modal-comment-info" style="margin-bottom:1rem;background:var(--bg-secondary);padding:0.85rem;border-radius:var(--radius-sm);border:1px solid var(--border-color)">
+          <!-- Rendered dynamically -->
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lời Giải Đáp Chính Thức Từ Ban Biên Tập Văn Uyển *</label>
+          <textarea id="reply-modal-text" class="form-textarea" style="min-height:140px;" placeholder="Nhập câu trả lời, giải đáp cặn kẽ hoặc lời cảm ơn đến độc giả / học sinh..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeCommentReplyModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.submitCommentReply()">Phát Biểu Phản Hồi &amp; Duyệt</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: THÊM / CHỈNH SỬA THỜI KỲ VĂN HỌC -->
+  <div id="era-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:780px">
+      <div class="admin-modal-header">
+        <h3 id="era-modal-title" style="margin:0">Thêm Thời Kỳ Văn Học</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeEraModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="era-form-mode" value="create">
+        <input type="hidden" id="era-original-id" value="">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Tên Thời Kỳ / Giai Đoạn *</label>
+            <input type="text" id="era-form-name" class="form-input" placeholder="Ví dụ: Văn học Trung đại (TK X – XIX)...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mốc Thời Gian *</label>
+            <input type="text" id="era-form-years" class="form-input" placeholder="Ví dụ: 1930 – 1945, Thế kỷ X – XIX...">
+          </div>
+        </div>
+        <div class="form-grid-2" style="margin-top:0.75rem">
+          <div class="form-group">
+            <label class="form-label">Biểu Tượng Emoji / Icon</label>
+            <input type="text" id="era-form-icon" class="form-input" placeholder="Ví dụ: 🏛️, 🖋️, 🎖️, 🌿, 📜...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Từ Khóa Nhận Diện Bộ Lọc</label>
+            <input type="text" id="era-form-keywords" class="form-input" placeholder="trung đại, 1930, thơ mới, kháng chiến...">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Tác Giả Tiêu Biểu</label>
+          <input type="text" id="era-form-authors" class="form-input" placeholder="Ví dụ: Nguyễn Trãi, Nguyễn Du, Đoàn Thị Điểm...">
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Đặc Điểm Lịch Sử, Tư Tưởng &amp; Nghệ Thuật</label>
+          <textarea id="era-form-desc" class="form-textarea" style="min-height:100px;" placeholder="Đặc trưng bối cảnh lịch sử, cảm hứng chủ đạo và thành tựu nghệ thuật cốt lõi..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeEraModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveEra()">Lưu Thời Kỳ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: THÊM / CHỈNH SỬA CHỦ ĐỀ VĂN HỌC -->
+  <div id="theme-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:780px">
+      <div class="admin-modal-header">
+        <h3 id="theme-modal-title" style="margin:0">Thêm Chủ Đề &amp; Đề Tài</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeThemeModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="theme-form-mode" value="create">
+        <input type="hidden" id="theme-original-id" value="">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Tên Chủ Đề / Đề Tài *</label>
+            <input type="text" id="theme-form-title" class="form-input" placeholder="Ví dụ: Người Nông Dân Trước Cách Mạng...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Màu Chủ Đề (Hex/Color)</label>
+            <input type="text" id="theme-form-color" class="form-input" placeholder="#d97706, #dc2626, #2563eb...">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Từ Khóa Nhận Diện Bộ Lọc</label>
+          <input type="text" id="theme-form-keywords" class="form-input" placeholder="nông dân, bần cùng, lão hạc, chí phèo...">
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Tác Phẩm Tiêu Biểu Kết Nối</label>
+          <input type="text" id="theme-form-works" class="form-input" placeholder="Chí Phèo, Lão Hạc, Tắt đèn, Vợ nhặt...">
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Ý Nghĩa Tư Tưởng &amp; Cảm Hứng Nghệ Thuật</label>
+          <textarea id="theme-form-desc" class="form-textarea" style="min-height:100px;" placeholder="Mô tả ý nghĩa nhân văn, hiện thực và thông điệp tư tưởng của đề tài..."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeThemeModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveTheme()">Lưu Chủ Đề</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: QUẢN LÝ NGƯỜI DÙNG & PHÂN QUYỀN -->
+  <div id="user-modal" class="admin-modal-backdrop">
+    <div class="admin-modal" style="max-width:720px">
+      <div class="admin-modal-header">
+        <h3 id="user-modal-title" style="margin:0">Thêm Thành Viên Ban Biên Tập</h3>
+        <button class="admin-modal-close-btn" onclick="window.literaryAdmin.closeUserModal()" title="Đóng">
+          <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="user-form-mode" value="create">
+        <input type="hidden" id="user-original-id" value="">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Họ &amp; Tên Người Dùng *</label>
+            <input type="text" id="user-form-name" class="form-input" placeholder="Ví dụ: Nguyễn Hoàng Giang...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Địa Chỉ Email *</label>
+            <input type="email" id="user-form-email" class="form-input" placeholder="giang.nh@vanuyen.edu.vn">
+          </div>
+        </div>
+        <div class="form-grid-2" style="margin-top:0.75rem">
+          <div class="form-group">
+            <label class="form-label">Vai Trò Phân Quyền</label>
+            <div class="custom-select-wrap">
+              <select id="user-form-role" class="form-input">
+                <option value="admin">Quản Trị Viên (ADMIN)</option>
+                <option value="editor" selected>Biên Tập Viên (EDITOR)</option>
+                <option value="moderator">Kiểm Duyệt Viên (MODERATOR)</option>
+                <option value="contributor">Cộng Tác Viên (CONTRIBUTOR)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Chức Danh Hiển Thị</label>
+            <input type="text" id="user-form-roletitle" class="form-input" placeholder="Biên Tập Viên Văn Học Dân Tộc...">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:0.75rem">
+          <label class="form-label">Danh Sách Quyền Hạn (cách nhau bởi dấu phẩy)</label>
+          <input type="text" id="user-form-perms" class="form-input" placeholder="Biên tập tác phẩm, Duyệt bình luận, Quản lý tác giả...">
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeUserModal()">Hủy bỏ</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveUser()">Lưu Người Dùng</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: TRANG CÁ NHÂN & CÀI ĐẶT HỆ THỐNG (COMPREHENSIVE PROFILE PAGE) -->
+  <div id="admin-profile-modal" class="admin-modal-backdrop">
+    <div class="admin-modal profile-page-modal">
+
+      <!-- ẢNH BÌA (COVER PHOTO) -->
+      <div class="profile-cover-photo" id="profile-cover-photo">
+        <div class="profile-cover-gradient"></div>
+        <button type="button" class="profile-cover-edit-btn" onclick="window.literaryAdmin.changeCoverPhoto()" title="Thay đổi ảnh bìa">
+          <svg class="editorial-icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          <span>Đổi ảnh bìa</span>
+        </button>
+        <!-- NÚT ĐÓNG TRÊN COVER -->
+        <button type="button" class="profile-cover-close-btn" onclick="window.literaryAdmin.closeProfileModal()" title="Đóng">&times;</button>
+      </div>
+
+      <!-- KHỐI AVATAR + THÔNG TIN CHÍNH (NẰM CHỒNG LÊN COVER) -->
+      <div class="profile-identity-bar">
+        <div class="profile-identity-left">
+          <div class="profile-page-avatar" id="profile-page-avatar" onclick="window.literaryAdmin.changeAvatar()" title="Nhấp để đổi ảnh đại diện">
+            <span class="profile-page-avatar-initials" id="modal-avatar-initials">BT</span>
+            <div class="profile-avatar-overlay">
+              <svg class="editorial-icon" viewBox="0 0 24 24" style="width:18px;height:18px;"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            </div>
+          </div>
+          <div class="profile-identity-info">
+            <div class="profile-identity-name-row">
+              <h2 class="profile-identity-name" id="modal-profile-title">Ban Biên Tập Văn Uyển</h2>
+              <span class="role-badge admin" id="modal-profile-role-badge">Tổng Biên Tập</span>
+            </div>
+            <div class="profile-identity-role" id="modal-profile-role-text">Quản trị viên hệ thống CMS • v2.1.0</div>
+            <div class="profile-identity-status">
+              <span class="status-dot"></span>
+              <span>Đang trực tuyến</span>
+              <span class="profile-identity-separator">•</span>
+              <span id="profile-join-date">Tham gia từ 01/2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-identity-actions">
+          <button type="button" class="profile-card-gear-btn" onclick="window.literaryAdmin.switchProfileTab('settings')" title="Cài đặt hệ thống">
+            <svg class="editorial-icon" viewBox="0 0 24 24" style="width:18px;height:18px;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- THANH CHUYỂN TAB: 4 TABS -->
+      <div class="profile-modal-tabs">
+        <button type="button" class="profile-modal-tab-btn active" id="profile-tab-btn-info" onclick="window.literaryAdmin.switchProfileTab('info')">
+          <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Thông Tin</span>
+        </button>
+        <button type="button" class="profile-modal-tab-btn" id="profile-tab-btn-activity" onclick="window.literaryAdmin.switchProfileTab('activity')">
+          <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          <span>Hoạt Động</span>
+        </button>
+        <button type="button" class="profile-modal-tab-btn" id="profile-tab-btn-contributions" onclick="window.literaryAdmin.switchProfileTab('contributions')">
+          <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Đóng Góp</span>
+        </button>
+        <button type="button" class="profile-modal-tab-btn" id="profile-tab-btn-settings" onclick="window.literaryAdmin.switchProfileTab('settings')">
+          <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Cài Đặt</span>
+        </button>
+      </div>
+
+      <!-- NỘI DUNG CÁC TAB (SCROLLABLE) -->
+      <div class="profile-page-body">
+
+        <!-- ═══ TAB 1: THÔNG TIN CÁ NHÂN ═══ -->
+        <div class="profile-tab-panel active" id="profile-panel-info">
+
+          <!-- TIỂU SỬ (BIO) -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              <span>Tiểu Sử & Giới Thiệu</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Lời giới thiệu ngắn (Bio)</label>
+              <textarea id="profile-input-bio" class="form-input profile-bio-textarea" rows="3" maxlength="500" placeholder="Vài câu giới thiệu về sở thích văn chương, châm ngôn sống hoặc chuyên môn nghiên cứu..."></textarea>
+              <div class="profile-bio-counter"><span id="profile-bio-count">0</span>/500</div>
+            </div>
+            <div class="form-group" style="margin-top:0.5rem;">
+              <label class="form-label">Châm ngôn yêu thích</label>
+              <input type="text" id="profile-input-quote" class="form-input" placeholder="Ví dụ: &quot;Văn chương không phải cuộc chơi của kẻ tài hoa...&quot;">
+            </div>
+          </div>
+
+          <!-- THÔNG TIN ĐỊNH DANH -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span>Thông Tin Định Danh</span>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Tên Người Quản Trị / Bút Danh *</label>
+                <input type="text" id="profile-input-name" class="form-input" placeholder="Ví dụ: Ban Biên Tập Văn Uyển">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Chức Danh / Vai Trò</label>
+                <input type="text" id="profile-input-role" class="form-input" placeholder="Ví dụ: Tổng Biên Tập • Quản trị viên">
+              </div>
+            </div>
+            <div class="form-grid-2" style="margin-top:0.5rem;">
+              <div class="form-group">
+                <label class="form-label">Email Liên Hệ & Nhận Thông Báo</label>
+                <input type="email" id="profile-input-email" class="form-input" placeholder="bientap@vanuyen.edu.vn">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Lĩnh Vực Chuyên Môn</label>
+                <input type="text" id="profile-input-specialty" class="form-input" placeholder="Ví dụ: Văn học cổ điển Việt Nam, Thơ Đường">
+              </div>
+            </div>
+          </div>
+
+          <!-- THỐNG KÊ DỮ LIỆU -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+              <span>Thống Kê Dữ Liệu Biên Tập</span>
+            </div>
+            <div class="profile-stats-grid">
+              <div class="profile-stat-card">
+                <div class="profile-stat-icon works">
+                  <svg class="editorial-icon" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                </div>
+                <div class="profile-stat-value" id="profile-stat-works-num">0</div>
+                <div class="profile-stat-label">Tác phẩm</div>
+              </div>
+              <div class="profile-stat-card">
+                <div class="profile-stat-icon cloud">
+                  <svg class="editorial-icon" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                </div>
+                <div class="profile-stat-value" id="profile-stat-cloud-num">0</div>
+                <div class="profile-stat-label">Cloud Firestore</div>
+              </div>
+              <div class="profile-stat-card">
+                <div class="profile-stat-icon authors">
+                  <svg class="editorial-icon" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <div class="profile-stat-value" id="profile-stat-authors-num">0</div>
+                <div class="profile-stat-label">Tác giả</div>
+              </div>
+              <div class="profile-stat-card">
+                <div class="profile-stat-icon categories">
+                  <svg class="editorial-icon" viewBox="0 0 24 24" style="width:20px;height:20px;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <div class="profile-stat-value" id="profile-stat-categories-num">0</div>
+                <div class="profile-stat-label">Thể loại</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ TAB 2: HOẠT ĐỘNG ═══ -->
+        <div class="profile-tab-panel" id="profile-panel-activity">
+
+          <!-- BIỂU ĐỒ HOẠT ĐỘNG GẦN ĐÂY -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>Lịch Hoạt Động Biên Tập</span>
+            </div>
+            <div class="profile-activity-heatmap" id="profile-activity-heatmap">
+              <!-- Generated by JS: activity heatmap grid -->
+              <div class="profile-heatmap-placeholder">
+                <svg class="editorial-icon" viewBox="0 0 24 24" style="width:36px;height:36px;opacity:0.3;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>Biểu đồ hoạt động sẽ được cập nhật tự động</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DÒNG THỜI GIAN HOẠT ĐỘNG -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Nhật Ký Hoạt Động Gần Đây</span>
+            </div>
+            <div class="profile-activity-feed" id="profile-activity-feed">
+              <!-- Populated by JS -->
+              <div class="profile-activity-empty">
+                <svg class="editorial-icon" viewBox="0 0 24 24" style="width:40px;height:40px;opacity:0.25;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <p>Chưa có hoạt động nào được ghi nhận.</p>
+                <span>Bắt đầu thêm, chỉnh sửa tác phẩm để thấy nhật ký ở đây.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ TAB 3: ĐÓNG GÓP ═══ -->
+        <div class="profile-tab-panel" id="profile-panel-contributions">
+
+          <!-- ĐÓNG GÓP CỦA TÔI -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              <span>Tác Phẩm Đã Đóng Góp</span>
+              <span class="profile-section-count" id="profile-contrib-count">0</span>
+            </div>
+            <div class="profile-contributions-list" id="profile-contributions-list">
+              <div class="profile-contributions-empty">
+                <svg class="editorial-icon" viewBox="0 0 24 24" style="width:40px;height:40px;opacity:0.25;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <p>Chưa có đóng góp nào.</p>
+                <span>Các tác phẩm bạn thêm hoặc chỉnh sửa sẽ hiển thị tại đây.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DẤU TRANG / YÊU THÍCH -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+              <span>Dấu Trang & Yêu Thích</span>
+              <span class="profile-section-count" id="profile-bookmarks-count">0</span>
+            </div>
+            <div class="profile-bookmarks-list" id="profile-bookmarks-list">
+              <div class="profile-bookmarks-empty">
+                <svg class="editorial-icon" viewBox="0 0 24 24" style="width:40px;height:40px;opacity:0.25;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                <p>Chưa có dấu trang nào.</p>
+                <span>Đánh dấu tác phẩm yêu thích để dễ tìm lại sau.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ TAB 4: CÀI ĐẶT HỆ THỐNG ═══ -->
+        <div class="profile-tab-panel" id="profile-panel-settings">
+
+          <!-- GIAO DIỆN & TRẢI NGHIỆM -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+              <span>Giao Diện & Trải Nghiệm</span>
+            </div>
+            <div class="profile-settings-grid">
+              <button type="button" class="profile-setting-card-btn" id="modal-theme-btn" onclick="window.literaryAdmin.toggleTheme()">
+                <div class="profile-setting-card-icon">
+                  <svg class="editorial-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </div>
+                <div>
+                  <div class="profile-setting-card-title">Chế Độ Giao Diện</div>
+                  <div class="profile-setting-card-desc" id="modal-theme-desc">Đổi Đêm Văn Đàn / Giấy Ngà</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- CÔNG CỤ & TIỆN ÍCH -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+              <span>Công Cụ & Tiện Ích</span>
+            </div>
+            <div class="profile-settings-grid">
+              <button type="button" class="profile-setting-card-btn" onclick="window.literaryAdmin.openSeedModal()">
+                <div class="profile-setting-card-icon">
+                  <svg class="editorial-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                </div>
+                <div>
+                  <div class="profile-setting-card-title">Đồng Bộ Firestore</div>
+                  <div class="profile-setting-card-desc">Lưu trữ đám mây an toàn</div>
+                </div>
+              </button>
+              <button type="button" class="profile-setting-card-btn" onclick="window.literaryAdmin.openSmartFormatModal()">
+                <div class="profile-setting-card-icon">
+                  <svg class="editorial-icon" viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path></svg>
+                </div>
+                <div>
+                  <div class="profile-setting-card-title">Dàn Trang Văn Bản</div>
+                  <div class="profile-setting-card-desc">Tự động ngắt đoạn & chính tả</div>
+                </div>
+              </button>
+              <button type="button" class="profile-setting-card-btn" onclick="window.literaryAdmin.triggerPdfUpload()">
+                <div class="profile-setting-card-icon">
+                  <svg class="editorial-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                </div>
+                <div>
+                  <div class="profile-setting-card-title">Trích Xuất PDF</div>
+                  <div class="profile-setting-card-desc">Chuyển đổi tài liệu sang bài học</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- SAO LƯU & XUẤT DỮ LIỆU -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Sao Lưu & Xuất Dữ Liệu</span>
+            </div>
+            <div class="profile-settings-grid">
+              <button type="button" class="profile-setting-card-btn" onclick="window.literaryAdmin.exportAllWorksJson()">
+                <div class="profile-setting-card-icon">
+                  <svg class="editorial-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </div>
+                <div>
+                  <div class="profile-setting-card-title">Xuất Toàn Bộ JSON</div>
+                  <div class="profile-setting-card-desc">Sao lưu toàn văn tác phẩm</div>
+                </div>
+              </button>
+              <a href="assets/images/bo_anh_bia_mac_dinh_9_16.zip" download="bo_anh_bia_mac_dinh_9_16.zip" class="profile-setting-card-btn">
+                <div class="profile-setting-card-icon">
+                  <svg class="editorial-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                </div>
+                <div>
+                  <div class="profile-setting-card-title">Trọn Bộ Ảnh Bìa</div>
+                  <div class="profile-setting-card-desc">Tải tệp nén ZIP tỷ lệ 9:16</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- BẢO MẬT TÀI KHOẢN -->
+          <div class="profile-section">
+            <div class="profile-section-header">
+              <svg class="editorial-icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span>Bảo Mật Tài Khoản</span>
+            </div>
+            <div class="profile-security-info">
+              <div class="profile-security-row">
+                <div class="profile-security-label">
+                  <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <span>Trạng thái lưu trữ cục bộ</span>
+                </div>
+                <span class="profile-security-value success">Hoạt động bình thường</span>
+              </div>
+              <div class="profile-security-row">
+                <div class="profile-security-label">
+                  <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>Lần đăng nhập cuối</span>
+                </div>
+                <span class="profile-security-value" id="profile-last-login">Hôm nay</span>
+              </div>
+              <div class="profile-security-row">
+                <div class="profile-security-label">
+                  <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span>Phiên bản hệ thống</span>
+                </div>
+                <span class="profile-security-value">v2.1.0</span>
+              </div>
+              <div class="profile-security-actions" style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <a href="auth.html?mode=signin" class="btn-editorial-secondary btn-sm" style="text-decoration:none; display: inline-flex; align-items: center; gap: 0.4rem;">
+                  <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                  <span>Chuyển Tài Khoản</span>
+                </a>
+                <button type="button" class="btn-editorial-danger btn-sm" onclick="window.literaryAdmin.logoutUser()" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                  <svg class="editorial-icon icon-xs" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                  <span>Đăng Xuất</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="admin-modal-footer profile-page-footer">
+        <button type="button" class="btn-editorial-secondary" onclick="window.literaryAdmin.closeProfileModal()">Đóng</button>
+        <button type="button" class="btn-editorial-primary" onclick="window.literaryAdmin.saveAdminProfile()">
+          <svg class="editorial-icon icon-xs" viewBox="0 0 24 24" style="margin-right:0.3rem;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          Lưu Thay Đổi
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="admin-toast" class="admin-toast">Th&#244;ng b&#225;o h&#7879; th&#7889;ng</div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="js/firebase-fallback.js"></script>
+  <script type="module" src="js/firebase-service.js"></script>
+  <script src="js/dropdown.js"></script>
+  <script src="js/admin.js?v=2.1.0"></script>
+</body>
+</html>

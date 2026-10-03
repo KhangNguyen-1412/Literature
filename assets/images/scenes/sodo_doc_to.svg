@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBF9F5"/>
+      <stop offset="100%" stop-color="#F0EAE1"/>
+    </linearGradient>
+    <linearGradient id="cerulean_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A6B8A"/>
+      <stop offset="100%" stop-color="#0E3B52"/>
+    </linearGradient>
+    <linearGradient id="jasper_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BA342A"/>
+      <stop offset="100%" stop-color="#701C16"/>
+    </linearGradient>
+    <pattern id="woodcut_hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#0E3B52" stroke-width="0.75" opacity="0.12"/>
+    </pattern>
+    <filter id="paper_shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0E3B52" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Nền giấy ngà mỹ thuật -->
+  <rect width="960" height="520" fill="url(#bg_grad)"/>
+  <rect width="960" height="520" fill="url(#woodcut_hatch)"/>
+
+  <!-- Khung viền báo chí Editorial kép -->
+  <rect x="24" y="24" width="912" height="472" fill="none" stroke="#0E3B52" stroke-width="2" opacity="0.85"/>
+  <rect x="30" y="30" width="900" height="460" fill="none" stroke="#BA342A" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Họa tiết góc cổ điển (Corner Ornaments) -->
+  <g stroke="#0E3B52" stroke-width="1.5" fill="none" opacity="0.7">
+    <path d="M38 48 L48 38 M38 56 L56 38"/>
+    <path d="M922 48 L912 38 M922 56 L904 38"/>
+    <path d="M38 472 L48 482 M38 464 L56 482"/>
+    <path d="M922 472 L912 482 M922 464 L904 482"/>
+  </g>
+
+  <!-- Huy hiệu Văn Uyển trên đỉnh -->
+  <g transform="translate(480, 52)">
+    <circle cx="0" cy="0" r="14" fill="#0E3B52"/>
+    <text x="0" y="5" font-family="'Playfair Display', serif" font-size="12" font-weight="900" fill="#FAF8F5" text-anchor="middle">§</text>
+    <line x1="-120" y1="0" x2="-24" y2="0" stroke="#0E3B52" stroke-width="1" opacity="0.4"/>
+    <line x1="24" y1="0" x2="120" y2="0" stroke="#0E3B52" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- NỘI DUNG MINH HỌA NGHỆ THUẬT CHUYÊN BIỆT (MAIN ARTWORK) -->
+  <g transform="translate(60, 75)">
+    
+  <!-- Ống nghe đốc tờ và điếu bát thuốc phiện cụ Cố Hồng -->
+  <g transform="translate(420, 180)">
+    <!-- Ống nghe y khoa thời Pháp -->
+    <circle cx="0" cy="-20" r="28" fill="#FAF8F5" stroke="#0E3B52" stroke-width="3"/>
+    <path d="M0 8 C0 60 -70 80 -70 30 L-70 0 M0 8 C0 60 70 80 70 30 L70 0" stroke="#0E3B52" stroke-width="3.5" fill="none"/>
+    <!-- Khay thuốc phiện bàn đèn của cụ Cố Hồng "Biết rồi, khổ lắm, nói mãi!" -->
+    <rect x="-140" y="70" width="280" height="25" fill="#0E3B52" rx="3"/>
+    <circle cx="-70" cy="60" r="12" fill="#BA342A"/>
+    <circle cx="70" cy="60" r="12" fill="#D4A373"/>
+    <text x="0" y="115" font-family="'Playfair Display', serif" font-size="13" font-weight="700" fill="#BA342A" text-anchor="middle">"BIẾT RỒI, KHỔ LẮM, NÓI MÃI!"</text>
+  </g>
+
+  </g>
+
+  <!-- Chân trang thẻ tranh: Tiêu đề bối cảnh & Phân đoạn -->
+  <g transform="translate(480, 468)">
+    <rect x="-320" y="-22" width="640" height="34" fill="#FAF8F5" rx="4" filter="url(#paper_shadow)"/>
+    <rect x="-320" y="-22" width="640" height="34" fill="none" stroke="#BA342A" stroke-width="1" rx="4"/>
+    <text x="0" y="-3" font-family="'Playfair Display', Georgia, serif" font-size="15" font-weight="800" fill="#0E3B52" text-anchor="middle" letter-spacing="0.5">SỐ ĐỎ • PHẦN III</text>
+    <text x="0" y="9" font-family="'Newsreader', serif" font-size="11.5" font-style="italic" fill="#BA342A" text-anchor="middle">Xuân làm Đốc Tờ trường thuốc — Sờ mạch cụ Cố tổ, cả họ Cố Hồng sùng bái</text>
+  </g>
+</svg>

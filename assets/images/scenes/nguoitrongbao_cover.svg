@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_grad_nguoit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDFBF7"/>
+      <stop offset="100%" stop-color="#EFE9DF"/>
+    </linearGradient>
+    <pattern id="hatch_nguoit" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#0E3B52" stroke-width="0.7" opacity="0.09"/>
+    </pattern>
+    <filter id="shadow_nguoit" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0E3B52" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <!-- Nền giấy ngà mỹ thuật -->
+  <rect width="960" height="520" fill="url(#bg_grad_nguoit)"/>
+  <rect width="960" height="520" fill="url(#hatch_nguoit)"/>
+
+  <!-- Khung viền báo chí Editorial kép -->
+  <rect x="22" y="22" width="916" height="476" fill="none" stroke="#0E3B52" stroke-width="2.2" opacity="0.88"/>
+  <rect x="28" y="28" width="904" height="464" fill="none" stroke="#BA342A" stroke-width="0.9" opacity="0.65"/>
+
+  <!-- Họa tiết góc cổ điển (Corner Ornaments) -->
+  <g stroke="#0E3B52" stroke-width="1.5" fill="none" opacity="0.6">
+    <path d="M36 46 L46 36 M36 54 L54 36"/>
+    <path d="M924 46 L914 36 M924 54 L906 36"/>
+    <path d="M36 474 L46 484 M36 466 L54 484"/>
+    <path d="M924 474 L914 484 M924 466 L906 484"/>
+  </g>
+
+  <!-- Huy hiệu Văn Uyển trên đỉnh -->
+  <g transform="translate(480, 50)">
+    <circle cx="0" cy="0" r="13" fill="#0E3B52"/>
+    <text x="0" y="4.5" font-family="'Playfair Display', Georgia, serif" font-size="11" font-weight="900" fill="#FAF8F5" text-anchor="middle">§</text>
+    <line x1="-120" y1="0" x2="-22" y2="0" stroke="#0E3B52" stroke-width="1" opacity="0.4"/>
+    <line x1="22" y1="0" x2="120" y2="0" stroke="#0E3B52" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- NỘI DUNG MINH HỌA NGHỆ THUẬT CHUYÊN BIỆT (MAIN ARTWORK) -->
+  <g transform="translate(60, 75)">
+    
+  <rect x="180" y="30" width="480" height="300" rx="8" fill="#EDE6DC" stroke="#0E3B52" stroke-width="1.8"/>
+  <g transform="translate(420, 180)">
+    <!-- Chiếc ô đen, kính râm và đôi ủng cao su của Belikov -->
+    <path d="M-60 0 Q0 -60 60 0 Z" fill="#0E3B52"/>
+    <line x1="0" y1="0" x2="0" y2="60" stroke="#0E3B52" stroke-width="3"/>
+    <circle cx="-25" cy="15" r="12" fill="#0E3B52"/>
+    <circle cx="25" cy="15" r="12" fill="#0E3B52"/>
+    <line x1="-13" y1="15" x2="13" y2="15" stroke="#BA342A" stroke-width="2"/>
+  </g>
+  <text x="420" y="70" font-family="'Playfair Display', serif" font-size="20" font-weight="900" fill="#0E3B52" text-anchor="middle">NGƯỜI TRONG BAO</text>
+  <text x="420" y="95" font-family="'Newsreader', serif" font-size="13" font-style="italic" fill="#BA342A" text-anchor="middle">“Không thể tiếp tục sống như thế này mãi được!”</text>
+
+  </g>
+
+  <!-- Chân trang thẻ tranh: Tiêu đề bối cảnh & Phân đoạn -->
+  <g transform="translate(480, 468)">
+    <rect x="-330" y="-21" width="660" height="32" fill="#FAF8F5" rx="4" filter="url(#shadow_nguoit)"/>
+    <rect x="-330" y="-21" width="660" height="32" fill="none" stroke="#BA342A" stroke-width="1" rx="4"/>
+    <text x="0" y="-3.5" font-family="'Playfair Display', Georgia, serif" font-size="14.5" font-weight="800" fill="#0E3B52" text-anchor="middle" letter-spacing="0.5">NGƯỜI TRONG BAO • ANTON CHEKHOV</text>
+    <text x="0" y="8" font-family="'Newsreader', Georgia, serif" font-size="11" font-style="italic" fill="#BA342A" text-anchor="middle">Kiệt tác trào phúng châm biếm sâu cay lối sống co cụm, sợ hãi và nô dịch trước quyền lực</text>
+  </g>
+</svg>

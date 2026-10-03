@@ -1,0 +1,270 @@
+/* ==========================================================================
+   VĂN UYỂN - EDITORIAL DESIGN SYSTEM
+   Bảng màu: Xanh Cerulean & Đỏ Jasper
+   Kiểu chữ: Playfair Display & Newsreader
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,300;1,6..72,400;1,6..72,500;1,6..72,600;1,6..72,700;1,6..72,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  /* --- 2 MÀU CHỦ ĐẠO DUY NHẤT: XANH CERULEAN & ĐỎ JASPER --- */
+
+  /* 1. XANH CERULEAN (Màu chủ đạo 1 - Tri thức, cấu trúc, liên kết, măng-sét) */
+  --cerulean-950: #04121B;
+  --cerulean-900: #061B27;
+  --cerulean-850: #0A2737;
+  --cerulean-800: #0E3B52; /* Cerulean chính đậm */
+  --cerulean-700: #14506E;
+  --cerulean-600: #1A6B8A; /* Cerulean cổ điển */
+  --cerulean-500: #2385AA; /* Cerulean sáng điểm xuyết */
+  --cerulean-400: #4B9EBE;
+  --cerulean-200: #B2D7E5;
+  --cerulean-100: #E1EFF5;
+  --cerulean-50:  #F0F6F9;
+
+  /* 2. ĐỎ JASPER (Màu chủ đạo 2 - Điểm xuyết, con dấu son, drop-cap, pull-quote, nhãn nổi bật) */
+  --jasper-900: #46110D;
+  --jasper-800: #701C16; /* Jasper đỏ rượu trầm */
+  --jasper-700: #93241C;
+  --jasper-600: #BA342A; /* Jasper đỏ son kinh điển */
+  --jasper-500: #D14136;
+  --jasper-400: #E2685E;
+  --jasper-200: #F6BCB7;
+  --jasper-100: #FAECEB; /* Jasper đỏ nhạt */
+  --jasper-50:  #FDF6F5;
+
+  /* NỀN GIẤY TRANG SÁCH & MỰC CHỮ - MỸ HỌC TRẮNG NGÀ (IVORY) */
+  --paper-bg: #FFFFF0;          /* Nền trang sách màu trắng ngà - Ivory dịu mắt */
+  --paper-surface: #FCFAF2;     /* Thẻ trang giấy ngà sáng */
+  --paper-parchment: #F5F1E4;   /* Lề sách ngà ấm */
+  --paper-muted: #EBE5D6;
+  --paper-border: #E5DFCF;      /* Đường chỉ báo hairline ngà */
+  --paper-border-bold: #C5BBAA; /* Viền măng-sét ngà cổ điển */
+
+  --ink-primary: #1A1918;       /* Mực đen than chữ chính */
+  --ink-secondary: #3D3934;     /* Đề từ, đoạn mở đầu */
+  --ink-muted: #6B655B;         /* Tác giả, cước chú */
+  --ink-subtle: #968F83;        /* Đường kẻ nhẹ */
+
+  /* --- CHỈ SỬ DỤNG 2 FONT CHỮ DUY NHẤT: PLAYFAIR DISPLAY & NEWSREADER --- */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-ui: 'Playfair Display', Georgia, serif;
+  --font-meta: 'Newsreader', Georgia, serif;
+
+  /* --- KÍCH THƯỚC & KHOẢNG CÁCH --- */
+  --container-max: 1280px;
+  --container-narrow: 840px;
+  --container-reader: 720px;
+  
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  --shadow-editorial: 0 4px 20px rgba(14, 59, 82, 0.06);
+  --shadow-hover: 0 10px 30px rgba(14, 59, 82, 0.12);
+  --shadow-book: 0 8px 30px rgba(14, 59, 82, 0.14), 0 1px 3px rgba(14, 59, 82, 0.08);
+
+  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- THEME: ĐÊM VĂN ĐÀN (EDITORIAL NOCTURNE / DARK MODE) --- */
+[data-theme="nocturne"],
+[data-theme="dark"] {
+  --paper-bg: #0A141D;          /* Nền đêm Cerulean sâu thẳm */
+  --paper-surface: #0F202D;     /* Bề mặt thẻ, bảng điều khiển đêm */
+  --paper-parchment: #152B3C;   /* Bề mặt nâng cao, modal, hốc trưng bày */
+  --paper-muted: #1B364B;       /* Vùng đệm, thanh cuộn, thẻ badge */
+  --paper-border: rgba(91, 179, 214, 0.16);
+  --paper-border-bold: rgba(91, 179, 214, 0.32);
+
+  --ink-primary: #EEF5F9;       /* Chữ ngà trăng sáng dịu mắt, chống chói */
+  --ink-secondary: #B4CDDC;     /* Chữ thứ cấp thanh lịch */
+  --ink-muted: #7E9EB3;         /* Chú thích, siêu dữ liệu */
+  --ink-subtle: #4D748A;        /* Ký tự mờ, phân cách */
+
+  --cerulean-900: #1B5872;
+  --cerulean-800: #5BB3D6;      /* Cerulean sáng phát quang ban đêm */
+  --cerulean-700: #46A1C5;
+  --cerulean-600: #338EB3;
+  --cerulean-500: #227DA2;
+  --cerulean-100: rgba(91, 179, 214, 0.18);
+  --cerulean-50:  rgba(91, 179, 214, 0.08);
+
+  --jasper-800: #D83B2E;
+  --jasper-700: #FF7B6E;        /* Đỏ son Jasper nổi bật trong bóng tối */
+  --jasper-600: #F05E50;
+  --jasper-100: rgba(240, 94, 80, 0.2);
+  --jasper-50:  rgba(240, 94, 80, 0.08);
+
+  --shadow-editorial: 0 6px 24px rgba(0, 0, 0, 0.65);
+  --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 16px rgba(91, 179, 214, 0.15);
+  --shadow-book: 0 10px 32px rgba(0, 0, 0, 0.85);
+}
+
+/* --- RESET & CẤU TRÚC NỀN TẢNG --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--paper-bg);
+  color: var(--ink-primary);
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* 18px tiêu chuẩn cho đọc văn chương */
+  line-height: 1.78;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Texture giấy in siêu tinh tế */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(rgba(14, 59, 82, 0.015) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Typography Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--cerulean-800);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--cerulean-600);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--jasper-600);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: var(--font-ui);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* =======================================================
+   EDITORIAL SCROLLBAR SYSTEM (THANH CUỘN ĐỒNG BỘ MỸ HỌC)
+   Sử dụng màu Xanh Cerulean & Đỏ Jasper trên nền Giấy Ngà
+   ======================================================= */
+
+/* Chuẩn W3C cho Firefox & toàn bộ trình duyệt hiện đại */
+html, body, * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cerulean-600) var(--paper-parchment);
+}
+
+/* Thanh cuộn dọc & ngang WebKit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-parchment);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cerulean-700);
+  border-radius: 4px;
+  border: 1.5px solid var(--paper-parchment);
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--jasper-600);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--paper-bg);
+}
+
+/* --- EDITORIAL VECTOR ICON SYSTEM --- */
+.editorial-icon {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.18em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.25s ease;
+}
+
+.icon-sm {
+  width: 0.95em;
+  height: 0.95em;
+  vertical-align: -0.12em;
+}
+
+.icon-md {
+  width: 1.15em;
+  height: 1.15em;
+}
+
+.icon-lg {
+  width: 1.45em;
+  height: 1.45em;
+}
+
+.icon-xl {
+  width: 2.6em;
+  height: 2.6em;
+}

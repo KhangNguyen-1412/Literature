@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBF9F5"/>
+      <stop offset="100%" stop-color="#F0EAE1"/>
+    </linearGradient>
+    <linearGradient id="cerulean_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A6B8A"/>
+      <stop offset="100%" stop-color="#0E3B52"/>
+    </linearGradient>
+    <linearGradient id="jasper_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BA342A"/>
+      <stop offset="100%" stop-color="#701C16"/>
+    </linearGradient>
+    <pattern id="woodcut_hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#0E3B52" stroke-width="0.75" opacity="0.12"/>
+    </pattern>
+    <filter id="paper_shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0E3B52" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Nền giấy ngà mỹ thuật -->
+  <rect width="960" height="520" fill="url(#bg_grad)"/>
+  <rect width="960" height="520" fill="url(#woodcut_hatch)"/>
+
+  <!-- Khung viền báo chí Editorial kép -->
+  <rect x="24" y="24" width="912" height="472" fill="none" stroke="#0E3B52" stroke-width="2" opacity="0.85"/>
+  <rect x="30" y="30" width="900" height="460" fill="none" stroke="#BA342A" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Họa tiết góc cổ điển (Corner Ornaments) -->
+  <g stroke="#0E3B52" stroke-width="1.5" fill="none" opacity="0.7">
+    <path d="M38 48 L48 38 M38 56 L56 38"/>
+    <path d="M922 48 L912 38 M922 56 L904 38"/>
+    <path d="M38 472 L48 482 M38 464 L56 482"/>
+    <path d="M922 472 L912 482 M922 464 L904 482"/>
+  </g>
+
+  <!-- Huy hiệu Văn Uyển trên đỉnh -->
+  <g transform="translate(480, 52)">
+    <circle cx="0" cy="0" r="14" fill="#0E3B52"/>
+    <text x="0" y="5" font-family="'Playfair Display', serif" font-size="12" font-weight="900" fill="#FAF8F5" text-anchor="middle">§</text>
+    <line x1="-120" y1="0" x2="-24" y2="0" stroke="#0E3B52" stroke-width="1" opacity="0.4"/>
+    <line x1="24" y1="0" x2="120" y2="0" stroke="#0E3B52" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- NỘI DUNG MINH HỌA NGHỆ THUẬT CHUYÊN BIỆT (MAIN ARTWORK) -->
+  <g transform="translate(60, 75)">
+    
+  <!-- Thúy Kiều quỳ trao kỷ vật cho Thúy Vân -->
+  <g transform="translate(420, 190)">
+    <!-- Đĩa hương trầm thắp sáng đêm khuya -->
+    <ellipse cx="0" cy="100" rx="160" ry="25" fill="#EDE8DF" stroke="#0E3B52" stroke-width="1"/>
+    <!-- Bức tờ mây ghi lời ước hẹn xưa -->
+    <rect x="-35" y="40" width="70" height="50" fill="#FAF8F5" stroke="#BA342A" stroke-width="1.5" transform="rotate(-5)"/>
+    <line x1="-25" y1="55" x2="25" y2="55" stroke="#0E3B52" stroke-width="1"/>
+    <line x1="-25" y1="65" x2="20" y2="65" stroke="#0E3B52" stroke-width="1"/>
+    <line x1="-25" y1="75" x2="25" y2="75" stroke="#0E3B52" stroke-width="1"/>
+    <!-- Chiếc vành vàng kỷ vật Kim Trọng -->
+    <ellipse cx="0" cy="35" rx="18" ry="8" fill="none" stroke="#BA342A" stroke-width="3.5"/>
+    <!-- Hai bàn tay run rẩy trao nhau kỷ vật -->
+    <path d="M-120 70 Q-50 45 -10 40" stroke="#0E3B52" stroke-width="4" fill="none"/>
+    <path d="M120 70 Q50 45 10 40" stroke="#BA342A" stroke-width="4" fill="none"/>
+    <!-- Ngọn nến tàn đẫm giọt lệ đoạn trường -->
+    <rect x="-140" y="-30" width="12" height="70" fill="#FAF8F5" stroke="#0E3B52"/>
+    <path d="M-134 -30 Q-130 -50 -134 -60 Q-138 -50 -134 -30 Z" fill="#BA342A"/>
+    <circle cx="-134" cy="-45" r="16" fill="#BA342A" opacity="0.2"/>
+  </g>
+
+  </g>
+
+  <!-- Chân trang thẻ tranh: Tiêu đề bối cảnh & Phân đoạn -->
+  <g transform="translate(480, 468)">
+    <rect x="-320" y="-22" width="640" height="34" fill="#FAF8F5" rx="4" filter="url(#paper_shadow)"/>
+    <rect x="-320" y="-22" width="640" height="34" fill="none" stroke="#BA342A" stroke-width="1" rx="4"/>
+    <text x="0" y="-3" font-family="'Playfair Display', Georgia, serif" font-size="15" font-weight="800" fill="#0E3B52" text-anchor="middle" letter-spacing="0.5">TRUYỆN KIỀU • HỒI IV</text>
+    <text x="0" y="9" font-family="'Newsreader', serif" font-size="11.5" font-style="italic" fill="#BA342A" text-anchor="middle">Đêm trao duyên xót xa — Chiếc vành với bức tờ mây gửi lại</text>
+  </g>
+</svg>
